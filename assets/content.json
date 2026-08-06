@@ -432,19 +432,23 @@
           }
         },
         {
-          "h3": { "zh": "ReShade Addon：需要 addon 版 + 允许代码", "en": "ReShade Add-ons: need the add-on build + allow block" }
+          "h3": { "zh": "ReShade Addon：addon 文件从哪获取 + 允许配置怎么写", "en": "ReShade Add-ons: where to get .addon files + how to fill in the config" }
         },
         {
           "ol": {
             "zh": [
-              "在 <code>reshade.me</code> 主页下载 <strong>ReShade with full add-on support</strong>（未签名版本，安装器界面颜色与标准版不同）；签名版默认禁用 addon。",
-              "把下载到的 <code>.addon</code>（或 <code>.addon32</code> / <code>.addon64</code>）文件放入 addon 搜索目录（默认与 ReShade 同目录，即 <code>FiveM.app</code> 根目录）。",
-              "编辑 <code>FiveM.app</code> 根目录的 <code>ReShade.ini</code>，在 <code>[ADDON]</code> 段写入允许配置（见下方代码块），保存后重启游戏。"
+              "在 <code>reshade.me</code> 主页下载 <strong>ReShade with full add-on support</strong>（未签名版本，安装器界面颜色与标准版不同）；签名版不会加载任何 addon。",
+              "<strong>获取 addon 文件</strong>：<code>.addon</code> 是作者编译好的成品，无需自己写代码——从作者的发布页下载（如 GitHub Releases、作者主页），例如 ReShade 官方论坛 Addons 版块或知名预设作者的下载页。",
+              "把下载的 <code>.addon</code> 文件放入 addon 搜索目录：<strong>默认就是 ReShade 所在目录</strong>（即 <code>FiveM.app</code> 根目录，和 <code>dxgi.dll</code> 放一起）。注意：64 位游戏（FiveM 就是）用 <code>.addon64</code>，32 位游戏用 <code>.addon32</code>。",
+              "<strong>填写允许配置</strong>：安装 addon 版后 <code>ReShade.ini</code> 通常已自动生成 <code>[ADDON]</code> 段；也可以在游戏内 ReShade 面板的 <strong>Add-ons 页面顶部修改搜索路径</strong>，或手动编辑（见下方代码块）。",
+              "重启游戏，ReShade 日志（<code>ReShade.log</code>）出现 <code>Searching for add-ons (*.addon)</code> 和 <code>Registered add-on</code> 即表示加载成功。"
             ],
             "en": [
-              "Download <strong>ReShade with full add-on support</strong> from reshade.me (the unsigned build — its installer UI is color-coded differently); the signed build has add-ons disabled.",
-              "Put the <code>.addon</code> file (or <code>.addon32</code> / <code>.addon64</code>) into the add-on search directory (defaults to ReShade's own folder, i.e. the <code>FiveM.app</code> root).",
-              "Edit <code>ReShade.ini</code> in the <code>FiveM.app</code> root, add the <code>[ADDON]</code> block below, save and restart the game."
+              "Download <strong>ReShade with full add-on support</strong> from reshade.me (the unsigned build — its installer UI is color-coded differently); the signed build loads no add-ons at all.",
+              "<strong>Getting add-on files</strong>: a <code>.addon</code> file is a pre-built binary — you don't write any code. Download it from the author's release page (e.g. GitHub Releases, the author's site, or the Add-ons section of the official ReShade forum).",
+              "Put the <code>.addon</code> file into the add-on search directory: <strong>by default that is ReShade's own folder</strong> (the <code>FiveM.app</code> root, next to <code>dxgi.dll</code>). Note: 64-bit games (like FiveM) use <code>.addon64</code>, 32-bit games use <code>.addon32</code>.",
+              "<strong>Filling in the config</strong>: the add-on build usually creates the <code>[ADDON]</code> section in <code>ReShade.ini</code> automatically; you can also change the search path at the top of the <strong>Add-ons page in the in-game overlay</strong>, or edit it manually (see the code block below).",
+              "Restart the game. When <code>ReShade.log</code> shows <code>Searching for add-ons (*.addon)</code> and <code>Registered add-on</code>, the add-on loaded successfully."
             ]
           }
         },
