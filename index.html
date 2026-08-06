@@ -93,6 +93,15 @@
       -webkit-text-fill-color: transparent;
       color: transparent;
     }
+    header h1 .t-title {
+      display: inline;
+      letter-spacing: .5px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
     header h1 span {
       display: block;
       margin-left: 0;
@@ -417,9 +426,7 @@
 
   <!-- ================= 顶栏 / Header ================= -->
   <header>
-    <h1 id="siteTitle">FiveM 画质包教程
-      <span data-zh="中英双语 · 视频 + 图文" data-en="Bilingual · Video + Guide"></span>
-    </h1>
+    <h1 id="siteTitle"></h1>
     <div>
       <button class="lang-btn active" id="btnZh" type="button" onclick="setLang('zh')">中文</button>
       <button class="lang-btn" id="btnEn" type="button" onclick="setLang('en')">English</button>
@@ -634,12 +641,16 @@
     }
 
     /* 用 content.json 渲染整页 / Render the whole page from content.json */
+    function esc(s) {
+      return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
     function renderPage(data) {
       var m = data.meta;
       document.title = langIs("en") ? m.titleEn : m.titleZh;
-      document.getElementById("siteTitle").firstChild.textContent = m.h1.zh;
-      document.getElementById("siteTitle").firstChild.setAttribute("data-zh", m.h1.zh);
-      document.getElementById("siteTitle").firstChild.setAttribute("data-en", m.h1.en);
+      document.getElementById("siteTitle").innerHTML =
+        '<span class="t-title" data-zh="' + esc(m.h1.zh) + '" data-en="' + esc(m.h1.en) + '"></span>' +
+        '<span data-zh="' + esc(m.h1sub.zh) + '" data-en="' + esc(m.h1sub.en) + '"></span>';
 
       /* 导航 / TOC */
       var nav = document.getElementById("toc");
@@ -743,7 +754,8 @@
           CURRENT_META = data.meta;
           renderPage(data);
         })
-        .catch(function () {
+        .catch(function (err) {
+          console.error("load content failed:", err);
           showLoadError();
         });
     }
