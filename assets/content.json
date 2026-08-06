@@ -65,23 +65,23 @@
           "ol": {
             "zh": [
               "打开官网 <code>https://fivem.net</code>，点击 <strong>Download</strong> 下载安装器。",
-              "运行 <code>FiveM.exe</code>，安装器会自动检测 GTA V 的安装路径；如果找不到，请手动选择 GTA 5 文件夹。",
+              "运行 <code>FiveM.exe</code>，安装器会自动安装到C盘；然后会请手动选择 GTA 5 文件夹。（里面需要包含 <code>GTAV.exe</code> 文件）",
               "等待 FiveM 完成基础安装（首次会下载一些必需文件）。",
-              "启动 FiveM，登录 Rockstar 账号，随便进入一个服务器测试能否正常游玩。"
+              "启动 FiveM，登录 Rockstar 账号，随便进入一个来自您自己的国家的没有白名单的服务器测试能否正常加入。"
             ],
             "en": [
               "Open <code>https://fivem.net</code> and click <strong>Download</strong> to get the installer.",
-              "Run <code>FiveM.exe</code>; the installer will auto-detect your GTA V path. If not found, select the GTA 5 folder manually.",
+              "Run <code>FiveM.exe</code>; the installer will auto-install to the C: drive; then you'll be prompted to manually select the GTA 5 folder (which must contain the <code>GTAV.exe</code> file).",
               "Wait for FiveM to finish its base installation (it downloads required files on first run).",
-              "Launch FiveM, log in with your Rockstar account, and join any server to test."
+              "Launch FiveM, log in with your Rockstar account, and join a random server in your country that doesn't have a whitelist to test."
             ]
           }
         },
         {
           "note": {
             "kind": "red",
-            "zh": "<strong>重要：</strong>FiveM 目前只支持 GTA V 的 <strong>Legacy 版</strong>，不支持 2025 年推出的 Enhanced 版。如果你只有 Enhanced，请打开 Rockstar Launcher → 设置 → 找到并安装 <strong>Grand Theft Auto V Legacy</strong>。",
-            "en": "<strong>Important:</strong> FiveM currently only supports the <strong>Legacy</strong> build of GTA V — the Enhanced build (released 2025) is not supported yet. If you only have Enhanced, open Rockstar Launcher → Settings and install <strong>Grand Theft Auto V Legacy</strong>."
+            "zh": "<strong>重要：</strong>FiveM 现同时支持 GTA V 的 <strong>Legacy（传承版）</strong>与 <strong>Enhanced（增强版）</strong>（增强版客户端于 2026 年 7 月以早期访问形式上线，使用独立启动器，与传承版并行）。但<strong>不建议</strong>在增强版上使用本教程：早期访问阶段存在<strong>不稳定因素</strong>，<strong>画质模组暂不可用</strong>，社区生态也尚未成熟。请使用 <strong>Legacy（传承版）</strong>完成安装（Rockstar Launcher → 设置 → 安装 <strong>Grand Theft Auto V Legacy</strong>）。",
+            "en": "<strong>Important:</strong> FiveM now supports both <strong>Legacy</strong> and <strong>Enhanced</strong> builds of GTA V (the Enhanced client launched in early access in July 2026 via a separate launcher, running alongside Legacy). However, we <strong>do not recommend</strong> following this tutorial on Enhanced: early access is <strong>unstable</strong>, <strong>graphic mods are not available yet</strong>, and the ecosystem is not mature. Please use the <strong>Legacy</strong> build (Rockstar Launcher → Settings → install <strong>Grand Theft Auto V Legacy</strong>)."
           }
         },
         {
@@ -128,8 +128,8 @@
         {
           "note": {
             "kind": "default",
-            "zh": "下载后一般得到一个 <strong>zip 压缩包</strong>。请完整解压，不要直接双击 zip 内的文件。",
-            "en": "You usually get a <strong>zip archive</strong>. Extract it fully — don't run files from inside the zip."
+            "zh": "下载后一般得到一个 <strong>zip 压缩包</strong>。请完整解压。",
+            "en": "You usually get a <strong>zip archive</strong>. Extract it fully."
           }
         }
       ]
@@ -525,7 +525,7 @@
               { "q": "为什么这个页面内容会实时更新？", "a": "本页正文与媒体都通过 GitHub 动态加载（<code>assets/content.json</code>）。仓库内容更新后，刷新页面即可看到新内容，无需重新下载 HTML 文件。" },
               { "q": "ReShade 装好却没编译条、按 Home 没反应？", "a": "游戏内按 <strong>F8</strong> 打开控制台，查看是否有 <code>[Addons] ReShade5=ID:xxxx acknowledged that ReShade 5.x has a bug that will lead to game crashes</code> 提示；把该行（含你自己的 ID）复制到 <code>%localappdata%\\FiveM\\FiveM.app\\CitizenFX.ini</code> 最下面的 <code>[Addons]</code> 段，保存后重启游戏即可放行 ReShade。" },
               { "q": "提示 Could not find game executable / 找不到游戏怎么办？", "a": "打开 <code>%localappdata%\\FiveM\\FiveM.app\\CitizenFX.ini</code>，把 <code>IVPath=</code> 改成你的 GTA V <strong>Legacy</strong> 安装目录（如 <code>D:\\SteamLibrary\\steamapps\\common\\Grand Theft Auto V</code>），保存后重启 FiveM。" },
-              { "q": "FiveM 支持 GTA V Enhanced 版吗？", "a": "暂不支持（截至 2026）。FiveM 目前只能运行在 <strong>Legacy</strong> 版上；请用 Rockstar Launcher 安装 Grand Theft Auto V Legacy，并确保启动 FiveM 时选择的是 Legacy。" }
+              { "q": "FiveM 支持 GTA V Enhanced 版吗？", "a": "支持。2026 年 7 月 21 日 FiveM 发布了 <strong>Enhanced（增强版）</strong>客户端（早期访问，独立启动器，与 <strong>Legacy（传承版）</strong>并行）。但早期访问阶段<strong>不稳定</strong>、<strong>画质模组暂不可用</strong>、社区生态尚未成熟，本教程针对传承版，请使用 Legacy 完成安装。" }
             ],
             "en": [
               { "q": "Game crashes / won't start?", "a": "Delete the <code>caches</code> folder inside <code>FiveM.app</code> and relaunch. If it persists, remove the pack files you copied and test them one by one." },
@@ -535,7 +535,7 @@
               { "q": "Why does this page update automatically?", "a": "All text and media on this page are loaded dynamically from a GitHub repo (<code>assets/content.json</code>). Update the repo and refresh the page — no need to re-download the HTML file." },
               { "q": "ReShade installed but no compilation bar / Home does nothing?", "a": "Press <strong>F8</strong> in-game to open the console and look for <code>[Addons] ReShade5=ID:xxxx acknowledged that ReShade 5.x has a bug that will lead to game crashes</code>. Copy that line (with your own ID) into the <code>[Addons]</code> section at the very bottom of <code>%localappdata%\\FiveM\\FiveM.app\\CitizenFX.ini</code>, save and restart the game." },
               { "q": "Could not find game executable / game not found?", "a": "Open <code>%localappdata%\\FiveM\\FiveM.app\\CitizenFX.ini</code> and point <code>IVPath=</code> to your GTA V <strong>Legacy</strong> install folder (e.g. <code>D:\\SteamLibrary\\steamapps\\common\\Grand Theft Auto V</code>), then save and restart FiveM." },
-              { "q": "Does FiveM support the GTA V Enhanced build?", "a": "Not yet (as of 2026). FiveM only runs on the <strong>Legacy</strong> build for now — install Grand Theft Auto V Legacy via Rockstar Launcher and make sure that is the build FiveM launches." }
+              { "q": "Does FiveM support the GTA V Enhanced build?", "a": "Yes. FiveM for GTAV Enhanced launched as early access on July 21, 2026 (a separate launcher running alongside <strong>Legacy</strong>). However, early access is <strong>unstable</strong>, <strong>graphic mods are not available yet</strong>, and the ecosystem is not mature — this tutorial targets the Legacy build." }
             ]
           }
         }
