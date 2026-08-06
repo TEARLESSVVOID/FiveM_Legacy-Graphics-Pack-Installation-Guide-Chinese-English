@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" font-family="'Microsoft YaHei','Segoe UI',Arial,sans-serif">
   <!-- 深色背景 / Dark background -->
-  <rect width="800" height="450" fill="#141821"/>
-  <circle cx="640" cy="90" r="150" fill="#f39c12" opacity="0.08"/>
-  <circle cx="140" cy="380" r="180" fill="#3498db" opacity="0.07"/>
+  <rect width="800" height="450" fill="#0f0d12"/>
+  <circle cx="640" cy="90" r="150" fill="#ff4d6d" opacity="0.08"/>
+  <circle cx="140" cy="380" r="180" fill="#6ba6ff" opacity="0.07"/>
 
   <!-- 播放按钮 / Play button -->
-  <circle cx="400" cy="200" r="70" fill="#f39c12"/>
-  <path d="M 378 165 L 378 235 L 440 200 z" fill="#141821"/>
+  <circle cx="400" cy="200" r="70" fill="#ff4d6d"/>
+  <path d="M 378 165 L 378 235 L 440 200 z" fill="#0f0d12"/>
 
   <!-- 标题 / Title -->
-  <text x="400" y="320" text-anchor="middle" font-size="28" font-weight="bold" fill="#f5f7fa">视频教程 Video Tutorial</text>
-  <text x="400" y="352" text-anchor="middle" font-size="15" fill="#8d98ad">FiveM 画质包安装演示 · Installation Demo</text>
-  <text x="400" y="388" text-anchor="middle" font-size="13" fill="#f39c12">上传视频后自动通过 GitHub 加载</text>
-  <text x="400" y="410" text-anchor="middle" font-size="12" fill="#8d98ad">Video is loaded from GitHub after upload</text>
+  <text x="400" y="320" text-anchor="middle" font-size="28" font-weight="bold" fill="#ece7db">视频教程 Video Tutorial</text>
+  <text x="400" y="352" text-anchor="middle" font-size="15" fill="#a79f8e">FiveM 画质包安装演示 · Installation Demo</text>
+  <text x="400" y="388" text-anchor="middle" font-size="13" fill="#ff4d6d">上传视频后自动通过 GitHub 加载</text>
+  <text x="400" y="410" text-anchor="middle" font-size="12" fill="#a79f8e">Video is loaded from GitHub after upload</text>
 </svg>
