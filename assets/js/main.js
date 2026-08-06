@@ -50,18 +50,18 @@ function makeImg(path, className, alt) {
   var img = document.createElement("img");
   img.className = className;
   img.alt = alt || "";
-  img.src = path; // 内容里的路径已含 assets/img/ 前缀（本地优先）/ path already includes assets/img/ (local first)
+  img.src = asset(path); // 单文件版走 data URI；否则本地相对路径 / data URI in standalone, local path otherwise
   attachFallback(img, path, "src");
   return img;
 }
 
 function setVideo(v, path) {
-  v.src = path; // 路径已含 assets/video/ 前缀（本地优先）/ path already includes assets/video/ (local first)
+  v.src = asset(path); // 同上 / same as above
   attachFallback(v, path, "src");
 }
 
 function setPoster(v, path) {
-  v.poster = path; // 路径已含 assets/img/ 前缀（本地优先）/ path already includes assets/img/ (local first)
+  v.poster = asset(path); // 同上 / same as above
   attachFallback(v, path, "poster");
 }
 
@@ -288,6 +288,14 @@ function initLang() {
 }
 
 var CURRENT_META = { posterZh: "", posterEn: "", video: "" };
+
+/* 资源解析：单文件版（standalone）会注入 window.__ASSETS 资源表
+   （data URI），有则用之，无则走相对路径（本地/在线都适用）。
+   Asset lookup: the standalone single-file build injects a
+   window.__ASSETS map (data URIs); fall back to relative paths. */
+function asset(path) {
+  return (window.__ASSETS && window.__ASSETS[path]) || path;
+}
 
 /* ======================================================================
  * 启动：本地内容优先渲染（离线可预览）；在线时拉取 GitHub 最新内容覆盖。
