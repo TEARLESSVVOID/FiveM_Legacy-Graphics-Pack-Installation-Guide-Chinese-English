@@ -475,7 +475,14 @@
     /* 是否已填写配置 / Whether the config has been filled in */
     const CONFIG_OK = CONFIG.owner !== "YOUR_GITHUB_USERNAME" && CONFIG.repo !== "YOUR_REPO_NAME";
 
-    /* 构造 GitHub CDN 地址 / Build the GitHub CDN URL */
+    /* 构造内容地址（raw.githubusercontent：缓存仅 5 分钟，改动后很快可见）
+       Content URL (raw.githubusercontent: ~5 min cache, updates visible quickly) */
+    function rawUrl(path) {
+      return "https://raw.githubusercontent.com/" + CONFIG.owner + "/" + CONFIG.repo + "/" + CONFIG.branch + "/" + path;
+    }
+
+    /* 构造媒体地址（jsdelivr CDN：大陆访问快）
+       Media URL (jsdelivr CDN: fast access from China) */
     function ghUrl(path) {
       return "https://cdn.jsdelivr.net/gh/" + CONFIG.owner + "/" + CONFIG.repo + "@" + CONFIG.branch + "/" + path;
     }
@@ -747,9 +754,9 @@
     if (!CONFIG_OK) {
       showLoadError();
     } else {
-      /* 时间戳绕过浏览器缓存；jsdelivr 忽略 query，返回最新内容
-         Timestamp busts the browser cache; jsdelivr ignores query and serves the latest */
-      var url = ghUrl(CONFIG.content) + "?t=" + Date.now();
+      /* 时间戳绕过浏览器缓存；raw 返回最新内容
+         Timestamp busts the browser cache; raw serves the latest content */
+      var url = rawUrl(CONFIG.content) + "?t=" + Date.now();
       fetch(url)
         .then(function (res) {
           if (!res.ok) throw new Error("HTTP " + res.status);
