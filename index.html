@@ -4,8 +4,11 @@
   数据驱动 / Data-driven:
     · 本页只是加载器，正文在仓库 assets/content.json
       This page is a loader; the tutorial text lives in assets/content.json
-    · 打开页面时从 GitHub 拉取最新内容并渲染，更新内容只需改仓库
-      Content is fetched from GitHub on open — update the repo, readers refresh.
+    · CSS / JS / 内容 / 图片 全部从 GitHub 拉取，并套上 jsdelivr CDN 备用：
+      GitHub 响应超过 LOAD_TIMEOUT 毫秒或失败时，自动改用 CDN 加速
+      All assets (css/js/content/images) are fetched from GitHub with a
+      jsdelivr CDN fallback: if GitHub takes longer than LOAD_TIMEOUT ms
+      or fails, the CDN is used automatically.
   用法 / Usage:
     1. 上传 index.html + assets/ 到 GitHub 仓库
     2. 在下方 CONFIG 填你的用户名与仓库名
@@ -16,223 +19,99 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FiveM 画质包安装教程 · FiveM Graphics Pack Tutorial</title>
-  <style>
-    :root {
-      --bg: #101014;
-      --card: #191922;
-      --card-2: #20202c;
-      --border: #2c2c3a;
-      --text: #f0ece1;
-      --text-2: #cfc9ba;
-      --text-3: #98917f;
-      --accent: #ff5d7e;
-      --green: #5ce08a;
-      --red: #ff8080;
-      --code-bg: #0c0c10;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 70px; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
-      line-height: 1.75;
-      font-size: 16px;
-    }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+  <script>
+    /* ======================================================================
+     * 配置与加载器 / Config & loader
+     * 所有资源 GitHub 优先；慢于 LOAD_TIMEOUT 或失败则切 jsdelivr CDN。
+     * GitHub first; switch to the jsdelivr CDN when slower than
+     * LOAD_TIMEOUT or on failure.
+     * ====================================================================== */
+    var CONFIG = {
+      owner:  "TEARLESSVVOID",
+      repo:   "FiveM_Legacy-Graphics-Pack-Installation-Guide-Chinese-English",
+      branch: "main",
+      css:    "assets/css/style.css",
+      js:     "assets/js/main.js",
+      content: "assets/content.json"
+    };
+    CONFIG.OK = CONFIG.owner !== "YOUR_GITHUB_USERNAME" && CONFIG.repo !== "YOUR_REPO_NAME";
 
-    /* 顶栏 / Header */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    header h1 { font-size: 18px; }
-    header h1 span { display: block; font-size: 12px; font-weight: normal; color: var(--text-3); }
-    .lang-btn {
-      background: var(--card-2);
-      color: var(--text-2);
-      border: 1px solid var(--border);
-      padding: 6px 16px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-size: 13px;
-    }
-    .lang-btn.active { background: var(--accent); color: #1a0d12; border-color: var(--accent); font-weight: 600; }
+    /* 超时阈值（毫秒）：GitHub 直连超过此时长就切换 CDN 加速。
+       注意：阈值设成 2ms 不现实（任何网络请求都远超），
+       那样等于永远走 CDN，GitHub 直连形同虚设。
+       Timeout (ms) for GitHub direct fetch before switching to CDN. */
+    var LOAD_TIMEOUT = 3000;
 
-    /* 加载失败提示 / Load error banner */
-    #notice {
-      display: none;
-      background: #2b1d1c;
-      border-bottom: 1px solid var(--red);
-      color: #f2c9c2;
-      padding: 10px 20px;
-      font-size: 14px;
+    // GitHub 直连地址 / Direct GitHub URL
+    function rawUrl(path) {
+      return "https://raw.githubusercontent.com/" + CONFIG.owner + "/" + CONFIG.repo + "/" + CONFIG.branch + "/" + path;
+    }
+    // jsdelivr CDN 备用地址 / jsdelivr CDN fallback URL
+    function cdnUrl(path) {
+      return "https://cdn.jsdelivr.net/gh/" + CONFIG.owner + "/" + CONFIG.repo + "@" + CONFIG.branch + "/" + path;
     }
 
-    /* 目录 / Nav */
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 12px 20px;
-      border-bottom: 1px solid var(--card-2);
-    }
-    nav a {
-      background: var(--card-2);
-      color: var(--text-2);
-      padding: 5px 13px;
-      border-radius: 8px;
-      font-size: 13px;
-      border: 1px solid var(--border);
-    }
-    nav a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
-
-    main { max-width: 900px; margin: 0 auto; padding: 24px 20px 70px; }
-
-    /* 区块 / Sections */
-    section {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px 26px;
-      margin-bottom: 20px;
-    }
-    h2 { font-size: 20px; color: var(--accent); margin-bottom: 6px; }
-    h2 small { display: block; font-size: 13px; font-weight: normal; color: var(--text-3); margin-top: 2px; }
-    h3 { font-size: 16px; margin: 16px 0 8px; }
-    p, li { color: var(--text-2); }
-    ul, ol { padding-left: 24px; margin: 8px 0; }
-    li { margin: 6px 0; }
-    li::marker { color: var(--accent); }
-
-    .zh, .en { display: block; }
-    html[data-lang="zh"] .en { display: none !important; }
-    html[data-lang="en"] .zh { display: none !important; }
-
-    /* 图片 / Images */
-    .step-img {
-      display: block;
-      width: 100%;
-      max-width: 780px;
-      height: auto;
-      margin: 16px auto;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--bg);
-    }
-    .img-cap { text-align: center; font-size: 13px; color: var(--text-3); margin-top: 6px; }
-
-    /* 视频 / Video */
-    .video-wrap {
-      width: 100%;
-      max-width: 780px;
-      margin: 14px auto;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: #000;
-    }
-    video { display: block; width: 100%; height: auto; }
-    .badge {
-      display: inline-block;
-      background: #2b1d1c;
-      color: #f2c9c2;
-      border: 1px solid var(--red);
-      border-radius: 6px;
-      padding: 3px 9px;
-      font-size: 12px;
-      margin-bottom: 6px;
+    /* 拉取文本/JSON：先请求 GitHub；超时或失败后改用 CDN。
+       Fetch text/JSON: try GitHub first; fall back to the CDN on timeout/failure. */
+    function fetchAny(path, asJson) {
+      var gUrl = rawUrl(path) + "?t=" + Date.now();
+      var cUrl = cdnUrl(path);
+      function ok(r) {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return asJson ? r.json() : r.text();
+      }
+      return new Promise(function (resolve, reject) {
+        var settled = false, timedOut = false;
+        function win(v) { if (!settled) { settled = true; resolve(v); } }
+        function lose(e) { if (!settled) { settled = true; reject(e); } }
+        fetch(gUrl).then(function (r) {
+          if (!timedOut) ok(r).then(win, lose);
+        }, function () {
+          // GitHub 请求立即失败 → 直接用 CDN / GitHub failed at once → CDN
+          if (!settled) fetch(cUrl).then(ok).then(win, lose);
+        });
+        setTimeout(function () {
+          timedOut = true; // GitHub 太慢，忽略其迟到结果 / too slow, ignore late result
+          fetch(cUrl).then(ok).then(win, lose);
+        }, LOAD_TIMEOUT);
+      });
     }
 
-    /* 提示框 / Notes */
-    .note {
-      background: var(--card-2);
-      border-left: 4px solid var(--accent);
-      border-radius: 6px;
-      padding: 12px 16px;
-      margin: 14px 0;
-      font-size: 14.5px;
-    }
-    .note.green { border-left-color: var(--green); }
-    .note.red { border-left-color: var(--red); }
+    window.CONFIG = CONFIG;
+    window.LOAD_TIMEOUT = LOAD_TIMEOUT;
+    window.RAW_URL = rawUrl;
+    window.CDN_URL = cdnUrl;
+    window.FETCH_ANY = fetchAny;
 
-    /* FAQ 折叠 / FAQ accordion */
-    details {
-      background: var(--card-2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 16px;
-      margin: 10px 0;
+    /* 动态加载主脚本（GitHub 优先，onerror/超时切 CDN）
+       Load main script (GitHub first, CDN on error/timeout). */
+    function loadMain() {
+      var s = document.createElement("script");
+      s.src = rawUrl(CONFIG.js) + "?t=" + Date.now();
+      var switched = false;
+      function fb() {
+        if (!switched) { switched = true; s.src = cdnUrl(CONFIG.js); }
+      }
+      s.onerror = fb;
+      setTimeout(fb, LOAD_TIMEOUT);
+      document.head.appendChild(s);
     }
-    summary { cursor: pointer; color: var(--text); font-weight: 600; font-size: 15px; }
-    summary:hover { color: var(--accent); }
-    details p { margin-top: 10px; }
 
-    /* 代码块 / Code */
-    pre {
-      background: var(--code-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 14px;
-      font-size: 13px;
-      overflow-x: auto;
-      color: var(--green);
-      margin: 10px 0;
-      font-family: Consolas, "Courier New", monospace;
-    }
-    code {
-      background: var(--card-2);
-      color: var(--accent);
-      padding: 1px 6px;
-      border-radius: 4px;
-      font-size: 14px;
-      word-break: break-word;
-    }
-    pre code { background: none; color: var(--green); padding: 0; }
-
-    /* 表格 / Tables */
-    table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
-    th, td { border: 1px solid var(--border); padding: 9px 12px; text-align: left; vertical-align: top; }
-    th { background: var(--card-2); color: var(--accent); }
-    tbody tr:nth-child(even) td { background: #1d1d28; }
-
-    footer { text-align: center; color: var(--text-3); font-size: 13px; padding: 20px; border-top: 1px solid var(--card-2); }
-
-    /* 回到顶部 / Back to top */
-    #backTop {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      z-index: 60;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: var(--card-2);
-      color: var(--text-2);
-      border: 1px solid var(--border);
-      cursor: pointer;
-      font-size: 16px;
-      opacity: 0;
-      visibility: hidden;
-    }
-    #backTop.show { opacity: 1; visibility: visible; }
-    #backTop:hover { border-color: var(--accent); color: var(--accent); }
-
-    @media (max-width: 640px) {
-      section { padding: 18px 14px; }
-      header h1 { font-size: 16px; }
-    }
-  </style>
+    /* 页面就绪：先隐藏 body 防止无样式闪烁，拉取 CSS 后再显示
+       Hide body to avoid unstyled flash, show it after CSS arrives. */
+    document.addEventListener("DOMContentLoaded", function () {
+      document.body.style.visibility = "hidden";
+      fetchAny(CONFIG.css, false)
+        .then(function (css) {
+          var st = document.createElement("style");
+          st.textContent = css;
+          document.head.appendChild(st);
+        })
+        .catch(function (e) { console.error("css failed:", e); })
+        .then(function () { document.body.style.visibility = ""; });
+      loadMain();
+    });
+  </script>
 </head>
 <body>
 
@@ -258,289 +137,5 @@
 
   <button id="backTop" type="button" aria-label="回到顶部 / Back to top">↑</button>
 
-  <script>
-    /* ======================================================================
-     * 配置 / Config —— 改成你自己的仓库 / Point to your own repo
-     * 正文运行时从 assets/content.json 拉取：
-     *   https://raw.githubusercontent.com/{owner}/{repo}/{branch}/assets/content.json
-     * ====================================================================== */
-    const CONFIG = {
-      owner:  "TEARLESSVVOID",
-      repo:   "FiveM_Legacy-Graphics-Pack-Installation-Guide-Chinese-English",
-      branch: "main",
-      content: "assets/content.json"
-    };
-    const CONFIG_OK = CONFIG.owner !== "YOUR_GITHUB_USERNAME" && CONFIG.repo !== "YOUR_REPO_NAME";
-
-    // 正文地址：raw 缓存约 5 分钟，更新后很快可见 / raw caches ~5 min for fast updates
-    function rawUrl(path) {
-      return "https://raw.githubusercontent.com/" + CONFIG.owner + "/" + CONFIG.repo + "/" + CONFIG.branch + "/" + path;
-    }
-    // 媒体地址：jsdelivr CDN，国内访问快 / media via jsdelivr CDN (fast in China)
-    function ghUrl(path) {
-      return "https://cdn.jsdelivr.net/gh/" + CONFIG.owner + "/" + CONFIG.repo + "@" + CONFIG.branch + "/" + path;
-    }
-
-    function showLoadError() {
-      document.getElementById("notice").style.display = "block";
-    }
-
-    /* ======================================================================
-     * 渲染引擎 / Rendering engine —— 把 content.json 变成页面
-     * 支持的块类型 / Block types: p, note, h3, ol, ul, img, table, faqs, code, video
-     * ====================================================================== */
-    function biBlock(zhHtml, enHtml, tag) {
-      tag = tag || "div";
-      var box = document.createElement("div");
-      ["zh", "en"].forEach(function (lang) {
-        var el = document.createElement(tag);
-        el.className = lang;
-        el.innerHTML = lang === "zh" ? zhHtml : enHtml;
-        box.appendChild(el);
-      });
-      return box;
-    }
-
-    function renderBlock(blk) {
-      if (blk.p) return biBlock(blk.p.zh, blk.p.en, "p");
-      if (blk.h3) return biBlock(blk.h3.zh, blk.h3.en, "h3");
-      if (blk.note) {
-        var n = document.createElement("div");
-        n.className = "note" + (blk.note.kind ? " " + blk.note.kind : "");
-        n.appendChild(biBlock(blk.note.zh, blk.note.en));
-        return n;
-      }
-      if (blk.ol || blk.ul) {
-        var tag = blk.ol ? "ol" : "ul";
-        var box = document.createElement("div");
-        [["zh", blk.ol ? blk.ol.zh : blk.ul.zh], ["en", blk.ol ? blk.ol.en : blk.ul.en]].forEach(function (pair) {
-          var list = document.createElement(tag);
-          list.className = pair[0];
-          pair[1].forEach(function (item) {
-            var li = document.createElement("li");
-            li.innerHTML = item;
-            list.appendChild(li);
-          });
-          box.appendChild(list);
-        });
-        return box;
-      }
-      if (blk.img) {
-        var box2 = document.createElement("div");
-        [["zh", blk.img.zh, blk.img.capZh], ["en", blk.img.en, blk.img.capEn]].forEach(function (pair) {
-          var img = document.createElement("img");
-          img.className = "step-img";
-          img.alt = "";
-          img.src = CONFIG_OK ? ghUrl(pair[1]) : pair[1];
-          var cap = document.createElement("div");
-          cap.className = "img-cap";
-          cap.textContent = pair[2];
-          var wrap = document.createElement("div");
-          wrap.className = pair[0];
-          wrap.appendChild(img);
-          wrap.appendChild(cap);
-          box2.appendChild(wrap);
-        });
-        return box2;
-      }
-      if (blk.table) {
-        var box3 = document.createElement("div");
-        [["zh", blk.table.zh], ["en", blk.table.en]].forEach(function (pair) {
-          var t = document.createElement("table");
-          t.className = pair[0];
-          var thead = document.createElement("thead");
-          var trH = document.createElement("tr");
-          pair[1].head.forEach(function (h) {
-            var th = document.createElement("th");
-            th.innerHTML = h;
-            trH.appendChild(th);
-          });
-          thead.appendChild(trH);
-          t.appendChild(thead);
-          var tbody = document.createElement("tbody");
-          pair[1].rows.forEach(function (row) {
-            var tr = document.createElement("tr");
-            row.forEach(function (cell) {
-              var td = document.createElement("td");
-              td.innerHTML = cell;
-              tr.appendChild(td);
-            });
-            tbody.appendChild(tr);
-          });
-          t.appendChild(tbody);
-          box3.appendChild(t);
-        });
-        return box3;
-      }
-      if (blk.faqs) {
-        var box4 = document.createElement("div");
-        [["zh", blk.faqs.zh], ["en", blk.faqs.en]].forEach(function (pair) {
-          var col = document.createElement("div");
-          col.className = pair[0];
-          pair[1].forEach(function (item) {
-            var d = document.createElement("details");
-            var s = document.createElement("summary");
-            s.textContent = item.q;
-            var p = document.createElement("p");
-            p.innerHTML = item.a;
-            d.appendChild(s);
-            d.appendChild(p);
-            col.appendChild(d);
-          });
-          box4.appendChild(col);
-        });
-        return box4;
-      }
-      if (blk.code) {
-        var pre = document.createElement("pre");
-        pre.textContent = blk.code;
-        return pre;
-      }
-      if (blk.video) {
-        var box5 = document.createElement("div");
-        var badgeZ = document.createElement("span");
-        badgeZ.className = "badge zh";
-        badgeZ.textContent = blk.video.badgeZh;
-        var badgeE = document.createElement("span");
-        badgeE.className = "badge en";
-        badgeE.textContent = blk.video.badgeEn;
-        box5.appendChild(badgeZ);
-        box5.appendChild(badgeE);
-        var wrap = document.createElement("div");
-        wrap.className = "video-wrap";
-        var v = document.createElement("video");
-        v.controls = true;
-        v.preload = "metadata";
-        v.poster = "";
-        var src = document.createElement("source");
-        src.type = "video/mp4";
-        var path = blk.video.video || CURRENT_META.video;
-        src.src = CONFIG_OK ? ghUrl(path) : path;
-        v.appendChild(src);
-        wrap.appendChild(v);
-        box5.appendChild(wrap);
-        var capZ = document.createElement("div");
-        capZ.className = "img-cap zh";
-        capZ.textContent = blk.video.capZh;
-        var capE = document.createElement("div");
-        capE.className = "img-cap en";
-        capE.textContent = blk.video.capEn;
-        box5.appendChild(capZ);
-        box5.appendChild(capE);
-        return box5;
-      }
-      return document.createTextNode("");
-    }
-
-    // HTML 转义 / HTML escaping
-    function esc(s) {
-      return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-    }
-
-    function renderPage(data) {
-      var m = data.meta;
-      document.title = langIs("en") ? m.titleEn : m.titleZh;
-      document.getElementById("siteTitle").innerHTML =
-        '<span data-zh="' + esc(m.h1.zh) + '" data-en="' + esc(m.h1.en) + '"></span>' +
-        '<span data-zh="' + esc(m.h1sub.zh) + '" data-en="' + esc(m.h1sub.en) + '"></span>';
-
-      var nav = document.getElementById("toc");
-      nav.innerHTML = "";
-      data.nav.forEach(function (item) {
-        var a = document.createElement("a");
-        a.href = "#" + item.id;
-        a.setAttribute("data-zh", item.zh);
-        a.setAttribute("data-en", item.en);
-        nav.appendChild(a);
-      });
-
-      var main = document.getElementById("content");
-      main.innerHTML = "";
-      data.sections.forEach(function (sec) {
-        var s = document.createElement("section");
-        s.id = sec.id;
-        var h2 = document.createElement("h2");
-        h2.setAttribute("data-zh", sec.h2.zh);
-        h2.setAttribute("data-en", sec.h2.en);
-        var small = document.createElement("small");
-        small.setAttribute("data-zh", sec.sub.zh);
-        small.setAttribute("data-en", sec.sub.en);
-        h2.appendChild(small);
-        s.appendChild(h2);
-        sec.body.forEach(function (blk) { s.appendChild(renderBlock(blk)); });
-        main.appendChild(s);
-      });
-
-      var footer = document.getElementById("siteFooter");
-      footer.innerHTML = "";
-      m.footer.forEach(function (line) {
-        var p = document.createElement("p");
-        p.setAttribute("data-zh", line.zh);
-        p.setAttribute("data-en", line.en);
-        footer.appendChild(p);
-      });
-
-      initLang();
-    }
-
-    /* ======================================================================
-     * 语言切换 / Language switch
-     * ====================================================================== */
-    function langIs(en) {
-      return document.documentElement.getAttribute("data-lang") === "en";
-    }
-
-    function setLang(lang) {
-      document.documentElement.setAttribute("data-lang", lang);
-      document.getElementById("btnZh").classList.toggle("active", lang === "zh");
-      document.getElementById("btnEn").classList.toggle("active", lang === "en");
-      document.querySelectorAll("[data-zh][data-en]").forEach(function (el) {
-        el.textContent = lang === "en" ? el.getAttribute("data-en") : el.getAttribute("data-zh");
-      });
-      var vid = document.getElementById("tutorialVideo");
-      if (vid) {
-        var poster = lang === "en" ? CURRENT_META.posterEn : CURRENT_META.posterZh;
-        vid.poster = CONFIG_OK ? ghUrl(poster) : poster;
-      }
-      try { localStorage.setItem("lang", lang); } catch (e) {}
-    }
-
-    function initLang() {
-      var saved = null;
-      try { saved = localStorage.getItem("lang"); } catch (e) {}
-      setLang(saved === "en" ? "en" : "zh");
-    }
-
-    var CURRENT_META = { posterZh: "", posterEn: "", video: "" };
-
-    /* ======================================================================
-     * 启动：拉取内容并渲染 / Boot: fetch and render
-     * ====================================================================== */
-    if (!CONFIG_OK) {
-      showLoadError();
-    } else {
-      fetch(rawUrl(CONFIG.content) + "?t=" + Date.now())
-        .then(function (res) {
-          if (!res.ok) throw new Error("HTTP " + res.status);
-          return res.json();
-        })
-        .then(function (data) {
-          CURRENT_META = data.meta;
-          renderPage(data);
-        })
-        .catch(function (err) {
-          console.error("load content failed:", err);
-          showLoadError();
-        });
-    }
-
-    var backTop = document.getElementById("backTop");
-    window.addEventListener("scroll", function () {
-      backTop.classList.toggle("show", window.scrollY > 600);
-    });
-    backTop.addEventListener("click", function () {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  </script>
 </body>
 </html>

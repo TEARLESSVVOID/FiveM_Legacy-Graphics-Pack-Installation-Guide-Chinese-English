@@ -1,0 +1,223 @@
+/* ======================================================================
+ * FiveM 教程 · 样式表 / Stylesheet
+ * 本文件从 GitHub 拉取（assets/css/style.css），GitHub 慢/失败时自动
+ * 切换 jsdelivr CDN 备用加速。
+ * This file is fetched from GitHub (assets/css/style.css); when GitHub is
+ * slow or fails, it automatically falls back to the jsdelivr CDN.
+ * ====================================================================== */
+
+:root {
+  --bg: #101014;
+  --card: #191922;
+  --card-2: #20202c;
+  --border: #2c2c3a;
+  --text: #f0ece1;
+  --text-2: #cfc9ba;
+  --text-3: #98917f;
+  --accent: #ff5d7e;
+  --green: #5ce08a;
+  --red: #ff8080;
+  --code-bg: #0c0c10;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+  line-height: 1.75;
+  font-size: 16px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* 顶栏 / Header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+header h1 { font-size: 18px; }
+header h1 span { display: block; font-size: 12px; font-weight: normal; color: var(--text-3); }
+.lang-btn {
+  background: var(--card-2);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  padding: 6px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.lang-btn.active { background: var(--accent); color: #1a0d12; border-color: var(--accent); font-weight: 600; }
+
+/* 加载失败提示 / Load error banner */
+#notice {
+  display: none;
+  background: #2b1d1c;
+  border-bottom: 1px solid var(--red);
+  color: #f2c9c2;
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+/* 目录 / Nav */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--card-2);
+}
+nav a {
+  background: var(--card-2);
+  color: var(--text-2);
+  padding: 5px 13px;
+  border-radius: 8px;
+  font-size: 13px;
+  border: 1px solid var(--border);
+}
+nav a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+main { max-width: 900px; margin: 0 auto; padding: 24px 20px 70px; }
+
+/* 区块 / Sections */
+section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 26px;
+  margin-bottom: 20px;
+}
+h2 { font-size: 20px; color: var(--accent); margin-bottom: 6px; }
+h2 small { display: block; font-size: 13px; font-weight: normal; color: var(--text-3); margin-top: 2px; }
+h3 { font-size: 16px; margin: 16px 0 8px; }
+p, li { color: var(--text-2); }
+ul, ol { padding-left: 24px; margin: 8px 0; }
+li { margin: 6px 0; }
+li::marker { color: var(--accent); }
+
+.zh, .en { display: block; }
+html[data-lang="zh"] .en { display: none !important; }
+html[data-lang="en"] .zh { display: none !important; }
+
+/* 图片 / Images */
+.step-img {
+  display: block;
+  width: 100%;
+  max-width: 780px;
+  height: auto;
+  margin: 16px auto;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+.img-cap { text-align: center; font-size: 13px; color: var(--text-3); margin-top: 6px; }
+
+/* 视频 / Video */
+.video-wrap {
+  width: 100%;
+  max-width: 780px;
+  margin: 14px auto;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #000;
+}
+video { display: block; width: 100%; height: auto; }
+.badge {
+  display: inline-block;
+  background: #2b1d1c;
+  color: #f2c9c2;
+  border: 1px solid var(--red);
+  border-radius: 6px;
+  padding: 3px 9px;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+/* 提示框 / Notes */
+.note {
+  background: var(--card-2);
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin: 14px 0;
+  font-size: 14.5px;
+}
+.note.green { border-left-color: var(--green); }
+.note.red { border-left-color: var(--red); }
+
+/* FAQ 折叠 / FAQ accordion */
+details {
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 10px 0;
+}
+summary { cursor: pointer; color: var(--text); font-weight: 600; font-size: 15px; }
+summary:hover { color: var(--accent); }
+details p { margin-top: 10px; }
+
+/* 代码块 / Code */
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 13px;
+  overflow-x: auto;
+  color: var(--green);
+  margin: 10px 0;
+  font-family: Consolas, "Courier New", monospace;
+}
+code {
+  background: var(--card-2);
+  color: var(--accent);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+  word-break: break-word;
+}
+pre code { background: none; color: var(--green); padding: 0; }
+
+/* 表格 / Tables */
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+th, td { border: 1px solid var(--border); padding: 9px 12px; text-align: left; vertical-align: top; }
+th { background: var(--card-2); color: var(--accent); }
+tbody tr:nth-child(even) td { background: #1d1d28; }
+
+footer { text-align: center; color: var(--text-3); font-size: 13px; padding: 20px; border-top: 1px solid var(--card-2); }
+
+/* 回到顶部 / Back to top */
+#backTop {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 60;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--card-2);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-size: 16px;
+  opacity: 0;
+  visibility: hidden;
+}
+#backTop.show { opacity: 1; visibility: visible; }
+#backTop:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 640px) {
+  section { padding: 18px 14px; }
+  header h1 { font-size: 16px; }
+}
