@@ -1,48 +1,52 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" font-family="'Segoe UI','Microsoft YaHei','Courier New',monospace">
-  <!-- English version of Step 3 / 步骤 3 英文版 -->
+  <!-- Step 3: Copy Files (English) / 步骤 3 英文版 -->
   <rect width="800" height="450" fill="#0f0d12"/>
 
-  <text x="400" y="40" text-anchor="middle" font-size="26" font-weight="bold" fill="#ece7db">STEP 3 · Copy Files into FiveM.app\data</text>
-  <text x="400" y="66" text-anchor="middle" font-size="15" fill="#a79f8e">Move pack files into the data folder</text>
+  <text x="400" y="38" text-anchor="middle" font-size="26" font-weight="bold" fill="#ece7db">STEP 3 · Copy Files into FiveM</text>
+  <text x="400" y="64" text-anchor="middle" font-size="15" fill="#a79f8e">The most important step</text>
 
-  <!-- Folder tree (short tabs, clear of text) -->
-  <!-- L1 %localappdata% -->
-  <path d="M 30 100 h 20 l 8 10 h 150 v 8 h -178 z" fill="#2b2537"/>
-  <rect x="30" y="116" width="180" height="28" rx="4" fill="#2b2537"/>
-  <text x="44" y="136" font-size="12" fill="#ff4d6d">%localappdata%\FiveM\</text>
+  <!-- Folder tree -->
+  <path d="M 30 96 h 20 l 8 10 h 150 v 8 h -178 z" fill="#2b2537"/>
+  <rect x="30" y="112" width="180" height="26" rx="4" fill="#2b2537"/>
+  <text x="44" y="131" font-size="12" fill="#ff4d6d">%localappdata%\FiveM\</text>
 
-  <!-- L2 FiveM.app -->
-  <path d="M 60 160 h 20 l 8 10 h 120 v 8 h -148 z" fill="#332c42"/>
-  <rect x="60" y="176" width="148" height="28" rx="4" fill="#332c42"/>
-  <text x="74" y="196" font-size="12" fill="#ece7db">FiveM.app\</text>
+  <path d="M 60 152 h 20 l 8 10 h 120 v 8 h -148 z" fill="#332c42"/>
+  <rect x="60" y="168" width="148" height="26" rx="4" fill="#332c42"/>
+  <text x="74" y="187" font-size="12" fill="#ece7db">FiveM.app\</text>
 
-  <!-- L3 data (highlighted) -->
-  <path d="M 90 220 h 20 l 8 10 h 88 v 8 h -116 z" fill="#ff4d6d"/>
-  <rect x="90" y="236" width="116" height="28" rx="4" fill="#ff4d6d"/>
-  <text x="104" y="256" font-size="12" font-weight="bold" fill="#0f0d12">data/ (here)</text>
+  <!-- data (highlighted) -->
+  <path d="M 90 208 h 20 l 8 10 h 88 v 8 h -116 z" fill="#ff4d6d"/>
+  <rect x="90" y="224" width="116" height="26" rx="4" fill="#ff4d6d"/>
+  <text x="104" y="243" font-size="12" font-weight="bold" fill="#0f0d12">data\ here</text>
 
-  <!-- L4 caches (delete) -->
-  <path d="M 90 280 h 20 l 8 10 h 88 v 8 h -116 z" fill="#3a2430"/>
-  <rect x="90" y="296" width="116" height="28" rx="4" fill="#3a2430"/>
-  <text x="104" y="316" font-size="12" fill="#f87171">caches/ (delete)</text>
+  <!-- Mods/Plugins (copy as-is) -->
+  <path d="M 90 264 h 20 l 8 10 h 118 v 8 h -146 z" fill="#1f3a2b"/>
+  <rect x="90" y="280" width="146" height="26" rx="4" fill="#1f3a2b" stroke="#4ade80"/>
+  <text x="104" y="299" font-size="12" fill="#4ade80">Mods/Plugins: copy as-is</text>
 
-  <!-- L5 plugins (ReShade / ASI / addon) -->
-  <rect x="90" y="340" width="116" height="26" rx="4" fill="#191620" stroke="#a79f8e"/>
-  <text x="104" y="358" font-size="12" fill="#d8d2c4">plugins/</text>
+  <!-- caches (delete) -->
+  <path d="M 90 320 h 20 l 8 10 h 88 v 8 h -116 z" fill="#3a2430"/>
+  <rect x="90" y="336" width="116" height="26" rx="4" fill="#3a2430"/>
+  <text x="104" y="355" font-size="12" fill="#f87171">caches\ delete (optional)</text>
 
-  <!-- Right: pack files -->
-  <rect x="330" y="150" width="210" height="90" rx="12" fill="#191620" stroke="#4ade80" stroke-width="2"/>
-  <text x="435" y="185" text-anchor="middle" font-size="15" font-weight="bold" fill="#ece7db">Pack files</text>
-  <text x="435" y="208" text-anchor="middle" font-size="12" fill="#a79f8e">Extracted files</text>
-  <text x="435" y="228" text-anchor="middle" font-size="13" fill="#4ade80">Copy &amp; merge into data</text>
+  <!-- Pack files -->
+  <rect x="330" y="150" width="210" height="96" rx="12" fill="#191620" stroke="#4ade80" stroke-width="2"/>
+  <text x="435" y="182" text-anchor="middle" font-size="15" font-weight="bold" fill="#ece7db">Pack files</text>
+  <text x="435" y="202" text-anchor="middle" font-size="12" fill="#a79f8e">(fully extracted)</text>
+  <text x="435" y="228" text-anchor="middle" font-size="13" fill="#4ade80">Ctrl+A select all → Ctrl+C</text>
 
-  <!-- Arrow pointing to data folder -->
-  <path d="M 550 205 C 610 205 620 200 660 180" stroke="#4ade80" stroke-width="4" fill="none" marker-end="url(#arBig)"/>
+  <!-- Big arrow to data -->
+  <path d="M 320 215 C 280 215 250 205 216 178" stroke="#4ade80" stroke-width="4" fill="none" marker-end="url(#arBig)"/>
 
-  <!-- Bottom note (single-line text, no overlap) -->
+  <!-- Paste hint -->
+  <rect x="330" y="262" width="210" height="58" rx="12" fill="#211d2b" stroke="#2b2537"/>
+  <text x="435" y="284" text-anchor="middle" font-size="13" fill="#d8d2c4">Paste into data\: Ctrl+V</text>
+  <text x="435" y="306" text-anchor="middle" font-size="12" fill="#4ade80">Choose "Yes" to merge / replace</text>
+
+  <!-- Bottom note -->
   <rect x="20" y="388" width="760" height="58" rx="12" fill="#211d2b" stroke="#2b2537"/>
   <text x="38" y="410" font-size="14" fill="#ff4d6d" font-weight="bold">Note:</text>
-  <text x="38" y="434" font-size="12" fill="#d8d2c4">Some packs (e.g. NVE) need files in the FiveM.app root — follow the pack's own instructions.</text>
+  <text x="38" y="434" font-size="12" fill="#d8d2c4">Default path %localappdata%\FiveM\FiveM.app; custom installs like D:\FiveM_Legacy\FiveM.app. A few packs (e.g. NVE) want files in the FiveM.app root — follow the pack's instructions.</text>
 
   <defs>
     <marker id="arBig" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">

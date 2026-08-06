@@ -1,16 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" font-family="'Microsoft YaHei','Segoe UI',Arial,sans-serif">
-  <!-- 深色背景 / Dark background -->
+  <!-- 步骤 5：游戏内启用（中文版）/ Step 5: Enable In-Game (Chinese) -->
   <rect width="800" height="450" fill="#0f0d12"/>
 
   <!-- 标题 / Title -->
-  <text x="400" y="42" text-anchor="middle" font-size="26" font-weight="bold" fill="#ece7db">STEP 5 · 游戏内启用画质</text>
+  <text x="400" y="42" text-anchor="middle" font-size="26" font-weight="bold" fill="#ece7db">STEP 5 · 启动游戏并启用画质</text>
   <text x="400" y="70" text-anchor="middle" font-size="15" fill="#a79f8e">Enable the Pack In-Game</text>
 
   <!-- 屏幕 mockup / Screen -->
   <rect x="60" y="100" width="420" height="260" rx="14" fill="#0f0d12" stroke="#2b2537" stroke-width="3"/>
   <rect x="60" y="100" width="420" height="24" rx="14" fill="#211d2b"/>
   <rect x="60" y="112" width="420" height="12" fill="#211d2b"/>
-  <!-- 屏幕内画面示意 -->
   <rect x="80" y="140" width="380" height="200" rx="8" fill="#17141d"/>
   <circle cx="430" cy="300" r="70" fill="#ff4d6d" opacity="0.18"/>
   <circle cx="120" cy="180" r="45" fill="#6ba6ff" opacity="0.25"/>
@@ -18,7 +17,6 @@
   <path d="M 80 320 L 200 250 L 330 320 L 460 220" stroke="#ff4d6d" stroke-width="2" opacity="0.5" fill="none"/>
   <text x="270" y="330" text-anchor="middle" font-size="16" fill="#d8d2c4">GTA V 游戏画面</text>
   <text x="270" y="352" text-anchor="middle" font-size="12" fill="#a79f8e">In-game view</text>
-  <!-- Home 键提示 -->
   <rect x="180" y="156" width="130" height="40" rx="8" fill="#ff4d6d"/>
   <text x="245" y="182" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f0d12">按 Home 键</text>
 
@@ -45,13 +43,14 @@
   <rect x="540" y="290" width="230" height="70" rx="12" fill="#191620" stroke="#4ade80" stroke-width="2"/>
   <circle cx="566" cy="325" r="14" fill="#4ade80"/>
   <text x="566" y="330" text-anchor="middle" font-size="13" font-weight="bold" fill="#0f0d12">C</text>
-  <text x="588" y="320" font-size="13" font-weight="bold" fill="#ece7db">选择画质包预设，尽情游玩</text>
-  <text x="588" y="340" font-size="11" fill="#a79f8e">Select preset and enjoy!</text>
+  <text x="588" y="320" font-size="13" font-weight="bold" fill="#ece7db">选择预设，勾选特效</text>
+  <text x="588" y="340" font-size="11" fill="#a79f8e">Pick preset, tick effects</text>
 
   <!-- 底部提示条 / Bottom note -->
-  <rect x="20" y="380" width="760" height="52" rx="12" fill="#211d2b" stroke="#2b2537"/>
-  <text x="38" y="405" font-size="13" fill="#d8d2c4">可在游戏设置中开启“高级图形设置 → 超高”，配合画质包效果更佳。</text>
-  <text x="38" y="423" font-size="12" fill="#a79f8e">Enable "Advanced Graphics → Very High" in game settings for the best result.</text>
+  <rect x="20" y="380" width="760" height="66" rx="12" fill="#211d2b" stroke="#2b2537"/>
+  <text x="38" y="404" font-size="13" fill="#d8d2c4">游戏设置开启“高级图形 → 超高”，配合画质包效果更佳。</text>
+  <text x="38" y="422" font-size="12" fill="#a79f8e">Enable "Advanced Graphics → Very High" in game settings for the best result.</text>
+  <text x="38" y="440" font-size="12" fill="#ff4d6d">按 Home 没反应？检查 plugins 里的 dxgi.dll，并完成 F8 放行（见进阶章节）。</text>
 
   <defs>
     <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">

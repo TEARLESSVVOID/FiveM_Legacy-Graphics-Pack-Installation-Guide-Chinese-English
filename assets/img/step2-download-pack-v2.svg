@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" font-family="'Microsoft YaHei','Segoe UI',Arial,sans-serif">
-  <!-- 深色背景 / Dark background -->
+  <!-- 步骤 2：下载画质包（中文版）/ Step 2: Download a Pack (Chinese) -->
   <rect width="800" height="450" fill="#0f0d12"/>
 
   <!-- 标题 / Title -->
@@ -12,7 +12,7 @@
   <!-- NVE card -->
   <rect x="20" y="126" width="230" height="74" rx="10" fill="#191620" stroke="#6ba6ff" stroke-width="2"/>
   <text x="38" y="156" font-size="15" font-weight="bold" fill="#ece7db">NaturalVision (NVE)</text>
-  <text x="38" y="180" font-size="12" fill="#a79f8e">最真实·付费 / Paid, most realistic</text>
+  <text x="38" y="180" font-size="12" fill="#a79f8e">最真实 · Patreon 付费 / Paid, most realistic</text>
 
   <!-- QuantV card -->
   <rect x="20" y="212" width="230" height="74" rx="10" fill="#191620" stroke="#9b6dff" stroke-width="2"/>
@@ -22,9 +22,9 @@
   <!-- ReShade card -->
   <rect x="20" y="298" width="230" height="74" rx="10" fill="#191620" stroke="#4ade80" stroke-width="2"/>
   <text x="38" y="328" font-size="15" font-weight="bold" fill="#ece7db">ReShade 预设</text>
-  <text x="38" y="352" font-size="12" fill="#a79f8e">免费预设 / Free presets (GitHub)</text>
+  <text x="38" y="352" font-size="12" fill="#a79f8e">免费 · GitHub 很多 / Free presets on GitHub</text>
 
-  <!-- 箭头 1 -->
+  <!-- Arrows -->
   <path d="M 256 163 L 318 163" stroke="#ff4d6d" stroke-width="3" marker-end="url(#ar)"/>
   <path d="M 256 249 L 318 249" stroke="#ff4d6d" stroke-width="3" marker-end="url(#ar)"/>
   <path d="M 256 335 L 318 335" stroke="#ff4d6d" stroke-width="3" marker-end="url(#ar)"/>
@@ -37,19 +37,19 @@
   <path d="M 396 201 L 416 201 L 406 210 z" fill="#d8d2c4"/>
   <text x="436" y="230" text-anchor="middle" font-size="14" fill="#d8d2c4">下载 Download</text>
 
-  <!-- 箭头 2 -->
+  <!-- Arrow 2 -->
   <path d="M 552 180 L 614 180" stroke="#ff4d6d" stroke-width="3" marker-end="url(#ar)"/>
 
   <!-- 右侧：解压 / Extract -->
   <rect x="620" y="130" width="160" height="110" rx="12" fill="#191620" stroke="#4ade80" stroke-width="2"/>
-  <text x="700" y="170" text-anchor="middle" font-size="16" font-weight="bold" fill="#ece7db">解压文件</text>
-  <text x="700" y="196" text-anchor="middle" font-size="12" fill="#a79f8e">Extract ZIP</text>
-  <text x="700" y="222" text-anchor="middle" font-size="13" fill="#4ade80">✓ 右键 → 解压</text>
+  <text x="700" y="170" text-anchor="middle" font-size="16" font-weight="bold" fill="#ece7db">完整解压</text>
+  <text x="700" y="196" text-anchor="middle" font-size="12" fill="#a79f8e">Extract ZIP fully</text>
+  <text x="700" y="222" text-anchor="middle" font-size="13" fill="#4ade80">✓ 别用压缩包里的文件</text>
 
-  <!-- 底部提示条 / Bottom note（单行文本，不重叠 / single-line text, no overlap） -->
+  <!-- 底部提示条 / Bottom note -->
   <rect x="20" y="380" width="760" height="66" rx="12" fill="#211d2b" stroke="#2b2537"/>
   <text x="38" y="406" font-size="14" fill="#ff4d6d" font-weight="bold">提示 Tip:</text>
-  <text x="38" y="432" font-size="12" fill="#d8d2c4">NVE / QuantV 在作者官网、Patreon 或 Discord 获取；ENB 在 enbdev.com 下载；免费 ReShade 预设可在 GitHub 搜索。</text>
+  <text x="38" y="432" font-size="12" fill="#d8d2c4">NVE / QuantV 在作者官网、Patreon 或 Discord；ENB 在 enbdev.com 免费下载（适合单机）；免费 ReShade 预设可搜 GitHub。</text>
 
   <defs>
     <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">

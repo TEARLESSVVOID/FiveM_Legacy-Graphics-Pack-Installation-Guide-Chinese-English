@@ -1,58 +1,60 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" font-family="'Microsoft YaHei','Segoe UI',Arial,sans-serif">
-  <!-- 深色背景 / Dark background -->
+  <!-- 步骤 1：安装 FiveM（中文版）/ Step 1: Install FiveM (Chinese) -->
   <rect width="800" height="450" fill="#0f0d12"/>
 
   <!-- 标题 / Title -->
-  <text x="400" y="42" text-anchor="middle" font-size="26" font-weight="bold" fill="#ece7db">STEP 1 · 安装 FiveM</text>
-  <text x="400" y="70" text-anchor="middle" font-size="15" fill="#a79f8e">Install FiveM Client</text>
+  <text x="400" y="40" text-anchor="middle" font-size="26" font-weight="bold" fill="#ece7db">STEP 1 · 安装 FiveM</text>
+  <text x="400" y="66" text-anchor="middle" font-size="15" fill="#a79f8e">Install FiveM（本教程针对 Legacy 传承版）</text>
 
   <!-- 四个步骤卡片 / Four step cards -->
   <!-- Card 1 -->
-  <rect x="12" y="120" width="150" height="150" rx="12" fill="#191620" stroke="#ff4d6d" stroke-width="2"/>
-  <circle cx="87" cy="152" r="16" fill="#ff4d6d"/>
-  <text x="87" y="158" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f0d12">1</text>
-  <text x="87" y="200" text-anchor="middle" font-size="15" font-weight="bold" fill="#ece7db">打开 fivem.net</text>
-  <text x="87" y="222" text-anchor="middle" font-size="12" fill="#a79f8e">Open fivem.net</text>
-  <text x="87" y="248" text-anchor="middle" font-size="12" fill="#ff4d6d">点击 Download</text>
+  <rect x="12" y="112" width="150" height="156" rx="12" fill="#191620" stroke="#ff4d6d" stroke-width="2"/>
+  <circle cx="87" cy="144" r="16" fill="#ff4d6d"/>
+  <text x="87" y="150" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f0d12">1</text>
+  <text x="87" y="196" text-anchor="middle" font-size="15" font-weight="bold" fill="#ece7db">打开 fivem.net</text>
+  <text x="87" y="218" text-anchor="middle" font-size="12" fill="#a79f8e">Open fivem.net</text>
+  <text x="87" y="248" text-anchor="middle" font-size="12" fill="#ff4d6d">点击 Download 下载</text>
 
   <!-- Arrow 1 -->
-  <path d="M 168 195 L 214 195" stroke="#ff4d6d" stroke-width="3" marker-end="url(#ar)"/>
+  <path d="M 168 190 L 214 190" stroke="#ff4d6d" stroke-width="3" marker-end="url(#ar)"/>
 
   <!-- Card 2 -->
-  <rect x="220" y="120" width="150" height="150" rx="12" fill="#191620" stroke="#ff4d6d" stroke-width="2"/>
-  <circle cx="295" cy="152" r="16" fill="#ff4d6d"/>
-  <text x="295" y="158" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f0d12">2</text>
-  <text x="295" y="200" text-anchor="middle" font-size="15" font-weight="bold" fill="#ece7db">运行安装器</text>
-  <text x="295" y="222" text-anchor="middle" font-size="12" fill="#a79f8e">Run Installer</text>
-  <text x="295" y="248" text-anchor="middle" font-size="12" fill="#ff4d6d">自动检测路径</text>
+  <rect x="220" y="112" width="150" height="156" rx="12" fill="#191620" stroke="#ff4d6d" stroke-width="2"/>
+  <circle cx="295" cy="144" r="16" fill="#ff4d6d"/>
+  <text x="295" y="150" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f0d12">2</text>
+  <text x="295" y="196" text-anchor="middle" font-size="15" font-weight="bold" fill="#ece7db">运行安装器</text>
+  <text x="295" y="218" text-anchor="middle" font-size="12" fill="#a79f8e">Run Installer</text>
+  <text x="295" y="248" text-anchor="middle" font-size="12" fill="#ff4d6d">自动装到 C 盘</text>
 
   <!-- Arrow 2 -->
-  <path d="M 376 195 L 422 195" stroke="#ff4d6d" stroke-width="3" marker-end="url(#ar)"/>
+  <path d="M 376 190 L 422 190" stroke="#ff4d6d" stroke-width="3" marker-end="url(#ar)"/>
 
   <!-- Card 3 -->
-  <rect x="428" y="120" width="150" height="150" rx="12" fill="#191620" stroke="#ff4d6d" stroke-width="2"/>
-  <circle cx="503" cy="152" r="16" fill="#ff4d6d"/>
-  <text x="503" y="158" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f0d12">3</text>
-  <text x="503" y="200" text-anchor="middle" font-size="15" font-weight="bold" fill="#ece7db">选择 GTA V</text>
-  <text x="503" y="222" text-anchor="middle" font-size="12" fill="#a79f8e">Select GTA V</text>
-  <text x="503" y="248" text-anchor="middle" font-size="12" fill="#ff4d6d">手动指定路径</text>
+  <rect x="428" y="112" width="150" height="156" rx="12" fill="#191620" stroke="#ff4d6d" stroke-width="2"/>
+  <circle cx="503" cy="144" r="16" fill="#ff4d6d"/>
+  <text x="503" y="150" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f0d12">3</text>
+  <text x="503" y="196" text-anchor="middle" font-size="15" font-weight="bold" fill="#ece7db">选择 GTA 5 文件夹</text>
+  <text x="503" y="218" text-anchor="middle" font-size="12" fill="#a79f8e">Select GTA 5 folder</text>
+  <text x="503" y="248" text-anchor="middle" font-size="12" fill="#ff4d6d">文件夹里要有 GTA5.exe</text>
 
   <!-- Arrow 3 -->
-  <path d="M 584 195 L 630 195" stroke="#ff4d6d" stroke-width="3" marker-end="url(#ar)"/>
+  <path d="M 584 190 L 630 190" stroke="#ff4d6d" stroke-width="3" marker-end="url(#ar)"/>
 
   <!-- Card 4 -->
-  <rect x="636" y="120" width="150" height="150" rx="12" fill="#191620" stroke="#4ade80" stroke-width="2"/>
-  <circle cx="711" cy="152" r="16" fill="#4ade80"/>
-  <text x="711" y="158" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f0d12">4</text>
-  <text x="711" y="200" text-anchor="middle" font-size="15" font-weight="bold" fill="#ece7db">完成安装</text>
-  <text x="711" y="222" text-anchor="middle" font-size="12" fill="#a79f8e">Install Done</text>
-  <text x="711" y="248" text-anchor="middle" font-size="12" fill="#4ade80">✓ 进入服务器</text>
+  <rect x="636" y="112" width="150" height="156" rx="12" fill="#191620" stroke="#4ade80" stroke-width="2"/>
+  <circle cx="711" cy="144" r="16" fill="#4ade80"/>
+  <text x="711" y="150" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f0d12">4</text>
+  <text x="711" y="196" text-anchor="middle" font-size="15" font-weight="bold" fill="#ece7db">完成安装</text>
+  <text x="711" y="218" text-anchor="middle" font-size="12" fill="#a79f8e">Install Done</text>
+  <text x="711" y="248" text-anchor="middle" font-size="12" fill="#4ade80">✓ 进本国服务器测试</text>
 
   <!-- 底部提示条 / Bottom note -->
-  <rect x="12" y="330" width="776" height="90" rx="12" fill="#211d2b" stroke="#2b2537"/>
-  <text x="30" y="365" font-size="14" fill="#ff4d6d" font-weight="bold">注意 Note:</text>
-  <text x="30" y="390" font-size="13" fill="#d8d2c4">需要正版 GTA V（Steam / Epic / Rockstar 均可），并预留至少 30GB 磁盘空间。</text>
-  <text x="30" y="410" font-size="12" fill="#a79f8e">Requires a genuine copy of GTA V (Steam / Epic / Rockstar) and at least 30GB of free disk space.</text>
+  <rect x="12" y="312" width="776" height="126" rx="12" fill="#211d2b" stroke="#2b2537"/>
+  <text x="30" y="342" font-size="14" fill="#ff4d6d" font-weight="bold">注意 Note:</text>
+  <text x="30" y="366" font-size="13" fill="#d8d2c4">需正版 GTA V，用 Rockstar Launcher 安装 Grand Theft Auto V Legacy（传承版）。</text>
+  <text x="30" y="386" font-size="12" fill="#a79f8e">Genuine GTA V required. Install "Grand Theft Auto V Legacy" via the Rockstar Launcher.</text>
+  <text x="30" y="410" font-size="13" fill="#d8d2c4">增强版 Enhanced 刚上线还不稳定，画质模组不能用，本教程只针对传承版。</text>
+  <text x="30" y="430" font-size="12" fill="#a79f8e">Enhanced launched recently and is unstable; graphic mods don't work yet. This guide is for Legacy only.</text>
 
   <defs>
     <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">

@@ -1,28 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" font-family="'Segoe UI','Microsoft YaHei',Arial,sans-serif">
-  <!-- English version of Step 2 / 步骤 2 英文版 -->
+  <!-- Step 2: Download a Pack (English) / 步骤 2 英文版 -->
   <rect width="800" height="450" fill="#0f0d12"/>
 
-  <text x="400" y="42" text-anchor="middle" font-size="26" font-weight="bold" fill="#ece7db">STEP 2 · Download a Pack</text>
-  <text x="400" y="70" text-anchor="middle" font-size="15" fill="#a79f8e">Where to get one</text>
+  <text x="400" y="42" text-anchor="middle" font-size="26" font-weight="bold" fill="#ece7db">STEP 2 · Download a Graphics Pack</text>
+  <text x="400" y="70" text-anchor="middle" font-size="15" fill="#a79f8e">Pick a pack you like</text>
 
   <text x="30" y="115" font-size="13" fill="#a79f8e">Sources:</text>
 
   <!-- NVE card -->
   <rect x="20" y="126" width="230" height="74" rx="10" fill="#191620" stroke="#6ba6ff" stroke-width="2"/>
   <text x="38" y="156" font-size="15" font-weight="bold" fill="#ece7db">NaturalVision (NVE)</text>
-  <text x="38" y="180" font-size="12" fill="#a79f8e">Paid · most realistic</text>
+  <text x="38" y="180" font-size="12" fill="#a79f8e">Paid via Patreon; most realistic</text>
 
   <!-- QuantV card -->
   <rect x="20" y="212" width="230" height="74" rx="10" fill="#191620" stroke="#9b6dff" stroke-width="2"/>
   <text x="38" y="242" font-size="15" font-weight="bold" fill="#ece7db">QuantV</text>
-  <text x="38" y="266" font-size="12" fill="#a79f8e">Cinematic color grade</text>
+  <text x="38" y="266" font-size="12" fill="#a79f8e">Cinematic color grading</text>
 
   <!-- ReShade card -->
   <rect x="20" y="298" width="230" height="74" rx="10" fill="#191620" stroke="#4ade80" stroke-width="2"/>
   <text x="38" y="328" font-size="15" font-weight="bold" fill="#ece7db">ReShade presets</text>
-  <text x="38" y="352" font-size="12" fill="#a79f8e">Free presets (GitHub)</text>
+  <text x="38" y="352" font-size="12" fill="#a79f8e">Free; plenty on GitHub</text>
 
-  <!-- Arrows -->
   <path d="M 256 163 L 318 163" stroke="#ff4d6d" stroke-width="3" marker-end="url(#ar)"/>
   <path d="M 256 249 L 318 249" stroke="#ff4d6d" stroke-width="3" marker-end="url(#ar)"/>
   <path d="M 256 335 L 318 335" stroke="#ff4d6d" stroke-width="3" marker-end="url(#ar)"/>
@@ -35,19 +34,18 @@
   <path d="M 396 201 L 416 201 L 406 210 z" fill="#d8d2c4"/>
   <text x="436" y="230" text-anchor="middle" font-size="14" fill="#d8d2c4">Download</text>
 
-  <!-- Arrow 2 -->
   <path d="M 552 180 L 614 180" stroke="#ff4d6d" stroke-width="3" marker-end="url(#ar)"/>
 
   <!-- Extract -->
   <rect x="620" y="130" width="160" height="110" rx="12" fill="#191620" stroke="#4ade80" stroke-width="2"/>
-  <text x="700" y="170" text-anchor="middle" font-size="16" font-weight="bold" fill="#ece7db">Extract ZIP</text>
-  <text x="700" y="196" text-anchor="middle" font-size="12" fill="#a79f8e">Unzip files</text>
-  <text x="700" y="222" text-anchor="middle" font-size="13" fill="#4ade80">Right-click → Extract</text>
+  <text x="700" y="170" text-anchor="middle" font-size="16" font-weight="bold" fill="#ece7db">Extract fully</text>
+  <text x="700" y="196" text-anchor="middle" font-size="12" fill="#a79f8e">Right-click → Extract</text>
+  <text x="700" y="222" text-anchor="middle" font-size="13" fill="#4ade80">✓ Never use files from the zip</text>
 
-  <!-- Bottom note (single-line text, no overlap) -->
+  <!-- Bottom note -->
   <rect x="20" y="380" width="760" height="66" rx="12" fill="#211d2b" stroke="#2b2537"/>
   <text x="38" y="406" font-size="14" fill="#ff4d6d" font-weight="bold">Tip:</text>
-  <text x="38" y="432" font-size="12" fill="#d8d2c4">Get NVE / QuantV from the official site, Patreon or Discord; download ENB at enbdev.com; search GitHub for free ReShade presets.</text>
+  <text x="38" y="432" font-size="12" fill="#d8d2c4">NVE / QuantV: author websites, Patreon or Discord. ENB: free at enbdev.com (single-player). Free ReShade presets: search GitHub.</text>
 
   <defs>
     <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
