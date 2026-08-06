@@ -186,13 +186,6 @@
               "Some packs (e.g. NVE) require files in the <code>FiveM.app</code> root instead of data — always follow the pack's own instructions."
             ]
           }
-        },
-        {
-          "note": {
-            "kind": "red",
-            "zh": "新版 FiveM 的 <code>FiveM.app</code> 里<strong>没有</strong> <code>GTA5.exe</code> —— 游戏本体在 GTA V 安装目录（如 Steam 的 <code>Grand Theft Auto V</code> 文件夹）。另外，ReShade 的 <code>dxgi.dll</code> <strong>不要</strong>放进 <code>data</code>，应放 <code>FiveM.app\\plugins</code>（见步骤 4）。",
-            "en": "The <code>GTA5.exe</code> is <strong>not</strong> inside <code>FiveM.app</code> anymore — the game lives in your GTA V install folder (e.g. Steam's <code>Grand Theft Auto V</code>). Also, do <strong>not</strong> put ReShade's <code>dxgi.dll</code> into <code>data</code> — it goes in <code>FiveM.app\\plugins</code> (see Step 4)."
-          }
         }
       ]
     },
@@ -221,7 +214,7 @@
           "ol": {
             "zh": [
               "从 <code>https://reshade.me</code> 下载并运行 ReShade 安装器。",
-              "点击 <strong>Select game</strong>，选择 GTA V <strong>Legacy 版</strong>游戏目录里的 <code>GTA5.exe</code>（Steam 例：<code>steamapps\\common\\Grand Theft Auto V\\GTA5.exe</code>）。<strong>不要选 FiveM.exe</strong> —— FiveM 会忽略其目录下的图形 DLL（控制台会提示 Ignored graphics mod）。",
+              "点击 <strong>Select game</strong>，选择 GTA V <strong>Legacy 版</strong>游戏目录里的 <code>FiveM.exe</code>（Steam 例：<code>steamapps\\common\\Grand Theft Auto V\\GTA5.exe</code>）。<strong>不要选 FiveM.exe</strong> —— FiveM 会忽略其目录下的图形 DLL（控制台会提示 Ignored graphics mod）。",
               "图形接口选择 <strong>DirectX 10/11/12</strong>。",
               "勾选下载着色器（Standard effects 等），等待完成。",
               "安装完成后打开 GTA V 目录，把生成的 <code>dxgi.dll</code>、<code>ReShade.ini</code>、<code>ReShadePreset.ini</code>、<code>ReShade.log</code> 和 <code>reshade-shaders</code> 文件夹<strong>剪切</strong>到 <code>FiveM.app\\plugins</code>。",
@@ -229,7 +222,7 @@
             ],
             "en": [
               "Download and run the ReShade installer from <code>https://reshade.me</code>.",
-              "Click <strong>Select game</strong> and choose <code>GTA5.exe</code> in your GTA V <strong>Legacy</strong> folder (e.g. Steam: <code>steamapps\\common\\Grand Theft Auto V\\GTA5.exe</code>). <strong>Do not pick FiveM.exe</strong> — FiveM ignores graphics DLLs in its own folder (the console will show \"Ignored graphics mod\").",
+              "Click <strong>Select game</strong> and choose <code>FiveM.exe</code> in your GTA V <strong>Legacy</strong> folder (e.g. Steam: <code>steamapps\\common\\Grand Theft Auto V\\GTA5.exe</code>). <strong>Do not pick FiveM.exe</strong> — FiveM ignores graphics DLLs in its own folder (the console will show \"Ignored graphics mod\").",
               "Select <strong>DirectX 10/11/12</strong> as the graphics API.",
               "Tick the shaders to download (Standard effects, etc.) and wait for it to finish.",
               "After installing, open the GTA V folder and <strong>cut</strong> the generated <code>dxgi.dll</code>, <code>ReShade.ini</code>, <code>ReShadePreset.ini</code>, <code>ReShade.log</code> and the <code>reshade-shaders</code> folder into <code>FiveM.app\\plugins</code>.",
