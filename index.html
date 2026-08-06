@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <!--
   FiveM 画质包安装教程 / FiveM Graphics Pack Installation Tutorial
-  数据驱动 / Data-driven:
-    · 本页只是加载器，正文在仓库 assets/content.json
-      This page is a loader; the tutorial text lives in assets/content.json
-    · CSS / JS / 内容 / 图片 全部从 GitHub 拉取，并套上 jsdelivr CDN 备用：
+  极简入口 / Minimal entry page:
+    · 本页只负责"拉取并组装"，本身不含任何 UI 布局
+      This page only fetches and assembles — it contains no UI layout itself
+    · 所有内容都从 GitHub 拉取，并套 jsdelivr CDN 备用：
       GitHub 响应超过 LOAD_TIMEOUT 毫秒或失败时，自动改用 CDN 加速
-      All assets (css/js/content/images) are fetched from GitHub with a
-      jsdelivr CDN fallback: if GitHub takes longer than LOAD_TIMEOUT ms
-      or fails, the CDN is used automatically.
-  用法 / Usage:
-    1. 上传 index.html + assets/ 到 GitHub 仓库
-    2. 在下方 CONFIG 填你的用户名与仓库名
-    3. 编辑 assets/content.json 即可更新教程
+      Everything is fetched from GitHub with a jsdelivr CDN fallback:
+      if GitHub is slower than LOAD_TIMEOUT ms or fails, the CDN is used.
+  文件分工 / File roles (edit these in the repo, then refresh):
+    1. assets/ui/layout.html   —— 页面骨架：顶栏/目录/正文容器/页脚（改 UI 布局、加板块就改这里）
+       page skeleton: header/nav/main/footer — edit here for UI changes
+    2. assets/css/style.css    —— 全部样式 / all styles
+    3. assets/js/main.js       —— 渲染引擎 / rendering engine
+    4. assets/content.json     —— 教程正文 / tutorial content
 -->
 <html lang="zh-CN" data-lang="zh">
 <head>
@@ -21,15 +22,17 @@
   <title>FiveM 画质包安装教程 · FiveM Graphics Pack Tutorial</title>
   <script>
     /* ======================================================================
-     * 配置与加载器 / Config & loader
-     * 所有资源 GitHub 优先；慢于 LOAD_TIMEOUT 或失败则切 jsdelivr CDN。
-     * GitHub first; switch to the jsdelivr CDN when slower than
-     * LOAD_TIMEOUT or on failure.
+     * 引导器 / Bootstrap
+     * 拉取顺序：layout（骨架）→ css（样式）→ main.js（渲染引擎，内部再
+     * 拉 content.json）。每步都走 GitHub 优先 + CDN 备用。
+     * Order: layout → css → main.js (which fetches content.json).
+     * Every step uses GitHub first with a CDN fallback.
      * ====================================================================== */
     var CONFIG = {
       owner:  "TEARLESSVVOID",
       repo:   "FiveM_Legacy-Graphics-Pack-Installation-Guide-Chinese-English",
       branch: "main",
+      layout:  "assets/ui/layout.html",
       css:    "assets/css/style.css",
       js:     "assets/js/main.js",
       content: "assets/content.json"
@@ -37,8 +40,6 @@
     CONFIG.OK = CONFIG.owner !== "YOUR_GITHUB_USERNAME" && CONFIG.repo !== "YOUR_REPO_NAME";
 
     /* 超时阈值（毫秒）：GitHub 直连超过此时长就切换 CDN 加速。
-       注意：阈值设成 2ms 不现实（任何网络请求都远超），
-       那样等于永远走 CDN，GitHub 直连形同虚设。
        Timeout (ms) for GitHub direct fetch before switching to CDN. */
     var LOAD_TIMEOUT = 3000;
 
@@ -84,9 +85,9 @@
     window.FETCH_ANY = fetchAny;
 
     /* 动态加载主脚本（GitHub 优先，onerror/超时切 CDN）。
-       注意：script 元素插入文档后修改 src 不会重新加载，所以切换时要
-       新建元素再插入 / Once appended, changing a script's src does not
-       reload it — create a fresh element when switching to the CDN. */
+       script 元素插入文档后修改 src 不会重新加载，切换时要新建元素。
+       Load main script (GitHub first, CDN on error/timeout). Once appended,
+       changing a script's src does not reload it — create a fresh element. */
     function loadMain() {
       var loaded = false, switched = false;
       function addScript(url) {
@@ -105,45 +106,42 @@
       }, LOAD_TIMEOUT);
     }
 
-    /* 页面就绪：先隐藏 body 防止无样式闪烁，拉取 CSS 后再显示
-       Hide body to avoid unstyled flash, show it after CSS arrives. */
+    /* 页面就绪：注入 layout → 注入 css → 加载 main.js。
+       先隐藏 body 防止无样式闪烁，资源就绪后再显示。
+       On ready: inject layout → inject css → load main.js.
+       Body is hidden to avoid an unstyled flash until assets arrive. */
     document.addEventListener("DOMContentLoaded", function () {
+      if (!CONFIG.OK) {
+        document.body.innerHTML =
+          '<div style="background:#2b1d1c;color:#f2c9c2;padding:20px;font-family:sans-serif">' +
+          '请在 index.html 的 CONFIG 里填写你自己的 GitHub 用户名与仓库名。<br>' +
+          'Fill in your GitHub username and repo name in CONFIG inside index.html.</div>';
+        return;
+      }
       document.body.style.visibility = "hidden";
-      fetchAny(CONFIG.css, false)
-        .then(function (css) {
-          var st = document.createElement("style");
-          st.textContent = css;
-          document.head.appendChild(st);
+      fetchAny(CONFIG.layout, false)
+        .then(function (html) {
+          document.body.innerHTML = html;
+          return fetchAny(CONFIG.css, false).then(function (css) {
+            var st = document.createElement("style");
+            st.textContent = css;
+            document.head.appendChild(st);
+          }).catch(function (e) { console.error("css failed:", e); });
         })
-        .catch(function (e) { console.error("css failed:", e); })
-        .then(function () { document.body.style.visibility = ""; });
-      loadMain();
+        .then(function () {
+          document.body.style.visibility = "";
+          loadMain();
+        })
+        .catch(function (e) {
+          console.error("layout failed:", e);
+          document.body.style.visibility = "";
+          document.body.innerHTML =
+            '<div style="background:#2b1d1c;color:#f2c9c2;padding:20px;font-family:sans-serif">' +
+            '无法加载页面资源，请检查网络。Could not load the page. Check your network.</div>';
+        });
     });
   </script>
 </head>
 <body>
-
-  <header>
-    <h1 id="siteTitle"></h1>
-    <div>
-      <button class="lang-btn active" id="btnZh" type="button" onclick="setLang('zh')">中文</button>
-      <button class="lang-btn" id="btnEn" type="button" onclick="setLang('en')">English</button>
-    </div>
-  </header>
-
-  <div id="notice">
-    <strong data-zh="提示：" data-en="Notice: "></strong>
-    <span data-zh="无法加载教程内容。请检查网络，或确认仓库里的 assets/content.json 存在。"
-          data-en="Could not load the tutorial. Check your network, or make sure assets/content.json exists in the repo."></span>
-  </div>
-
-  <nav id="toc"></nav>
-
-  <main id="content"><!-- 正文由 JS 渲染 / Rendered by JS --></main>
-
-  <footer id="siteFooter"></footer>
-
-  <button id="backTop" type="button" aria-label="回到顶部 / Back to top">↑</button>
-
 </body>
 </html>

@@ -1,0 +1,32 @@
+<!-- ======================================================================
+  FiveM 教程 · UI 布局 / UI Layout
+  本文件是页面的骨架（顶栏、提示条、目录、正文容器、页脚、回到顶部）。
+  改布局、加 UI 板块、加功能按钮 —— 都改这个文件即可，index.html 不用动。
+  This file is the page skeleton (header, notice, nav, main, footer,
+  back-to-top). Edit it to change the layout, add UI sections or new
+  features — index.html never needs to change.
+  注意：结构改动后刷新页面即可（本文件从 GitHub 拉取）。
+  Note: after editing, just refresh the page (fetched from GitHub).
+  ====================================================================== -->
+
+<header>
+  <h1 id="siteTitle"></h1>
+  <div>
+    <button class="lang-btn active" id="btnZh" type="button" onclick="setLang('zh')">中文</button>
+    <button class="lang-btn" id="btnEn" type="button" onclick="setLang('en')">English</button>
+  </div>
+</header>
+
+<div id="notice">
+  <strong data-zh="提示：" data-en="Notice: "></strong>
+  <span data-zh="无法加载教程内容。请检查网络，或确认仓库里的 assets/content.json 存在。"
+        data-en="Could not load the tutorial. Check your network, or make sure assets/content.json exists in the repo."></span>
+</div>
+
+<nav id="toc"></nav>
+
+<main id="content"><!-- 正文由 JS 渲染 / Rendered by JS --></main>
+
+<footer id="siteFooter"></footer>
+
+<button id="backTop" type="button" aria-label="回到顶部 / Back to top">↑</button>
