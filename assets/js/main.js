@@ -20,7 +20,8 @@ var CDN_URL = window.CDN_URL;          // jsdelivr CDN 备用 / CDN fallback
 var LOAD_TIMEOUT = window.LOAD_TIMEOUT;
 
 function showLoadError() {
-  document.getElementById("notice").style.display = "block";
+  var notice = document.getElementById("notice");
+  if (notice) notice.style.display = "block";
 }
 
 /* ======================================================================
@@ -320,11 +321,13 @@ if (!CONFIG.OK) {
 }
 
 var backTop = document.getElementById("backTop");
-window.addEventListener("scroll", function () {
-  backTop.classList.toggle("show", window.scrollY > 600);
-});
-backTop.addEventListener("click", function () {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
+if (backTop) {
+  window.addEventListener("scroll", function () {
+    backTop.classList.toggle("show", window.scrollY > 600);
+  });
+  backTop.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
 
 } /* end singleton guard */

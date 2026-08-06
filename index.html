@@ -27,6 +27,14 @@
      * 拉 content.json）。每步都走 GitHub 优先 + CDN 备用。
      * Order: layout → css → main.js (which fetches content.json).
      * Every step uses GitHub first with a CDN fallback.
+     *
+     * 兼容 file:// 本地打开：脚本用 <script> 标签加载（跨域执行不受
+     * CORS/file: 限制）；layout/css 拉取失败时退回 JS 兜底骨架与样式，
+     * 保证页面不空白、错误提示可见。
+     * Works when opened via file:// too: the engine is loaded with a
+     * <script> tag (cross-origin script execution is not blocked by
+     * CORS). If layout/css fetch fails, a JS fallback skeleton is used
+     * so the page never stays blank.
      * ====================================================================== */
     var CONFIG = {
       owner:  "TEARLESSVVOID",
@@ -52,8 +60,11 @@
       return "https://cdn.jsdelivr.net/gh/" + CONFIG.owner + "/" + CONFIG.repo + "@" + CONFIG.branch + "/" + path;
     }
 
-    /* 拉取文本/JSON：先请求 GitHub；超时或失败后改用 CDN。
-       Fetch text/JSON: try GitHub first; fall back to the CDN on timeout/failure. */
+    /* 拉取文本/JSON：先请求 GitHub；超时、失败或响应不可读时改用 CDN。
+       任一路径只要成功即 resolve 一次；CDN 只尝试一次。
+       Fetch text/JSON: GitHub first; fall back to CDN on timeout, network
+       failure, or unreadable response (e.g. CORS block). Resolves once;
+       the CDN is only tried a single time. */
     function fetchAny(path, asJson) {
       var gUrl = rawUrl(path) + "?t=" + Date.now();
       var cUrl = cdnUrl(path);
@@ -62,18 +73,24 @@
         return asJson ? r.json() : r.text();
       }
       return new Promise(function (resolve, reject) {
-        var settled = false, timedOut = false;
+        var settled = false, timedOut = false, cdnTried = false;
         function win(v) { if (!settled) { settled = true; resolve(v); } }
         function lose(e) { if (!settled) { settled = true; reject(e); } }
+        function tryCdn() {
+          if (!settled && !cdnTried) {
+            cdnTried = true;
+            fetch(cUrl).then(ok).then(win, lose);
+          }
+        }
         fetch(gUrl).then(function (r) {
-          if (!timedOut) ok(r).then(win, lose);
+          if (!timedOut) ok(r).then(win, function () { tryCdn(); });
         }, function () {
           // GitHub 请求立即失败 → 直接用 CDN / GitHub failed at once → CDN
-          if (!settled) fetch(cUrl).then(ok).then(win, lose);
+          tryCdn();
         });
         setTimeout(function () {
           timedOut = true; // GitHub 太慢，忽略其迟到结果 / too slow, ignore late result
-          fetch(cUrl).then(ok).then(win, lose);
+          tryCdn();
         }, LOAD_TIMEOUT);
       });
     }
@@ -84,29 +101,68 @@
     window.CDN_URL = cdnUrl;
     window.FETCH_ANY = fetchAny;
 
-    /* 动态加载主脚本（GitHub 优先，onerror/超时切 CDN）。
-       script 元素插入文档后修改 src 不会重新加载，切换时要新建元素。
-       Load main script (GitHub first, CDN on error/timeout). Once appended,
-       changing a script's src does not reload it — create a fresh element. */
-    /* 动态加载主脚本：用 fetchAny 取文本后内联执行（GitHub 优先、
-       CDN 兜底、超时切换已由 fetchAny 处理）。
-       内联执行保证只有一个引擎在跑 —— 避免 GitHub 与 CDN 两个脚本
-       同时执行、互相覆盖（旧版引擎会用旧数据结构渲染新内容而崩溃）。
-       Load main script as inline text via fetchAny (GitHub first, CDN
-       fallback, timeout — all inside fetchAny). Inline execution
-       guarantees a single engine, avoiding two scripts racing. */
+    /* 动态加载主脚本：<script> 标签加载（GitHub 优先，onerror/超时切 CDN）。
+       跨域 script 不受 CORS/file: 限制，本地打开也可靠。
+       引擎内部有单实例守卫（__FIVEM_ENGINE__），GitHub 与 CDN 两个脚本
+       同时被加载时只有第一个会执行渲染，不会互相覆盖。
+       Load engine via <script> tag (GitHub first, CDN on error/timeout).
+       Cross-origin scripts ignore CORS/file: limits, so local file://
+       opening works too. The engine has a singleton guard so if both
+       scripts load, only the first one renders. */
     function loadMain() {
-      fetchAny(CONFIG.js, false).then(function (code) {
-        var s = document.createElement("script");
-        s.textContent = code;
-        document.head.appendChild(s);
-      });
+      var cdnTried = false;
+      function tryCdn() {
+        if (cdnTried || window.__FIVEM_ENGINE__) return; // 引擎已在跑就不必再加载 / skip if engine already ran
+        cdnTried = true;
+        var c = document.createElement("script");
+        c.src = cdnUrl(CONFIG.js);
+        document.head.appendChild(c);
+      }
+      var s = document.createElement("script");
+      s.src = rawUrl(CONFIG.js) + "?t=" + Date.now();
+      s.onerror = tryCdn;
+      document.head.appendChild(s);
+      setTimeout(tryCdn, LOAD_TIMEOUT);
+    }
+
+    /* layout/css 拉取失败时的兜底骨架与最小样式：页面不空白，
+       标题、错误提示、目录容器都在，用户能看到诊断信息。
+       Fallback skeleton + minimal CSS when layout/css fetch fails:
+       the page stays visible with title, notice and containers. */
+    function fallbackSkeleton() {
+      var body = document.body;
+      body.innerHTML = "";
+      var h = document.createElement("header");
+      var h1 = document.createElement("h1");
+      h1.id = "siteTitle";
+      h1.textContent = "FiveM Mods Installation Tutorial";
+      h.appendChild(h1);
+      var n = document.createElement("div");
+      n.id = "notice";
+      n.innerHTML =
+        '<strong data-zh="提示：" data-en="Notice: "></strong>' +
+        '<span data-zh="无法加载教程内容。请检查网络是否可访问 GitHub 与 jsdelivr CDN（若使用本地 file:// 打开，部分浏览器会拦截跨源读取），然后刷新页面重试。建议用 Edge 或 Chrome 打开。" ' +
+        'data-en="Could not load the tutorial. Check that GitHub and the jsdelivr CDN are reachable (browsers may block cross-origin reads on local file:// pages), then refresh. Use Edge or Chrome."></span>';
+      var nav = document.createElement("nav"); nav.id = "toc";
+      var m = document.createElement("main"); m.id = "content";
+      var f = document.createElement("footer"); f.id = "siteFooter";
+      var b = document.createElement("button"); b.id = "backTop"; b.type = "button";
+      b.setAttribute("aria-label", "回到顶部 / Back to top");
+      b.textContent = "↑";
+      [h, n, nav, m, f, b].forEach(function (el) { body.appendChild(el); });
+      var st = document.createElement("style");
+      st.textContent =
+        "body{font-family:Segoe UI,'Microsoft YaHei',Arial,sans-serif;max-width:900px;margin:0 auto;padding:16px;background:#14161b;color:#e8eaf0}" +
+        "#notice{display:none;background:#2b1d1c;color:#f2c9c2;padding:12px 14px;border-radius:8px;margin:12px 0}" +
+        "#backTop{position:fixed;right:20px;bottom:20px;border-radius:8px;border:1px solid #3a3f4a;background:#1e222b;color:#e8eaf0;padding:8px 12px;display:none}" +
+        "#toc a{display:inline-block;margin-right:10px;color:#7ec8ff;text-decoration:none}";
+      document.head.appendChild(st);
     }
 
     /* 页面就绪：注入 layout → 注入 css → 加载 main.js。
-       先隐藏 body 防止无样式闪烁，资源就绪后再显示。
+       任一步失败都回退兜底骨架，页面始终有可见内容。
        On ready: inject layout → inject css → load main.js.
-       Body is hidden to avoid an unstyled flash until assets arrive. */
+       Any failure falls back to the skeleton, the page always shows. */
     document.addEventListener("DOMContentLoaded", function () {
       if (!CONFIG.OK) {
         document.body.innerHTML =
@@ -115,7 +171,6 @@
           'Fill in your GitHub username and repo name in CONFIG inside index.html.</div>';
         return;
       }
-      document.body.style.visibility = "hidden";
       fetchAny(CONFIG.layout, false)
         .then(function (html) {
           document.body.innerHTML = html;
@@ -126,15 +181,12 @@
           }).catch(function (e) { console.error("css failed:", e); });
         })
         .then(function () {
-          document.body.style.visibility = "";
           loadMain();
         })
         .catch(function (e) {
           console.error("layout failed:", e);
-          document.body.style.visibility = "";
-          document.body.innerHTML =
-            '<div style="background:#2b1d1c;color:#f2c9c2;padding:20px;font-family:sans-serif">' +
-            '无法加载页面资源，请检查网络。Could not load the page. Check your network.</div>';
+          fallbackSkeleton();
+          loadMain(); // 引擎可独立拉起正文；失败时引擎自会显示错误提示 / engine may still load content
         });
     });
   </script>
