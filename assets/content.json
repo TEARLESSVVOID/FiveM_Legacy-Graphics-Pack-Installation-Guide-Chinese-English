@@ -2,18 +2,17 @@
   "meta": {
     "titleZh": "FiveM 画质包安装教程",
     "titleEn": "FiveM Graphics Pack Installation Tutorial",
-    "h1": { "zh": "FiveM 画质包教程", "en": "FiveM Graphics Pack Tutorial" },
-    "h1sub": { "zh": "中英双语 · 视频 + 图文", "en": "Bilingual · Video + Guide" },
+    "h1": { "zh": "FiveM 画质包安装教程", "en": "FiveM Graphics Pack Installation Tutorial" },
+    "h1sub": { "zh": "简单易懂 · 中英双语 · 视频 + 图文", "en": "Simple · Bilingual · Video + Guide" },
     "notice": {
-      "zh": "无法从 GitHub 加载教程内容。请检查网络连接，或确认仓库文件 assets/content.json 存在。",
-      "en": "Could not load the tutorial content from GitHub. Check your network, or make sure assets/content.json exists in the repo."
+      "zh": "无法加载教程内容。请检查网络，或确认仓库里的 assets/content.json 存在。",
+      "en": "Could not load the tutorial. Check your network, or make sure assets/content.json exists in the repo."
     },
     "video": "assets/video/fivem-gfx-tutorial.mp4",
     "posterZh": "assets/img/video-poster-v2.svg",
     "posterEn": "assets/img/video-poster-en-v2.svg",
     "footer": [
-      { "zh": "FiveM 画质包安装教程 · 中英双语 · 内容与媒体经 GitHub (jsdelivr CDN) 动态加载", "en": "FiveM Graphics Pack Tutorial · Bilingual · Content & media loaded dynamically from GitHub (jsdelivr CDN)" },
-      { "zh": "© 2026 · 祝游戏愉快！", "en": "© 2026 · Have fun in-game!" }
+      { "zh": "内容经 GitHub 动态加载 · 更新后刷新页面即可看到", "en": "Content loads from GitHub · refresh the page to see updates" }
     ]
   },
   "nav": [
@@ -21,29 +20,29 @@
     { "id": "step1", "zh": "步骤 1 · 安装 FiveM", "en": "Step 1 · Install FiveM" },
     { "id": "step2", "zh": "步骤 2 · 下载画质包", "en": "Step 2 · Download Pack" },
     { "id": "step3", "zh": "步骤 3 · 复制文件", "en": "Step 3 · Copy Files" },
-    { "id": "step4", "zh": "步骤 4 · ReShade + 视频", "en": "Step 4 · ReShade + Video" },
+    { "id": "step4", "zh": "步骤 4 · 安装 ReShade", "en": "Step 4 · ReShade" },
     { "id": "step5", "zh": "步骤 5 · 游戏内设置", "en": "Step 5 · In-Game" },
-    { "id": "summary", "zh": "文件放置总结", "en": "File Placement" },
-    { "id": "rpf-plugins", "zh": "RPF 与插件（进阶）", "en": "RPF & Plugins (Advanced)" },
+    { "id": "summary", "zh": "文件放哪总结", "en": "File Placement" },
+    { "id": "advanced", "zh": "进阶内容", "en": "Advanced" },
     { "id": "faq", "zh": "常见问题", "en": "FAQ" }
   ],
   "sections": [
     {
       "id": "intro",
       "h2": { "zh": "简介", "en": "Introduction" },
-      "sub": { "zh": "Introduction · 开胃菜", "en": "简介 · Intro" },
+      "sub": { "zh": "这个教程是做什么的", "en": "What this guide is about" },
       "body": [
         {
           "p": {
-            "zh": "FiveM 是 GTA V 的大型多人联机模组平台。配合<strong>画质包</strong>（如 <strong>NVE</strong>、<strong>QuantV</strong>、<strong>ReShade 预设</strong>），可以让游戏画面焕然一新，甚至接近真实照片效果。本教程将带你从零开始完成安装。",
-            "en": "FiveM is a large multiplayer mod platform for GTA V. With a <strong>graphics pack</strong> (such as <strong>NVE</strong>, <strong>QuantV</strong> or <strong>ReShade presets</strong>), the game can look brand new — even close to real photos. This tutorial walks you through everything from scratch."
+            "zh": "FiveM 是 GTA V 的联机模组平台。装一个<strong>画质包</strong>（如 NVE、QuantV 或 ReShade 预设），画面立刻焕然一新。本教程带你一步步装好。",
+            "en": "FiveM is the multiplayer mod platform for GTA V. Install a <strong>graphics pack</strong> (like NVE, QuantV or a ReShade preset) and the game instantly looks brand new. This guide takes you through it step by step."
           }
         },
         {
           "note": {
             "kind": "default",
-            "zh": "<strong>准备工作：</strong>1. 正版 GTA V（Steam / Epic / Rockstar 均可；须安装 <strong>Legacy 版</strong>，见步骤 1 说明） 2. 建议显卡 GTX 1060 及以上 3. 至少 30GB 空闲磁盘空间 4. 稳定的网络。",
-            "en": "<strong>Requirements:</strong> 1. A genuine copy of GTA V (Steam / Epic / Rockstar — you need the <strong>Legacy version</strong>, see Step 1) 2. Recommended GPU: GTX 1060 or better 3. At least 30GB of free disk space 4. A stable internet connection."
+            "zh": "<strong>开始前你需要：</strong>正版 GTA V（装 <strong>Legacy 传承版</strong>，见步骤 1）、显卡 GTX 1060 以上、约 30GB 空余磁盘、稳定的网络。",
+            "en": "<strong>Before you start:</strong> a genuine GTA V (install the <strong>Legacy</strong> build — see Step 1), GPU GTX 1060 or better, ~30GB of free disk space, stable internet."
           }
         }
       ]
@@ -51,7 +50,7 @@
     {
       "id": "step1",
       "h2": { "zh": "步骤 1 · 安装 FiveM", "en": "Step 1 · Install FiveM" },
-      "sub": { "zh": "Step 1 · Install FiveM", "en": "安装 FiveM" },
+      "sub": { "zh": "先装好 FiveM 客户端", "en": "Install the FiveM client first" },
       "body": [
         {
           "img": {
@@ -64,31 +63,31 @@
         {
           "ol": {
             "zh": [
-              "打开官网 <code>https://fivem.net</code>，点击 <strong>Download</strong> 下载安装器。",
-              "运行 <code>FiveM.exe</code>，安装器会自动安装到C盘；然后会请手动选择 GTA 5 文件夹。（里面需要包含 <code>GTAV.exe</code> 文件）",
-              "等待 FiveM 完成基础安装（首次会下载一些必需文件）。",
-              "启动 FiveM，登录 Rockstar 账号，随便进入一个来自您自己的国家的没有白名单的服务器测试能否正常加入。"
+              "打开 <code>https://fivem.net</code>，点 <strong>Download</strong> 下载安装器。",
+              "运行 <code>FiveM.exe</code>：它会自动安装到 C 盘，然后让你手动选择 GTA 5 文件夹（该文件夹里要有 <code>GTA5.exe</code>）。",
+              "等待首次安装完成（会自动下载一些必需文件）。",
+              "启动 FiveM，登录 Rockstar 账号，进一个自己国家的服务器试试能不能玩。"
             ],
             "en": [
               "Open <code>https://fivem.net</code> and click <strong>Download</strong> to get the installer.",
-              "Run <code>FiveM.exe</code>; the installer will auto-install to the C: drive; then you'll be prompted to manually select the GTA 5 folder (which must contain the <code>GTAV.exe</code> file).",
-              "Wait for FiveM to finish its base installation (it downloads required files on first run).",
-              "Launch FiveM, log in with your Rockstar account, and join a random server in your country that doesn't have a whitelist to test."
+              "Run <code>FiveM.exe</code>: it installs automatically to the C: drive, then asks you to pick the GTA 5 folder (the folder must contain <code>GTA5.exe</code>).",
+              "Wait for the first-time setup to finish (it downloads some required files).",
+              "Launch FiveM, log in with your Rockstar account, and join a server in your own country to test."
             ]
           }
         },
         {
           "note": {
             "kind": "red",
-            "zh": "<strong>重要：</strong>FiveM 现同时支持 GTA V 的 <strong>Legacy（传承版）</strong>与 <strong>Enhanced（增强版）</strong>（增强版客户端于 2026 年 7 月以早期访问形式上线，使用独立启动器，与传承版并行）。但<strong>不建议</strong>在增强版上使用本教程：早期访问阶段存在<strong>不稳定因素</strong>，<strong>画质模组暂不可用</strong>，社区生态也尚未成熟。请使用 <strong>Legacy（传承版）</strong>完成安装（Rockstar Launcher → 设置 → 安装 <strong>Grand Theft Auto V Legacy</strong>）。",
-            "en": "<strong>Important:</strong> FiveM now supports both <strong>Legacy</strong> and <strong>Enhanced</strong> builds of GTA V (the Enhanced client launched in early access in July 2026 via a separate launcher, running alongside Legacy). However, we <strong>do not recommend</strong> following this tutorial on Enhanced: early access is <strong>unstable</strong>, <strong>graphic mods are not available yet</strong>, and the ecosystem is not mature. Please use the <strong>Legacy</strong> build (Rockstar Launcher → Settings → install <strong>Grand Theft Auto V Legacy</strong>)."
+            "zh": "<strong>重要：</strong>FiveM 现在同时支持 <strong>Legacy（传承版）</strong>和 <strong>Enhanced（增强版）</strong>两个版本（增强版 2026 年 7 月刚上线，还不稳定）。本教程只针对<strong>传承版</strong>：增强版的画质模组还不能用，社区也不成熟。用 Rockstar Launcher 安装 <strong>Grand Theft Auto V Legacy</strong> 即可。",
+            "en": "<strong>Important:</strong> FiveM now supports both <strong>Legacy</strong> and <strong>Enhanced</strong> builds (Enhanced launched in early access in July 2026 and is still unstable). This guide targets the <strong>Legacy</strong> build: Enhanced can't use graphic mods yet and its community is immature. Install <strong>Grand Theft Auto V Legacy</strong> via Rockstar Launcher."
           }
         },
         {
           "note": {
             "kind": "green",
-            "zh": "安装完成后，桌面会出现 FiveM 图标。此时可以退出游戏，进入下一步。(如果不需要安装画质包，可跳过关闭所有步骤，直接进入游戏。)",
-            "en": "A FiveM icon appears on your desktop afterwards. You may quit the game and continue to the next step. (If you don't need a graphics pack, you can skip all steps and go straight to the game.)"
+            "zh": "装好后桌面会出现 FiveM 图标。如果不想装画质包，现在就可以直接进游戏，本教程到此结束。",
+            "en": "A FiveM icon appears on your desktop afterwards. If you don't want a graphics pack, you're done — just launch the game."
           }
         }
       ]
@@ -96,7 +95,7 @@
     {
       "id": "step2",
       "h2": { "zh": "步骤 2 · 下载画质包", "en": "Step 2 · Download a Graphics Pack" },
-      "sub": { "zh": "Step 2 · Download a Pack", "en": "下载画质包" },
+      "sub": { "zh": "挑一个喜欢的画质包", "en": "Pick a pack you like" },
       "body": [
         {
           "img": {
@@ -107,29 +106,29 @@
           }
         },
         {
-          "h3": { "zh": "常见画质包推荐 / 使用对比", "en": "Recommended packs / Comparison" }
+          "h3": { "zh": "常见画质包推荐", "en": "Recommended packs" }
         },
         {
           "ul": {
             "zh": [
-              "<strong>NaturalVision Evolved (NVE)</strong>：业界公认最真实，需要 Patreon 付费支持作者；提供 FiveM 专用版。",
-              "<strong>QuantV</strong>：电影感色调，画面极具风格化。",
-              "<strong>ENB (ENBSeries)</strong>：可在 <a href=\"https://enbdev.com/news.html\" target=\"_blank\" rel=\"noopener\">enbdev.com</a> 免费下载，适合单机模式画面增强。",
-              "<strong>免费 ReShade 预设</strong>：GitHub 上有大量免费预设，适合新手尝试。"
+              "<strong>NaturalVision Evolved (NVE)</strong>：公认最真实，Patreon 付费，有 FiveM 专用版。",
+              "<strong>QuantV</strong>：电影感色调，风格强烈。",
+              "<strong>ENB (ENBSeries)</strong>：<a href=\"https://enbdev.com/news.html\" target=\"_blank\" rel=\"noopener\">enbdev.com</a> 免费下载，适合单机。",
+              "<strong>免费 ReShade 预设</strong>：GitHub 上很多，新手首选。"
             ],
             "en": [
-              "<strong>NaturalVision Evolved (NVE)</strong>: widely regarded as the most realistic; supports the author via Patreon; has a FiveM-specific version.",
-              "<strong>QuantV</strong>: cinematic color grading with a highly stylized look.",
-              "<strong>ENB (ENBSeries)</strong>: free download at <a href=\"https://enbdev.com/news.html\" target=\"_blank\" rel=\"noopener\">enbdev.com</a> — great for single-player visuals.",
-              "<strong>Free ReShade presets</strong>: plenty of free presets on GitHub — great for beginners."
+              "<strong>NaturalVision Evolved (NVE)</strong>: widely regarded as the most realistic; paid via Patreon; has a FiveM-specific version.",
+              "<strong>QuantV</strong>: cinematic color grading, strong style.",
+              "<strong>ENB (ENBSeries)</strong>: free at <a href=\"https://enbdev.com/news.html\" target=\"_blank\" rel=\"noopener\">enbdev.com</a>, great for single-player.",
+              "<strong>Free ReShade presets</strong>: plenty on GitHub — great for beginners."
             ]
           }
         },
         {
           "note": {
             "kind": "default",
-            "zh": "下载后一般得到一个 <strong>zip 压缩包</strong>。请完整解压。",
-            "en": "You usually get a <strong>zip archive</strong>. Extract it fully."
+            "zh": "下载到的通常是个 zip，先<strong>完整解压</strong>再继续。",
+            "en": "You'll usually get a zip — <strong>extract it fully</strong> before continuing."
           }
         }
       ]
@@ -137,7 +136,7 @@
     {
       "id": "step3",
       "h2": { "zh": "步骤 3 · 把文件复制到 FiveM", "en": "Step 3 · Copy Files into FiveM" },
-      "sub": { "zh": "Step 3 · Copy Files", "en": "复制文件" },
+      "sub": { "zh": "这是最关键的一步", "en": "The most important step" },
       "body": [
         {
           "img": {
@@ -148,42 +147,40 @@
           }
         },
         {
-          "h3": { "zh": "第 1 步：确认画质包的完整安装路径", "en": "Step 1: the full install path" }
+          "h3": { "zh": "第 1 步：确认安装路径", "en": "Step 1: know the install path" }
         },
         {
           "ul": {
             "zh": [
-              "画质包安装的<strong>完整路径</strong>就是 <code>FiveM.app</code> 文件夹：<strong>默认位置</strong>为 <code>C:\\Users\\用户名\\AppData\\Local\\FiveM\\FiveM.app</code>（即 <code>%localappdata%\\FiveM\\FiveM.app</code>）。",
-              "<strong>自定义位置</strong>则在例如 <code>D:\\FiveM_Legacy\\FiveM.app</code>。",
-              "画质包解压后的文件就安装进这个 <code>FiveM.app</code> 文件夹下对应的目录（具体放在哪见第 2 步）。"
+              "画质包要装进 <code>FiveM.app</code> 文件夹。默认路径：<code>C:\\Users\\用户名\\AppData\\Local\\FiveM\\FiveM.app</code>（也就是 <code>%localappdata%\\FiveM\\FiveM.app</code>）。",
+              "自定义安装则在别的位置，比如 <code>D:\\FiveM_Legacy\\FiveM.app</code>。"
             ],
             "en": [
-              "The <strong>full install path</strong> for a graphics pack is the <code>FiveM.app</code> folder: <strong>default</strong> is <code>C:\\Users\\[YourName]\\AppData\\Local\\FiveM\\FiveM.app</code> (same as <code>%localappdata%\\FiveM\\FiveM.app</code>).",
-              "For a <strong>custom install</strong>, e.g. <code>D:\\FiveM_Legacy\\FiveM.app</code>.",
-              "Extracted pack files are installed into the matching subfolders inside this <code>FiveM.app</code> (exact destinations in Step 2)."
+              "Pack files go into the <code>FiveM.app</code> folder. Default path: <code>C:\\Users\\[YourName]\\AppData\\Local\\FiveM\\FiveM.app</code> (same as <code>%localappdata%\\FiveM\\FiveM.app</code>).",
+              "Custom installs live elsewhere, e.g. <code>D:\\FiveM_Legacy\\FiveM.app</code>."
             ]
           }
         },
         {
-          "h3": { "zh": "第 2 步：把画质包文件复制进去", "en": "Step 2: copy the pack files in" }
+          "h3": { "zh": "第 2 步：复制文件", "en": "Step 2: copy the files" }
         },
         {
           "ol": {
             "zh": [
-              "先把画质包 <strong>zip 完整解压</strong>，得到解压后的文件夹。",
-              "打开解压后的文件夹，按 <code>Ctrl + A</code> <strong>全选</strong>里面的所有文件。",
-              "按 <code>Ctrl + C</code> 复制，然后进入 <code>FiveM.app\\data</code> 文件夹。",
-              "在 data 文件夹内按 <code>Ctrl + V</code> 粘贴；如果提示<strong>“合并 / 替换”</strong>，选择“是”或“替换目标中的文件”。",
-              "（可选）删除 <code>caches</code> 缓存文件夹，让游戏重新生成缓存，可避免画质包冲突。",
-              "有些画质包（如 NVE）要求把文件放在 <code>FiveM.app</code> 根目录而不是 data，请以画质包自带说明为准。"
+              "把 zip <strong>完整解压</strong>。",
+              "打开解压出来的文件夹，<code>Ctrl + A</code> 全选，<code>Ctrl + C</code> 复制。",
+              "打开 <code>FiveM.app\\data</code> 文件夹，<code>Ctrl + V</code> 粘贴；提示<strong>合并/替换</strong>就选\"是\"。",
+              "画质包自带 <code>Mods</code>、<code>Plugins</code> 等文件夹？直接一起拷进去，不用自己建。（具体说明见下方进阶章节）",
+              "（可选）删掉 <code>caches</code> 文件夹，让游戏重新生成缓存，能避免画质包冲突。",
+              "少数画质包（如 NVE）要求放 <code>FiveM.app</code> 根目录而不是 data，以画质包自带说明为准。"
             ],
             "en": [
-              "First <strong>fully extract</strong> the pack's zip into a folder.",
-              "Open the extracted folder and press <code>Ctrl + A</code> to <strong>select everything</strong>.",
-              "Press <code>Ctrl + C</code> to copy, then go into the <code>FiveM.app\\data</code> folder.",
-              "Press <code>Ctrl + V</code> inside <code>data</code> to paste; if asked about <strong>\"Merge / Replace\"</strong>, choose \"Yes\" / \"Replace files in the destination\".",
-              "(Optional) Delete the <code>caches</code> folder so the game regenerates it — this avoids conflicts.",
-              "Some packs (e.g. NVE) require files in the <code>FiveM.app</code> root instead of data — always follow the pack's own instructions."
+              "<strong>Extract</strong> the zip fully.",
+              "Open the extracted folder, press <code>Ctrl + A</code> to select everything, then <code>Ctrl + C</code> to copy.",
+              "Open <code>FiveM.app\\data</code>, press <code>Ctrl + V</code> to paste; choose \"Yes\" when asked to <strong>merge/replace</strong>.",
+              "The pack ships its own <code>Mods</code> / <code>Plugins</code> folders? Copy them in as-is — don't create anything manually. (Details in the Advanced section below)",
+              "(Optional) Delete the <code>caches</code> folder so the game regenerates it — avoids conflicts.",
+              "A few packs (e.g. NVE) want files in the <code>FiveM.app</code> root instead of data — always follow the pack's instructions."
             ]
           }
         }
@@ -191,14 +188,14 @@
     },
     {
       "id": "step4",
-      "h2": { "zh": "步骤 4 · 安装 ReShade + 视频教程", "en": "Step 4 · Install ReShade + Video" },
-      "sub": { "zh": "Step 4 · ReShade + Video", "en": "ReShade 安装 + 视频" },
+      "h2": { "zh": "步骤 4 · 安装 ReShade（可选）", "en": "Step 4 · Install ReShade (optional)" },
+      "sub": { "zh": "部分画质包需要 ReShade", "en": "Some packs need ReShade" },
       "body": [
         {
           "video": {
-            "badgeZh": "视频来自 GitHub 托管（CDN 加载）",
+            "badgeZh": "视频来自 GitHub（CDN 加载）",
             "badgeEn": "Video hosted on GitHub (served via CDN)",
-            "capZh": "视频：请将你的安装演示视频上传到 GitHub 的 assets/video/ 文件夹",
+            "capZh": "视频：请将安装演示视频上传到 GitHub 的 assets/video/ 文件夹",
             "capEn": "Video: upload your demo video to assets/video/ in your GitHub repo"
           }
         },
@@ -214,27 +211,25 @@
           "ol": {
             "zh": [
               "从 <code>https://reshade.me</code> 下载并运行 ReShade 安装器。",
-              "点击 <strong>Select game</strong>，选择 GTA V <strong>Legacy 版</strong>游戏目录里的 <code>FiveM.exe</code>（Steam 例：<code>steamapps\\common\\Grand Theft Auto V\\GTA5.exe</code>）。<strong>不要选 FiveM.exe</strong> —— FiveM 会忽略其目录下的图形 DLL（控制台会提示 Ignored graphics mod）。",
-              "图形接口选择 <strong>DirectX 10/11/12</strong>。",
-              "勾选下载着色器（Standard effects 等），等待完成。",
-              "安装完成后打开 GTA V 目录，把生成的 <code>dxgi.dll</code>、<code>ReShade.ini</code>、<code>ReShadePreset.ini</code>、<code>ReShade.log</code> 和 <code>reshade-shaders</code> 文件夹<strong>剪切</strong>到 <code>FiveM.app\\plugins</code>。",
-              "把画质包附带的 ReShade 预设（<code>.ini</code>）也复制到 <code>FiveM.app\\plugins</code>。"
+              "点 <strong>Select game</strong>，选 GTA V <strong>传承版</strong>目录里的 <code>GTA5.exe</code>（例如 <code>steamapps\\common\\Grand Theft Auto V\\GTA5.exe</code>）。<strong>别选 FiveM.exe</strong>，FiveM 会忽略它。",
+              "接口选 <strong>DirectX 10/11/12</strong>，勾选下载着色器（Standard effects 等）。",
+              "装完后打开 GTA V 目录，把生成的 <code>dxgi.dll</code>、<code>ReShade.ini</code>、<code>ReShadePreset.ini</code>、<code>ReShade.log</code> 和 <code>reshade-shaders</code> 文件夹<strong>剪切</strong>到 <code>FiveM.app\\plugins</code>。",
+              "画质包自带的 ReShade 预设（<code>.ini</code>）也放进 <code>FiveM.app\\plugins</code>。"
             ],
             "en": [
               "Download and run the ReShade installer from <code>https://reshade.me</code>.",
-              "Click <strong>Select game</strong> and choose <code>FiveM.exe</code> in your GTA V <strong>Legacy</strong> folder (e.g. Steam: <code>steamapps\\common\\Grand Theft Auto V\\GTA5.exe</code>). <strong>Do not pick FiveM.exe</strong> — FiveM ignores graphics DLLs in its own folder (the console will show \"Ignored graphics mod\").",
-              "Select <strong>DirectX 10/11/12</strong> as the graphics API.",
-              "Tick the shaders to download (Standard effects, etc.) and wait for it to finish.",
+              "Click <strong>Select game</strong> and pick <code>GTA5.exe</code> in your GTA V <strong>Legacy</strong> folder (e.g. <code>steamapps\\common\\Grand Theft Auto V\\GTA5.exe</code>). <strong>Do not pick FiveM.exe</strong> — FiveM ignores it.",
+              "Select <strong>DirectX 10/11/12</strong> and tick the shaders to download (Standard effects, etc.).",
               "After installing, open the GTA V folder and <strong>cut</strong> the generated <code>dxgi.dll</code>, <code>ReShade.ini</code>, <code>ReShadePreset.ini</code>, <code>ReShade.log</code> and the <code>reshade-shaders</code> folder into <code>FiveM.app\\plugins</code>.",
-              "Also copy the pack's ReShade preset (<code>.ini</code>) into <code>FiveM.app\\plugins</code>."
+              "Also put the pack's ReShade preset (<code>.ini</code>) into <code>FiveM.app\\plugins</code>."
             ]
           }
         },
         {
           "note": {
             "kind": "default",
-            "zh": "安装器会把 <code>dxgi.dll</code> 等写入你选择的 GTA V 目录 —— 这一步不会动 FiveM。把它们移入 <code>FiveM.app\\plugins</code> 后，FiveM 才会加载 ReShade。",
-            "en": "The installer writes <code>dxgi.dll</code> etc. into the GTA V folder you picked — it does not touch FiveM. FiveM only loads ReShade after you move those files into <code>FiveM.app\\plugins</code>."
+            "zh": "ReShade 装完只出现在 GTA V 目录里，FiveM 不会理它；搬进 <code>FiveM.app\\plugins</code> 后才会生效。",
+            "en": "ReShade files land in the GTA V folder and FiveM ignores them there — they only work after you move them into <code>FiveM.app\\plugins</code>."
           }
         }
       ]
@@ -242,7 +237,7 @@
     {
       "id": "step5",
       "h2": { "zh": "步骤 5 · 启动游戏并启用画质", "en": "Step 5 · Launch and Enable" },
-      "sub": { "zh": "Step 5 · In-Game", "en": "游戏内启用" },
+      "sub": { "zh": "进游戏享受新画面", "en": "Enjoy the new look in-game" },
       "body": [
         {
           "img": {
@@ -256,66 +251,58 @@
           "ol": {
             "zh": [
               "通过 FiveM 启动器进入任意服务器。",
-              "游戏中按 <strong>Home 键</strong> 打开 ReShade 面板。",
-              "在面板顶部的下拉框中选择画质包预设，勾选需要的特效。",
-              "在游戏设置中开启 <strong>高级图形设置 → 超高</strong>，效果更佳。"
+              "游戏中按 <strong>Home 键</strong>打开 ReShade 面板。",
+              "在面板顶部下拉框里选画质包预设，勾上想要的特效。",
+              "游戏设置里把<strong>高级图形</strong>开到超高，效果最好。"
             ],
             "en": [
               "Join any server through the FiveM launcher.",
               "Press <strong>Home</strong> in-game to open the ReShade panel.",
               "Pick your pack preset in the dropdown at the top and enable the effects you want.",
-              "In game settings, enable <strong>Advanced Graphics → Very High</strong> for the best look."
+              "Set <strong>Advanced Graphics → Very High</strong> in game settings for the best look."
             ]
           }
         },
         {
           "note": {
             "kind": "green",
-            "zh": "如果按 Home 没反应，说明 <code>dxgi.dll</code> 没放进 <code>FiveM.app\\plugins</code> 或未在 CitizenFX.ini 放行，请回到步骤 4 检查。",
-            "en": "If Home does nothing, <code>dxgi.dll</code> is not in <code>FiveM.app\\plugins</code> or not approved in CitizenFX.ini — go back to Step 4."
+            "zh": "按 Home 没反应？多半是 <code>dxgi.dll</code> 不在 <code>FiveM.app\\plugins</code>，或没在 CitizenFX.ini 里放行（见进阶章节）。",
+            "en": "Home does nothing? Usually <code>dxgi.dll</code> is not in <code>FiveM.app\\plugins</code>, or you haven't approved it in CitizenFX.ini (see Advanced)."
           }
         }
       ]
     },
     {
       "id": "summary",
-      "h2": { "zh": "文件放置总结", "en": "File Placement Summary" },
-      "sub": { "zh": "Which files go where · 一张表搞定", "en": "什么文件放哪 · At a glance" },
+      "h2": { "zh": "文件放哪总结", "en": "File Placement Summary" },
+      "sub": { "zh": "一张表记住所有位置", "en": "One table to remember them all" },
       "body": [
-        {
-          "p": {
-            "zh": "安装完成后，<code>FiveM.app</code> 文件夹应该是这样的结构：",
-            "en": "After installation, your <code>FiveM.app</code> folder should look like this:"
-          }
-        },
         {
           "table": {
             "zh": {
               "head": ["文件 / 文件夹", "放到哪里", "说明"],
               "rows": [
-                ["画质包文件（贴图、数据等）", "<code>FiveM.app\\data</code>", "大多数画质包（合并/覆盖）"],
-                ["NVE 等特殊画质包", "<code>FiveM.app</code> 根目录", "请按画质包自带说明放置"],
-                ["<code>.asi</code> 插件", "<code>FiveM.app\\plugins</code>（没有就新建）", "官方支持；服务器可能禁用"],
-                ["<code>.rpf</code>（单机 RPF）", "GTA V 根目录\\mods（需新建）", "FiveM 联机不加载"],
-                ["<code>dxgi.dll</code>（ReShade 核心）", "<code>FiveM.app\\plugins</code>", "安装器生成于 GTA V 目录，需移入此处"],
-                ["ReShade 预设（<code>.ini</code>）", "<code>FiveM.app\\plugins</code>", "游戏中按 Home 切换预设"],
-                ["ReShade <code>.addon</code>", "<code>FiveM.app\\plugins</code>", "需 addon 版 ReShade"],
-                ["ENB（单机模式）", "GTA V 游戏根目录", "从 enbdev.com 下载，单机使用"],
-                ["<code>caches</code> 缓存文件夹", "删除（可选）", "让游戏重新生成缓存，避免冲突"]
+                ["画质包文件（贴图、数据等）", "<code>FiveM.app\\data</code>", "大多数画质包"],
+                ["画质包自带的 Mods / Plugins 文件夹", "<code>FiveM.app\\data</code>", "整个文件夹直接拷进去"],
+                ["NVE 等特殊画质包", "<code>FiveM.app</code> 根目录", "按画质包说明"],
+                ["ReShade 全家（dxgi.dll、ReShade.ini、预设 .ini、reshade-shaders、.addon）", "<code>FiveM.app\\plugins</code>", "全放这里"],
+                ["<code>.asi</code> 插件", "<code>FiveM.app\\plugins</code>", "服务器可能禁用"],
+                ["<code>.rpf</code>（单机）", "GTA V 根目录\\mods（需新建）", "联机不加载"],
+                ["ENB（单机）", "GTA V 游戏根目录", "从 enbdev.com 下载"],
+                ["<code>caches</code> 缓存文件夹", "删除（可选）", "让游戏重新生成"]
               ]
             },
             "en": {
               "head": ["File / Folder", "Destination", "Notes"],
               "rows": [
-                ["Pack files (textures, data)", "<code>FiveM.app\\data</code>", "Most graphics packs (merge/overwrite)"],
-                ["Special packs (e.g. NVE)", "<code>FiveM.app</code> root", "Follow the pack's own instructions"],
-                ["<code>.asi</code> plugins", "<code>FiveM.app\\plugins</code> (create if missing)", "Officially supported; servers may disallow"],
-                ["<code>.rpf</code> (single-player)", "<code>GTA V</code> root\\mods (create it)", "Not loaded in FiveM multiplayer"],
-                ["<code>dxgi.dll</code> (ReShade core)", "<code>FiveM.app\\plugins</code>", "Created in the GTA V folder — move it here"],
-                ["ReShade preset (<code>.ini</code>)", "<code>FiveM.app\\plugins</code>", "Switch presets in-game with Home"],
-                ["ReShade <code>.addon</code>", "<code>FiveM.app\\plugins</code>", "Requires the ReShade add-on build"],
+                ["Pack files (textures, data)", "<code>FiveM.app\\data</code>", "Most graphics packs"],
+                ["The pack's own Mods / Plugins folders", "<code>FiveM.app\\data</code>", "Copy the whole folders in"],
+                ["Special packs (e.g. NVE)", "<code>FiveM.app</code> root", "Follow the pack's instructions"],
+                ["All ReShade files (dxgi.dll, ReShade.ini, preset .ini, reshade-shaders, .addon)", "<code>FiveM.app\\plugins</code>", "Everything goes here"],
+                ["<code>.asi</code> plugins", "<code>FiveM.app\\plugins</code>", "Servers may disallow"],
+                ["<code>.rpf</code> (single-player)", "<code>GTA V</code> root\\mods (create it)", "Not loaded in multiplayer"],
                 ["ENB (single-player)", "GTA V game root", "Download from enbdev.com"],
-                ["<code>caches</code> folder", "Delete (optional)", "Regenerates cache to avoid conflicts"]
+                ["<code>caches</code> folder", "Delete (optional)", "Let the game regenerate it"]
               ]
             }
           }
@@ -323,134 +310,83 @@
         {
           "note": {
             "kind": "green",
-            "zh": "<strong>口诀：</strong>画质数据进 <code>data</code>；ReShade 全家（<code>dxgi.dll</code>、<code>ReShade.ini</code>、<code>reshade-shaders</code>、预设 <code>.ini</code>）进 <code>FiveM.app\\plugins</code>。",
-            "en": "<strong>Rule of thumb:</strong> pack data goes into <code>data</code>; the whole ReShade kit (<code>dxgi.dll</code>, <code>ReShade.ini</code>, <code>reshade-shaders</code>, preset <code>.ini</code>) goes into <code>FiveM.app\\plugins</code>."
+            "zh": "<strong>口诀：</strong>画质数据进 <code>data</code>，ReShade 全家进 <code>plugins</code>。",
+            "en": "<strong>Rule of thumb:</strong> pack data goes into <code>data</code>, all ReShade files go into <code>plugins</code>."
           }
         }
       ]
     },
     {
-      "id": "rpf-plugins",
-      "h2": { "zh": "进阶 · RPF 文件与插件", "en": "Advanced · RPF Files & Plugins" },
-      "sub": { "zh": "RPF / ASI / ReShade Addon · 参考官方文档", "en": "RPF / ASI / ReShade Addon · per official docs" },
+      "id": "advanced",
+      "h2": { "zh": "进阶内容 · RPF / ASI / ReShade Addon", "en": "Advanced · RPF / ASI / ReShade Add-ons" },
+      "sub": { "zh": "遇到这些文件时再看", "en": "Read this when you hit these files" },
       "body": [
         {
+          "h3": { "zh": "RPF：联机用不了，单机才能用", "en": "RPF: multiplayer ignores them, single-player only" }
+        },
+        {
           "p": {
-            "zh": "如果你下载的画质包或模组附带 <strong>.rpf</strong> 文件、<strong>.asi</strong> 插件，或想给 ReShade 装 <strong>addon</strong>，本节告诉你正确的位置（内容参考 FiveM 官方 Client Manual 与 ReShade 官方文档）。",
-            "en": "If your pack or mod ships with <strong>.rpf</strong> files, <strong>.asi</strong> plugins, or you want to install ReShade <strong>add-ons</strong>, this section shows where things go (based on the official FiveM Client Manual and ReShade docs)."
+            "zh": "联机时，模型、地图等 RPF 内容由<strong>服务器</strong>统一下发，你把 <code>.rpf</code> 放进本地 FiveM 目录<strong>不会被加载</strong>。单机 GTA V 才用得到：用 OpenIV 导入，或放进 GTA V 的 <code>mods</code> 文件夹。",
+            "en": "In multiplayer, RPF content (models, maps) is streamed by the <strong>server</strong> — <code>.rpf</code> files you put in your local FiveM folder will <strong>not</strong> load. They only work in single-player GTA V: import with OpenIV, or drop them into GTA V's <code>mods</code> folder."
           }
         },
         {
-          "h3": { "zh": "RPF 文件：联机由服务器管理，客户端不加载", "en": "RPF files: managed by servers — the client does not load them" }
-        },
-        {
-          "ul": {
-            "zh": [
-              "FiveM <strong>联机</strong>时，游戏模型 / 地图等 RPF 内容由<strong>服务器端</strong>资源（stream 文件夹）统一下发，玩家把 <code>.rpf</code> 放进本地 FiveM 目录<strong>不会被加载</strong>。",
-              "官方 Client Manual 只说明客户端支持 <code>plugins</code> 文件夹放置 <code>.asi</code> 脚本，没有客户端安装 RPF 的入口。",
-              "<strong>单机 GTA V</strong> 使用 RPF 模组：用 OpenIV 导入到 GTA V 游戏目录（如 <code>update\\x64\\dlcpacks</code> 并在 <code>dlclist.xml</code> 注册，或用 <code>mods</code> 文件夹方案）；OpenIV 属于社区工具，操作前建议备份原文件。"
-            ],
-            "en": [
-              "In FiveM <strong>multiplayer</strong>, RPF content (models, maps) is streamed by the <strong>server</strong> — putting <code>.rpf</code> files into your local FiveM folder will <strong>not</strong> load them.",
-              "The official Client Manual only documents a <code>plugins</code> folder for <code>.asi</code> scripts on the client; there is no client-side RPF install path.",
-              "For <strong>single-player GTA V</strong> RPF mods: import them with OpenIV (e.g. into <code>update\\x64\\dlcpacks</code> + register in <code>dlclist.xml</code>, or use the <code>mods</code> folder). OpenIV is a community tool — back up your files first."
-            ]
-          }
-        },
-        {
-          "h3": { "zh": "ASI 插件：放在 FiveM 的 plugins 文件夹（官方支持）", "en": "ASI plugins: the FiveM plugins folder (officially supported)" }
+          "h3": { "zh": "mods 文件夹：单机 RPF 的去处", "en": "mods folder: where single-player RPF files go" }
         },
         {
           "ol": {
             "zh": [
-              "打开 <code>%localappdata%</code>，进入 <code>FiveM → FiveM.app</code>（或你的自定义位置，如 <code>D:\\FiveM_Legacy\\FiveM.app</code>）。",
-              "新版 FiveM 的 <code>FiveM.app</code> 已自带 <code>plugins</code> 文件夹；若你的版本里没有，手动创建一个（右键 → 新建 → 文件夹，命名为 <code>plugins</code>）。",
-              "把 <code>.asi</code> 插件文件放进去，重启 FiveM 生效。"
+              "单机 GTA V 默认<strong>没有 mods 文件夹</strong>，在游戏根目录新建一个（如 <code>D:\\SteamLibrary\\steamapps\\common\\GTA V\\mods</code>）。",
+              "推荐用 OpenIV → Tools → <strong>Mods 模式</strong>自动生成正确的目录结构。",
+              "把 <code>.rpf</code> 文件（以及需要的 <code>dlclist.xml</code> 配置）放进 mods 对应位置。"
             ],
             "en": [
-              "Open <code>%localappdata%</code> and go to <code>FiveM → FiveM.app</code> (or your custom path like <code>D:\\FiveM_Legacy\\FiveM.app</code>).",
-              "Modern FiveM ships with a <code>plugins</code> folder inside <code>FiveM.app</code>; if yours is missing, create one manually (right-click → New → Folder named <code>plugins</code>).",
-              "Drop your <code>.asi</code> plugin in there and restart FiveM."
+              "Single-player GTA V has <strong>no mods folder by default</strong> — create one in the game root (e.g. <code>D:\\SteamLibrary\\steamapps\\common\\GTA V\\mods</code>).",
+              "(Recommended) Open OpenIV → Tools → enable <strong>Mods mode</strong> so it builds the correct structure for you.",
+              "Put the <code>.rpf</code> files (and any <code>dlclist.xml</code> changes) into the matching location inside mods."
+            ]
+          }
+        },
+        {
+          "h3": { "zh": "ASI 插件：放 plugins", "en": "ASI plugins: the plugins folder" }
+        },
+        {
+          "ol": {
+            "zh": [
+              "打开 <code>FiveM.app</code>（默认在 <code>%localappdata%\\FiveM</code>，自定义安装如 <code>D:\\FiveM_Legacy\\FiveM.app</code>）。",
+              "新版 FiveM 自带 <code>plugins</code> 文件夹；没有就自己建一个。",
+              "把 <code>.asi</code> 放进去，重启 FiveM 生效。"
+            ],
+            "en": [
+              "Open <code>FiveM.app</code> (default: <code>%localappdata%\\FiveM</code>; custom installs like <code>D:\\FiveM_Legacy\\FiveM.app</code>).",
+              "Modern FiveM ships with a <code>plugins</code> folder; create one if missing.",
+              "Drop the <code>.asi</code> file in there and restart FiveM."
             ]
           }
         },
         {
           "note": {
             "kind": "red",
-            "zh": "官方提醒：服务器可以<strong>禁用插件</strong>；部分插件过时或与 FiveM 不兼容可能导致闪退，且官方不提供插件支持，使用风险自担。",
-            "en": "Official note: servers may <strong>disallow plugins</strong>; outdated or incompatible plugins can crash the game, and the client provides no support — use at your own risk."
+            "zh": "服务器可能<strong>禁用插件</strong>；过时或不兼容的插件会导致闪退，风险自负。",
+            "en": "Servers may <strong>disallow plugins</strong>; outdated or incompatible plugins can crash the game — use at your own risk."
           }
         },
         {
-          "h3": { "zh": "mods 文件夹：单机 RPF 文件的去处（需手动创建）", "en": "mods folder: where single-player RPF files go (create it yourself)" }
-        },
-        {
-          "p": {
-            "zh": "GTA V 单机（非 FiveM）默认<strong>没有 mods 文件夹</strong>，需要手动创建；<strong>.rpf</strong> 文件放这里，不会破坏游戏原文件。FiveM 联机时 mods 文件夹不起作用。",
-            "en": "Single-player GTA V has <strong>no mods folder by default</strong> — create it manually; <strong>.rpf</strong> files go here without touching original game files. The mods folder has no effect in FiveM multiplayer."
-          }
+          "h3": { "zh": "ReShade Addon：加装扩展功能", "en": "ReShade add-ons: extra features" }
         },
         {
           "ol": {
             "zh": [
-              "在 GTA V 游戏根目录（例如 <code>D:\\SteamLibrary\\steamapps\\common\\GTA V</code>）右键 → 新建文件夹，命名为 <code>mods</code>。",
-              "（推荐）打开 OpenIV → Tools → <strong>Package Installer / Mods 模式</strong>，生成与游戏一致的 mods 目录结构。",
-              "把画质包或模组解压得到的 <strong>.rpf 文件</strong>（以及需要的 <code>dlclist.xml</code> 配置）放进 mods 对应位置。"
+              "从 <code>reshade.me</code> 下载 <strong>ReShade with full add-on support</strong>（未签名版；签名版不加载任何 addon）。",
+              "<code>.addon</code> 是作者编译好的成品，从作者的发布页下载（如 GitHub Releases）。64 位游戏（FiveM 就是）用 <code>.addon64</code>，32 位用 <code>.addon32</code>。",
+              "把 <code>.addon</code> 放进 <code>FiveM.app\\plugins</code>（ReShade 默认搜索目录）。",
+              "重启游戏，<code>ReShade.log</code> 里出现 <code>Registered add-on</code> 就说明加载成功。"
             ],
             "en": [
-              "In the GTA V game root (e.g. <code>D:\\SteamLibrary\\steamapps\\common\\GTA V</code>) right-click → New → Folder, named <code>mods</code>.",
-              "(Recommended) Open OpenIV → Tools → enable <strong>Mods mode / Package Installer</strong> so it builds the correct mods structure for you.",
-              "Put the <strong>.rpf files</strong> (and any <code>dlclist.xml</code> changes) from your extracted mod into the matching mods location."
-            ]
-          }
-        },
-        {
-          "h3": { "zh": "一张表：复制哪些文件到哪个文件夹", "en": "At a glance: which files go where" }
-        },
-        {
-          "table": {
-            "zh": {
-              "head": ["文件类型", "放到哪里", "说明"],
-              "rows": [
-                ["画质贴图 / 数据文件", "<code>FiveM.app\\data</code>", "大多数画质包（合并/覆盖）"],
-                ["NVE 等特殊画质包", "<code>FiveM.app</code> 根目录", "按画质包自带说明"],
-                ["<code>.asi</code> 插件", "<code>FiveM.app\\plugins</code>（没有就新建）", "官方支持，服务器可能禁用"],
-                ["<code>.rpf</code>（单机）", "GTA V 根目录\\mods（需新建）", "FiveM 联机不加载"],
-                ["<code>.addon</code>（ReShade）", "<code>FiveM.app\\plugins</code>", "需 addon 版 ReShade"],
-                ["<code>dxgi.dll</code> / 预设 <code>.ini</code>", "<code>FiveM.app\\plugins</code>", "安装器生成后移入此处 / 预设"]
-              ]
-            },
-            "en": {
-              "head": ["File type", "Destination", "Notes"],
-              "rows": [
-                ["Texture / data files", "<code>FiveM.app\\data</code>", "Most graphics packs (merge/overwrite)"],
-                ["Special packs (e.g. NVE)", "<code>FiveM.app</code> root", "Follow the pack's instructions"],
-                ["<code>.asi</code> plugins", "<code>FiveM.app\\plugins</code> (create if missing)", "Officially supported; servers may disallow"],
-                ["<code>.rpf</code> (single-player)", "<code>GTA V</code> root\\mods (create it)", "Not loaded in FiveM multiplayer"],
-                ["<code>.addon</code> (ReShade)", "<code>FiveM.app\\plugins</code>", "Requires the ReShade add-on build"],
-                ["<code>dxgi.dll</code> / preset <code>.ini</code>", "<code>FiveM.app\\plugins</code>", "Moved here after install / presets"]
-              ]
-            }
-          }
-        },
-        {
-          "h3": { "zh": "ReShade Addon：addon 文件从哪获取 + 允许配置怎么写", "en": "ReShade Add-ons: where to get .addon files + how to fill in the config" }
-        },
-        {
-          "ol": {
-            "zh": [
-              "在 <code>reshade.me</code> 主页下载 <strong>ReShade with full add-on support</strong>（未签名版本，安装器界面颜色与标准版不同）；签名版不会加载任何 addon。",
-              "<strong>获取 addon 文件</strong>：<code>.addon</code> 是作者编译好的成品，无需自己写代码——从作者的发布页下载（如 GitHub Releases、作者主页），例如 ReShade 官方论坛 Addons 版块或知名预设作者的下载页。",
-              "把下载的 <code>.addon</code> 文件放入 addon 搜索目录：<strong>默认就是 ReShade 所在目录</strong>（即 <code>FiveM.app\\plugins</code>，和 <code>dxgi.dll</code> 放一起）。注意：64 位游戏（FiveM 就是）用 <code>.addon64</code>，32 位游戏用 <code>.addon32</code>。",
-              "<strong>填写允许配置</strong>：安装 addon 版后 <code>ReShade.ini</code> 通常已自动生成 <code>[ADDON]</code> 段；也可以在游戏内 ReShade 面板的 <strong>Add-ons 页面顶部修改搜索路径</strong>，或手动编辑（见下方代码块）。",
-              "重启游戏，ReShade 日志（<code>ReShade.log</code>）出现 <code>Searching for add-ons (*.addon)</code> 和 <code>Registered add-on</code> 即表示加载成功。"
-            ],
-            "en": [
-              "Download <strong>ReShade with full add-on support</strong> from reshade.me (the unsigned build — its installer UI is color-coded differently); the signed build loads no add-ons at all.",
-              "<strong>Getting add-on files</strong>: a <code>.addon</code> file is a pre-built binary — you don't write any code. Download it from the author's release page (e.g. GitHub Releases, the author's site, or the Add-ons section of the official ReShade forum).",
-              "Put the <code>.addon</code> file into the add-on search directory: <strong>by default that is ReShade's own folder</strong> (<code>FiveM.app\\plugins</code>, next to <code>dxgi.dll</code>). Note: 64-bit games (like FiveM) use <code>.addon64</code>, 32-bit games use <code>.addon32</code>.",
-              "<strong>Filling in the config</strong>: the add-on build usually creates the <code>[ADDON]</code> section in <code>ReShade.ini</code> automatically; you can also change the search path at the top of the <strong>Add-ons page in the in-game overlay</strong>, or edit it manually (see the code block below).",
-              "Restart the game. When <code>ReShade.log</code> shows <code>Searching for add-ons (*.addon)</code> and <code>Registered add-on</code>, the add-on loaded successfully."
+              "Download <strong>ReShade with full add-on support</strong> from reshade.me (the unsigned build; the signed one loads no add-ons).",
+              "A <code>.addon</code> file is a ready-made binary from the author (e.g. GitHub Releases). 64-bit games (like FiveM) use <code>.addon64</code>, 32-bit use <code>.addon32</code>.",
+              "Put the <code>.addon</code> into <code>FiveM.app\\plugins</code> (ReShade's default search folder).",
+              "Restart the game — <code>Registered add-on</code> in <code>ReShade.log</code> means it loaded."
             ]
           }
         },
@@ -460,34 +396,34 @@
         {
           "note": {
             "kind": "red",
-            "zh": "addon 版为<strong>未签名</strong>构建，反作弊或部分服务器可能将其视为作弊并封号；在联机服务器使用前请确认服务器规则，单机使用相对安全。",
-            "en": "The add-on build is <strong>unsigned</strong> — anti-cheat and some servers may treat it as cheating and ban you. Check server rules before joining; it is relatively safe in single-player."
+            "zh": "addon 版<strong>未签名</strong>，部分服务器可能当作弊封号，使用前先看服务器规则。",
+            "en": "The add-on build is <strong>unsigned</strong> — some servers may treat it as cheating and ban you. Check server rules first."
           }
         },
         {
-          "h3": { "zh": "ReShade 装好却没反应？（F8 控制台 + CitizenFX.ini 放行）", "en": "ReShade installed but nothing works? (F8 console + CitizenFX.ini approval)" }
+          "h3": { "zh": "ReShade 装好却没反应？（F8 放行）", "en": "ReShade installed but nothing works? (F8 approval)" }
         },
         {
           "p": {
-            "zh": "有一种情况：ReShade 全部安装正确，但游戏里<strong>没有任何编译进度条</strong>、按 Home 也没反应。这是因为 FiveM 检测到 ReShade 的 DLL 后需要玩家在配置里<strong>手动放行</strong>。",
-            "en": "Sometimes ReShade is fully installed but there is <strong>no shader compilation progress bar</strong> and Home does nothing. That is because FiveM detected the ReShade DLL and needs your <strong>manual approval</strong> in the config."
+            "zh": "ReShade 装得全对，但游戏里没有编译进度条、按 Home 也没反应？这是 FiveM 检测到 ReShade 后要你在配置里<strong>手动放行</strong>。",
+            "en": "ReShade is fully installed but there's no compilation bar and Home does nothing? FiveM detected ReShade and needs your <strong>manual approval</strong> in the config."
           }
         },
         {
           "ol": {
             "zh": [
-              "游戏内按 <strong>F8</strong> 打开 FiveM 控制台。",
-              "查看是否有类似 <code>[Addons] ReShade5=ID:xxxxxxx acknowledged that ReShade 5.x has a bug that will lead to game crashes</code> 的提示（跟着一串 ID）。",
-              "打开 FiveM 配置文件：<code>%localappdata%\\FiveM\\FiveM.app\\CitizenFX.ini</code>（自定义安装位置则在对应 FiveM.app 里，如 <code>D:\\FiveM_Legacy\\FiveM.app\\CitizenFX.ini</code>）。",
-              "把控制台里显示的那一整行（<strong>包括你自己的 ID</strong>）复制到文件<strong>最下面</strong>，格式如下。注意：ID 每台电脑不同，<strong>不要照抄示例</strong>。",
-              "保存文件并重启 FiveM，ReShade 即可正常加载（出现编译条、按 Home 有反应）。"
+              "游戏里按 <strong>F8</strong> 打开 FiveM 控制台。",
+              "找到 <code>[Addons] ReShade5=ID:xxxxxxx acknowledged that ReShade 5.x has a bug that will lead to game crashes</code> 这一行。",
+              "打开 <code>%localappdata%\\FiveM\\FiveM.app\\CitizenFX.ini</code>（自定义安装就在对应的 FiveM.app 里）。",
+              "把控制台那行（<strong>带你自己的 ID</strong>）复制到文件<strong>最底部</strong>，格式见下。注意 ID 每台电脑不同，别照抄示例。",
+              "保存并重启 FiveM，ReShade 就能正常加载了。"
             ],
             "en": [
               "Press <strong>F8</strong> in-game to open the FiveM console.",
-              "Look for a line like <code>[Addons] ReShade5=ID:xxxxxxx acknowledged that ReShade 5.x has a bug that will lead to game crashes</code> (followed by an ID).",
-              "Open the FiveM config file: <code>%localappdata%\\FiveM\\FiveM.app\\CitizenFX.ini</code> (for custom installs it is in the matching FiveM.app, e.g. <code>D:\\FiveM_Legacy\\FiveM.app\\CitizenFX.ini</code>).",
-              "Copy the whole line shown in the console (<strong>with your own ID</strong>) to the <strong>very bottom</strong> of the file, as formatted below. The ID is unique per PC — <strong>do not copy the example</strong>.",
-              "Save and restart FiveM. ReShade should now load normally (compilation bar appears, Home works)."
+              "Find the line <code>[Addons] ReShade5=ID:xxxxxxx acknowledged that ReShade 5.x has a bug that will lead to game crashes</code>.",
+              "Open <code>%localappdata%\\FiveM\\FiveM.app\\CitizenFX.ini</code> (custom installs: the matching FiveM.app).",
+              "Copy that line (<strong>with your own ID</strong>) to the <strong>very bottom</strong> of the file, formatted as below. The ID is unique per PC — don't copy the example.",
+              "Save and restart FiveM — ReShade should now load normally."
             ]
           }
         },
@@ -497,8 +433,8 @@
         {
           "note": {
             "kind": "green",
-            "zh": "这两行<strong>必须放在 CitizenFX.ini 的最下面</strong>（<code>[Addons]</code> 段）。示例中的 <code>ID:xxxxxxxxxxxx</code> 只是格式示范，请替换成 F8 控制台里显示的你自己的 ID。",
-            "en": "These two lines <strong>must go at the very bottom</strong> of CitizenFX.ini (the <code>[Addons]</code> section). The <code>ID:xxxxxxxxxxxx</code> in the example is only a format sample — replace it with the ID shown in your F8 console."
+            "zh": "这两行必须放在 <code>CitizenFX.ini</code> 的<strong>最底部</strong>（<code>[Addons]</code> 段），ID 换成你自己的。",
+            "en": "These two lines must go at the <strong>very bottom</strong> of CitizenFX.ini (the <code>[Addons]</code> section), with your own ID."
           }
         }
       ]
@@ -506,29 +442,25 @@
     {
       "id": "faq",
       "h2": { "zh": "常见问题 FAQ", "en": "FAQ" },
-      "sub": { "zh": "Frequently Asked Questions", "en": "常见问题" },
+      "sub": { "zh": "遇到问题先看这里", "en": "Check here first" },
       "body": [
         {
           "faqs": {
             "zh": [
-              { "q": "游戏打不开 / 闪退怎么办？", "a": "删除 <code>FiveM.app</code> 内的 <code>caches</code> 文件夹后重新启动；若仍不行，删除刚复制的画质包文件，逐个排除。" },
-              { "q": "帧数太低怎么办？", "a": "在 ReShade 面板中减少开启的特效数量（尤其是模糊、光线类特效），或把预设强度调低。" },
-              { "q": "按 Home 键没有反应？", "a": "确认 <code>dxgi.dll</code>、<code>ReShade.ini</code> 与预设 <code>.ini</code> 都在 <code>FiveM.app\\plugins</code>，并按上方进阶章节完成 CitizenFX.ini 放行（F8 控制台 + <code>[Addons]</code> 段）。" },
-              { "q": "进服务器被踢出怎么办？", "a": "部分服务器禁止 ReShade / 画质包。进入此类服务器前请先在 ReShade 中点击 <em>Disable</em> 或删除 <code>dxgi.dll</code>。" },
-              { "q": "为什么这个页面内容会实时更新？", "a": "本页正文与媒体都通过 GitHub 动态加载（<code>assets/content.json</code>）。仓库内容更新后，刷新页面即可看到新内容，无需重新下载 HTML 文件。" },
-              { "q": "ReShade 装好却没编译条、按 Home 没反应？", "a": "游戏内按 <strong>F8</strong> 打开控制台，查看是否有 <code>[Addons] ReShade5=ID:xxxx acknowledged that ReShade 5.x has a bug that will lead to game crashes</code> 提示；把该行（含你自己的 ID）复制到 <code>%localappdata%\\FiveM\\FiveM.app\\CitizenFX.ini</code> 最下面的 <code>[Addons]</code> 段，保存后重启游戏即可放行 ReShade。" },
-              { "q": "提示 Could not find game executable / 找不到游戏怎么办？", "a": "打开 <code>%localappdata%\\FiveM\\FiveM.app\\CitizenFX.ini</code>，把 <code>IVPath=</code> 改成你的 GTA V <strong>Legacy</strong> 安装目录（如 <code>D:\\SteamLibrary\\steamapps\\common\\Grand Theft Auto V</code>），保存后重启 FiveM。" },
-              { "q": "FiveM 支持 GTA V Enhanced 版吗？", "a": "支持。2026 年 7 月 21 日 FiveM 发布了 <strong>Enhanced（增强版）</strong>客户端（早期访问，独立启动器，与 <strong>Legacy（传承版）</strong>并行）。但早期访问阶段<strong>不稳定</strong>、<strong>画质模组暂不可用</strong>、社区生态尚未成熟，本教程针对传承版，请使用 Legacy 完成安装。" }
+              { "q": "游戏打不开 / 闪退怎么办？", "a": "删掉 <code>FiveM.app</code> 里的 <code>caches</code> 文件夹再启动；还不行就把刚复制的画质包文件删掉，逐个排查。" },
+              { "q": "帧数太低怎么办？", "a": "在 ReShade 面板少开特效（尤其是模糊、光线类），或把预设强度调低。" },
+              { "q": "按 Home 没反应？", "a": "确认 <code>dxgi.dll</code>、<code>ReShade.ini</code> 和预设 <code>.ini</code> 都在 <code>FiveM.app\\plugins</code>，并完成上面的 F8 放行。" },
+              { "q": "进服务器被踢？", "a": "部分服务器禁止 ReShade / 画质包。进去前在 ReShade 里点 <em>Disable</em>，或删掉 <code>dxgi.dll</code>。" },
+              { "q": "提示 Could not find game executable（找不到游戏）？", "a": "打开 <code>%localappdata%\\FiveM\\FiveM.app\\CitizenFX.ini</code>，把 <code>IVPath=</code> 改成你的 GTA V <strong>传承版</strong>目录（如 <code>D:\\SteamLibrary\\steamapps\\common\\Grand Theft Auto V</code>），保存后重启 FiveM。" },
+              { "q": "FiveM 支持 Enhanced 增强版吗？", "a": "支持，但建议用传承版：增强版 2026 年 7 月刚早期访问，不稳定、画质模组还不能用，社区也不成熟。本教程针对传承版。" }
             ],
             "en": [
               { "q": "Game crashes / won't start?", "a": "Delete the <code>caches</code> folder inside <code>FiveM.app</code> and relaunch. If it persists, remove the pack files you copied and test them one by one." },
               { "q": "Frame rate too low?", "a": "Disable some effects in the ReShade panel (especially blur / light effects), or lower the preset intensity." },
-              { "q": "Pressing Home does nothing?", "a": "Make sure <code>dxgi.dll</code>, <code>ReShade.ini</code> and the preset <code>.ini</code> are all in <code>FiveM.app\\plugins</code>, and approve ReShade in CitizenFX.ini (F8 console + <code>[Addons]</code> section) as described in the advanced section above." },
-              { "q": "Kicked from a server?", "a": "Some servers ban ReShade / graphics packs. Click <em>Disable</em> in ReShade or remove <code>dxgi.dll</code> before joining such servers." },
-              { "q": "Why does this page update automatically?", "a": "All text and media on this page are loaded dynamically from a GitHub repo (<code>assets/content.json</code>). Update the repo and refresh the page — no need to re-download the HTML file." },
-              { "q": "ReShade installed but no compilation bar / Home does nothing?", "a": "Press <strong>F8</strong> in-game to open the console and look for <code>[Addons] ReShade5=ID:xxxx acknowledged that ReShade 5.x has a bug that will lead to game crashes</code>. Copy that line (with your own ID) into the <code>[Addons]</code> section at the very bottom of <code>%localappdata%\\FiveM\\FiveM.app\\CitizenFX.ini</code>, save and restart the game." },
-              { "q": "Could not find game executable / game not found?", "a": "Open <code>%localappdata%\\FiveM\\FiveM.app\\CitizenFX.ini</code> and point <code>IVPath=</code> to your GTA V <strong>Legacy</strong> install folder (e.g. <code>D:\\SteamLibrary\\steamapps\\common\\Grand Theft Auto V</code>), then save and restart FiveM." },
-              { "q": "Does FiveM support the GTA V Enhanced build?", "a": "Yes. FiveM for GTAV Enhanced launched as early access on July 21, 2026 (a separate launcher running alongside <strong>Legacy</strong>). However, early access is <strong>unstable</strong>, <strong>graphic mods are not available yet</strong>, and the ecosystem is not mature — this tutorial targets the Legacy build." }
+              { "q": "Home does nothing?", "a": "Make sure <code>dxgi.dll</code>, <code>ReShade.ini</code> and the preset <code>.ini</code> are all in <code>FiveM.app\\plugins</code>, and complete the F8 approval above." },
+              { "q": "Kicked from a server?", "a": "Some servers ban ReShade / graphics packs. Click <em>Disable</em> in ReShade or remove <code>dxgi.dll</code> before joining." },
+              { "q": "Could not find game executable?", "a": "Open <code>%localappdata%\\FiveM\\FiveM.app\\CitizenFX.ini</code> and point <code>IVPath=</code> to your GTA V <strong>Legacy</strong> folder (e.g. <code>D:\\SteamLibrary\\steamapps\\common\\Grand Theft Auto V</code>), then save and restart FiveM." },
+              { "q": "Does FiveM support the Enhanced build?", "a": "Yes, but Legacy is recommended: Enhanced only entered early access in July 2026 — unstable, no graphic mods yet, immature ecosystem. This guide targets Legacy." }
             ]
           }
         }

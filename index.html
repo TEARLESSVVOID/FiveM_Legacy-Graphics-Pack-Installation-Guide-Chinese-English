@@ -1,388 +1,214 @@
 <!DOCTYPE html>
 <!--
-  ============================================================================
   FiveM 画质包安装教程 / FiveM Graphics Pack Installation Tutorial
-  中英双语 · Bilingual (中文 / English)
-  ----------------------------------------------------------------------------
-  数据驱动架构 / Data-driven architecture:
-    · 本 HTML 只是"加载器"，教程正文全部存放在仓库的 assets/content.json
-      This HTML is only a "loader"; all tutorial text lives in assets/content.json
-    · 打开页面时通过 jsdelivr CDN 从 GitHub 拉取最新内容并渲染
-      On open, the page fetches the latest content from GitHub via the jsdelivr CDN
-    · 更新内容只需修改 GitHub 仓库里的文件，读者刷新页面即看到新内容，
-      无需重新下载/更换本 HTML 文件
-      To update: just change files in the repo — readers refresh and see it.
-      No need to re-download this HTML file.
-
-  使用方法 / How to use:
-    1. 上传 index.html + assets/ 到你的 GitHub 仓库
-       Upload index.html + assets/ to your GitHub repo.
-    2. 在下方 <script> 的 CONFIG 里填写 GitHub 用户名与仓库名
-       Fill in your GitHub username and repo name in the CONFIG below.
-    3. 编辑 assets/content.json 即可随时更新教程内容
-       Edit assets/content.json anytime to update the tutorial.
-  ============================================================================
+  数据驱动 / Data-driven:
+    · 本页只是加载器，正文在仓库 assets/content.json
+      This page is a loader; the tutorial text lives in assets/content.json
+    · 打开页面时从 GitHub 拉取最新内容并渲染，更新内容只需改仓库
+      Content is fetched from GitHub on open — update the repo, readers refresh.
+  用法 / Usage:
+    1. 上传 index.html + assets/ 到 GitHub 仓库
+    2. 在下方 CONFIG 填你的用户名与仓库名
+    3. 编辑 assets/content.json 即可更新教程
 -->
 <html lang="zh-CN" data-lang="zh">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <!-- 中文 / English 双语标题 -->
   <title>FiveM 画质包安装教程 · FiveM Graphics Pack Tutorial</title>
   <style>
     :root {
-      --bg: #0f0d12;
-      --bg-card: #191620;
-      --bg-elev: #211d2b;
-      --border: #2b2537;
-      --text: #ece7db;
-      --text-soft: #d8d2c4;
-      --text-dim: #a79f8e;
-      --accent: #ff4d6d;
-      --accent-2: #9b6dff;
-      --green: #4ade80;
-      --red: #f87171;
-      --code-bg: #12101a;
+      --bg: #101014;
+      --card: #191922;
+      --card-2: #20202c;
+      --border: #2c2c3a;
+      --text: #f0ece1;
+      --text-2: #cfc9ba;
+      --text-3: #98917f;
+      --accent: #ff5d7e;
+      --green: #5ce08a;
+      --red: #ff8080;
+      --code-bg: #0c0c10;
     }
-    /* 全局样式 / Global styles —— 深色霓虹游戏风格 / Dark neon gaming theme */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html {
-      scroll-behavior: smooth;
-      /* 锚点跳转时预留 sticky 顶栏高度，避免标题被遮挡 / Keep anchor targets clear of the sticky header */
-      scroll-padding-top: 84px;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 70px; }
     body {
       background: var(--bg);
       color: var(--text);
       font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
-      line-height: 1.7;
+      line-height: 1.75;
+      font-size: 16px;
     }
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-    /* 顶栏 / Top bar */
+    /* 顶栏 / Header */
     header {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(15, 13, 18, .9);
-      backdrop-filter: blur(10px);
+      background: var(--bg);
       border-bottom: 1px solid var(--border);
-      padding: 14px 20px;
+      padding: 12px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
       flex-wrap: wrap;
     }
-    header h1 {
-      font-size: 19px;
-      letter-spacing: .5px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      color: transparent;
-    }
-    header h1 .t-title {
-      display: inline;
-      letter-spacing: .5px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      color: transparent;
-    }
-    header h1 span {
-      display: block;
-      margin-left: 0;
-      margin-top: 2px;
-      font-size: 12.5px;
-      font-weight: normal;
-      letter-spacing: 0;
-      -webkit-text-fill-color: var(--text-dim);
-      color: var(--text-dim);
-    }
+    header h1 { font-size: 18px; }
+    header h1 span { display: block; font-size: 12px; font-weight: normal; color: var(--text-3); }
     .lang-btn {
-      background: var(--bg-elev);
-      color: var(--text-soft);
+      background: var(--card-2);
+      color: var(--text-2);
       border: 1px solid var(--border);
       padding: 6px 16px;
       border-radius: 999px;
       cursor: pointer;
       font-size: 13px;
-      transition: background .2s, color .2s, border-color .2s;
     }
-    .lang-btn:hover {
-      border-color: var(--accent);
-    }
-    .lang-btn.active {
-      background: var(--accent);
-      color: #141016;
-      border-color: var(--accent);
-      font-weight: 600;
-    }
+    .lang-btn.active { background: var(--accent); color: #1a0d12; border-color: var(--accent); font-weight: 600; }
 
-    /* 加载错误横幅 / Load-error banner */
+    /* 加载失败提示 / Load error banner */
     #notice {
       display: none;
-      background: #2a1f1d;
+      background: #2b1d1c;
       border-bottom: 1px solid var(--red);
       color: #f2c9c2;
       padding: 10px 20px;
-      font-size: 13px;
+      font-size: 14px;
     }
 
-    /* 导航 / Nav */
+    /* 目录 / Nav */
     nav {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      padding: 14px 20px;
-      border-bottom: 1px solid var(--bg-elev);
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--card-2);
     }
     nav a {
-      background: var(--bg-elev);
-      color: var(--text-soft);
+      background: var(--card-2);
+      color: var(--text-2);
       padding: 5px 13px;
       border-radius: 8px;
-      font-size: 12.5px;
+      font-size: 13px;
       border: 1px solid var(--border);
-      transition: border-color .2s, color .2s;
     }
-    nav a:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      text-decoration: none;
-    }
+    nav a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
 
-    main {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 28px 20px 80px;
-    }
+    main { max-width: 900px; margin: 0 auto; padding: 24px 20px 70px; }
 
-    /* 区块卡片 / Section cards */
+    /* 区块 / Sections */
     section {
-      background: var(--bg-card);
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 28px 30px;
-      margin-bottom: 24px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+      padding: 24px 26px;
+      margin-bottom: 20px;
     }
-    h2 {
-      color: var(--accent);
-      font-size: 21px;
-      margin-bottom: 8px;
-      padding-left: 12px;
-      position: relative;
-    }
-    h2::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 5px;
-      bottom: 5px;
-      width: 4px;
-      border-radius: 2px;
-      background: linear-gradient(180deg, var(--accent), var(--accent-2));
-    }
-    h2 small {
-      display: block;
-      color: var(--text-dim);
-      font-size: 12.5px;
-      font-weight: normal;
-      margin-left: 0;
-      margin-top: 2px;
-    }
-    h3 {
-      color: var(--text);
-      font-size: 16px;
-      margin: 18px 0 8px;
-    }
-    p,
-    li {
-      font-size: 14.5px;
-      color: var(--text-soft);
-    }
-    ul,
-    ol {
-      padding-left: 24px;
-      margin: 8px 0;
-    }
-    li {
-      margin: 6px 0;
-    }
-    li::marker {
-      color: var(--accent);
-    }
+    h2 { font-size: 20px; color: var(--accent); margin-bottom: 6px; }
+    h2 small { display: block; font-size: 13px; font-weight: normal; color: var(--text-3); margin-top: 2px; }
+    h3 { font-size: 16px; margin: 16px 0 8px; }
+    p, li { color: var(--text-2); }
+    ul, ol { padding-left: 24px; margin: 8px 0; }
+    li { margin: 6px 0; }
+    li::marker { color: var(--accent); }
 
-    .zh,
-    .en {
-      display: block;
-    }
-    /* 语言切换：只显示当前语言 / Only show the active language */
-    html[data-lang="zh"] .en {
-      display: none !important;
-    }
-    html[data-lang="en"] .zh {
-      display: none !important;
-    }
+    .zh, .en { display: block; }
+    html[data-lang="zh"] .en { display: none !important; }
+    html[data-lang="en"] .zh { display: none !important; }
 
-    /* 图片 / Step images */
+    /* 图片 / Images */
     .step-img {
       display: block;
       width: 100%;
-      max-width: 800px;
+      max-width: 780px;
       height: auto;
-      margin: 18px auto;
+      margin: 16px auto;
       border-radius: 10px;
       border: 1px solid var(--border);
       background: var(--bg);
     }
-    .img-cap {
-      text-align: center;
-      font-size: 12px;
-      color: var(--text-dim);
-      margin-top: 8px;
-    }
+    .img-cap { text-align: center; font-size: 13px; color: var(--text-3); margin-top: 6px; }
 
     /* 视频 / Video */
     .video-wrap {
       width: 100%;
-      max-width: 800px;
-      margin: 16px auto;
+      max-width: 780px;
+      margin: 14px auto;
       border-radius: 10px;
       overflow: hidden;
       border: 1px solid var(--border);
       background: #000;
     }
-    video {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
+    video { display: block; width: 100%; height: auto; }
     .badge {
       display: inline-block;
-      background: #2a1f1d;
+      background: #2b1d1c;
       color: #f2c9c2;
       border: 1px solid var(--red);
       border-radius: 6px;
       padding: 3px 9px;
       font-size: 12px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
-    /* 提示框 / Note boxes */
+    /* 提示框 / Notes */
     .note {
-      background: var(--bg-elev);
+      background: var(--card-2);
       border-left: 4px solid var(--accent);
       border-radius: 6px;
       padding: 12px 16px;
       margin: 14px 0;
-      font-size: 13.5px;
+      font-size: 14.5px;
     }
-    .note.green {
-      border-left-color: var(--green);
-    }
-    .note.red {
-      border-left-color: var(--red);
-    }
+    .note.green { border-left-color: var(--green); }
+    .note.red { border-left-color: var(--red); }
 
     /* FAQ 折叠 / FAQ accordion */
     details {
-      background: var(--bg-elev);
+      background: var(--card-2);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 12px 16px;
       margin: 10px 0;
     }
-    summary {
-      cursor: pointer;
-      color: var(--text);
-      font-weight: 600;
-      font-size: 14.5px;
-    }
-    summary:hover {
-      color: var(--accent);
-    }
-    details p {
-      margin-top: 10px;
-    }
+    summary { cursor: pointer; color: var(--text); font-weight: 600; font-size: 15px; }
+    summary:hover { color: var(--accent); }
+    details p { margin-top: 10px; }
 
-    /* 代码块 / Code blocks */
+    /* 代码块 / Code */
     pre {
       background: var(--code-bg);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 12px 14px;
-      font-size: 12.5px;
+      font-size: 13px;
       overflow-x: auto;
       color: var(--green);
       margin: 10px 0;
       font-family: Consolas, "Courier New", monospace;
     }
     code {
-      background: var(--bg-elev);
+      background: var(--card-2);
       color: var(--accent);
       padding: 1px 6px;
       border-radius: 4px;
-      font-size: 13px;
+      font-size: 14px;
+      word-break: break-word;
     }
-    pre code {
-      background: none;
-      color: var(--green);
-      padding: 0;
-    }
+    pre code { background: none; color: var(--green); padding: 0; }
 
-    /* 总结表格 / Summary table */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 14px 0;
-      font-size: 13.5px;
-    }
-    th,
-    td {
-      border: 1px solid var(--border);
-      padding: 9px 12px;
-      text-align: left;
-      vertical-align: top;
-    }
-    th {
-      background: var(--bg-elev);
-      color: var(--accent);
-      font-weight: 600;
-    }
-    td {
-      color: var(--text-soft);
-    }
-    tbody tr:nth-child(even) td {
-      background: #1b1822;
-    }
-    table code {
-      white-space: nowrap;
-    }
+    /* 表格 / Tables */
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+    th, td { border: 1px solid var(--border); padding: 9px 12px; text-align: left; vertical-align: top; }
+    th { background: var(--card-2); color: var(--accent); }
+    tbody tr:nth-child(even) td { background: #1d1d28; }
 
-    footer {
-      text-align: center;
-      color: var(--text-dim);
-      font-size: 12.5px;
-      padding: 24px 20px 40px;
-      border-top: 1px solid var(--bg-elev);
-    }
+    footer { text-align: center; color: var(--text-3); font-size: 13px; padding: 20px; border-top: 1px solid var(--card-2); }
 
-    /* 回到顶部按钮 / Back-to-top button */
+    /* 回到顶部 / Back to top */
     #backTop {
       position: fixed;
       right: 22px;
@@ -391,40 +217,25 @@
       width: 42px;
       height: 42px;
       border-radius: 50%;
-      background: var(--bg-elev);
-      color: var(--text-soft);
+      background: var(--card-2);
+      color: var(--text-2);
       border: 1px solid var(--border);
       cursor: pointer;
       font-size: 16px;
       opacity: 0;
       visibility: hidden;
-      transform: translateY(8px);
-      transition: opacity .25s, transform .25s, visibility .25s, border-color .2s;
     }
-    #backTop.show {
-      opacity: 1;
-      visibility: visible;
-      transform: none;
-    }
-    #backTop:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
+    #backTop.show { opacity: 1; visibility: visible; }
+    #backTop:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* 响应式 / Responsive */
     @media (max-width: 640px) {
-      section {
-        padding: 20px 16px;
-      }
-      header h1 {
-        font-size: 16px;
-      }
+      section { padding: 18px 14px; }
+      header h1 { font-size: 16px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ================= 顶栏 / Header ================= -->
   <header>
     <h1 id="siteTitle"></h1>
     <div>
@@ -433,105 +244,76 @@
     </div>
   </header>
 
-  <!-- 加载错误横幅 / Load-error banner -->
   <div id="notice">
     <strong data-zh="提示：" data-en="Notice: "></strong>
-    <span data-zh="无法从 GitHub 加载教程内容。请检查网络连接，或确认仓库文件 assets/content.json 存在。"
-          data-en="Could not load the tutorial content from GitHub. Check your network, or make sure assets/content.json exists in the repo."></span>
+    <span data-zh="无法加载教程内容。请检查网络，或确认仓库里的 assets/content.json 存在。"
+          data-en="Could not load the tutorial. Check your network, or make sure assets/content.json exists in the repo."></span>
   </div>
 
-  <!-- ================= 目录 / Table of Contents（由 JS 渲染） ================= -->
   <nav id="toc"></nav>
 
-  <main id="content"><!-- 教程正文由 JS 从 GitHub 动态渲染 / Body rendered by JS from GitHub --></main>
+  <main id="content"><!-- 正文由 JS 渲染 / Rendered by JS --></main>
 
   <footer id="siteFooter"></footer>
 
-  <!-- 回到顶部按钮 / Back-to-top button -->
   <button id="backTop" type="button" aria-label="回到顶部 / Back to top">↑</button>
 
   <script>
     /* ======================================================================
-     * 媒体与内容配置 / Media & Content Configuration
-     * ----------------------------------------------------------------------
-     * 页面打开时，正文从 assets/content.json 动态拉取并渲染：
-     * https://cdn.jsdelivr.net/gh/{owner}/{repo}@{branch}/assets/content.json
-     * All tutorial text is fetched from assets/content.json at runtime.
-     *
-     * 使用步骤 / How to use:
-     *   1. 上传 index.html + assets/ 到你的 GitHub 仓库 / Upload to your repo
-     *   2. 把视频放到 assets/video/ / Put your video into assets/video/
-     *   3. 修改下面两个值 / Edit the two values below
-     *   4. 之后只需编辑 assets/content.json 即可更新内容
-     *      From now on, just edit assets/content.json to update content.
+     * 配置 / Config —— 改成你自己的仓库 / Point to your own repo
+     * 正文运行时从 assets/content.json 拉取：
+     *   https://raw.githubusercontent.com/{owner}/{repo}/{branch}/assets/content.json
      * ====================================================================== */
     const CONFIG = {
-      owner:  "TEARLESSVVOID",                       // 你的 GitHub 用户名 / your GitHub username
-      repo:   "FiveM_Legacy-Graphics-Pack-Installation-Guide-Chinese-English", // 你的仓库名 / your repo name
-      branch: "main",                               // 分支（默认 main）/ branch (default main)
-      content: "assets/content.json"                // 内容数据文件 / content data file
+      owner:  "TEARLESSVVOID",
+      repo:   "FiveM_Legacy-Graphics-Pack-Installation-Guide-Chinese-English",
+      branch: "main",
+      content: "assets/content.json"
     };
-
-    /* 是否已填写配置 / Whether the config has been filled in */
     const CONFIG_OK = CONFIG.owner !== "YOUR_GITHUB_USERNAME" && CONFIG.repo !== "YOUR_REPO_NAME";
 
-    /* 构造内容地址（raw.githubusercontent：缓存仅 5 分钟，改动后很快可见）
-       Content URL (raw.githubusercontent: ~5 min cache, updates visible quickly) */
+    // 正文地址：raw 缓存约 5 分钟，更新后很快可见 / raw caches ~5 min for fast updates
     function rawUrl(path) {
       return "https://raw.githubusercontent.com/" + CONFIG.owner + "/" + CONFIG.repo + "/" + CONFIG.branch + "/" + path;
     }
-
-    /* 构造媒体地址（jsdelivr CDN：大陆访问快）
-       Media URL (jsdelivr CDN: fast access from China) */
+    // 媒体地址：jsdelivr CDN，国内访问快 / media via jsdelivr CDN (fast in China)
     function ghUrl(path) {
       return "https://cdn.jsdelivr.net/gh/" + CONFIG.owner + "/" + CONFIG.repo + "@" + CONFIG.branch + "/" + path;
     }
 
-    /* 加载失败提示 / Show the load-error banner */
     function showLoadError() {
       document.getElementById("notice").style.display = "block";
-      document.getElementById("siteTitle").style.visibility = "hidden";
     }
 
     /* ======================================================================
-     * 渲染引擎 / Rendering engine
-     * 根据 content.json 的数据结构生成整页 DOM。
+     * 渲染引擎 / Rendering engine —— 把 content.json 变成页面
+     * 支持的块类型 / Block types: p, note, h3, ol, ul, img, table, faqs, code, video
      * ====================================================================== */
-
-    /* 生成一个双语容器块（.zh + .en） / Build a bilingual block (.zh + .en) */
     function biBlock(zhHtml, enHtml, tag) {
       tag = tag || "div";
       var box = document.createElement("div");
-      var zh = document.createElement(tag);
-      zh.className = "zh";
-      zh.innerHTML = zhHtml;
-      var en = document.createElement(tag);
-      en.className = "en";
-      en.innerHTML = enHtml;
-      box.appendChild(zh);
-      box.appendChild(en);
+      ["zh", "en"].forEach(function (lang) {
+        var el = document.createElement(tag);
+        el.className = lang;
+        el.innerHTML = lang === "zh" ? zhHtml : enHtml;
+        box.appendChild(el);
+      });
       return box;
     }
 
-    /* 渲染一个内容块 / Render one content block */
     function renderBlock(blk) {
-      if (blk.p) {
-        return biBlock(blk.p.zh, blk.p.en, "p");
-      }
+      if (blk.p) return biBlock(blk.p.zh, blk.p.en, "p");
+      if (blk.h3) return biBlock(blk.h3.zh, blk.h3.en, "h3");
       if (blk.note) {
         var n = document.createElement("div");
         n.className = "note" + (blk.note.kind ? " " + blk.note.kind : "");
         n.appendChild(biBlock(blk.note.zh, blk.note.en));
         return n;
       }
-      if (blk.h3) {
-        return biBlock(blk.h3.zh, blk.h3.en, "h3");
-      }
       if (blk.ol || blk.ul) {
         var tag = blk.ol ? "ol" : "ul";
         var box = document.createElement("div");
-        [["zh", blk.ol ? blk.ol.zh : blk.ul.zh],
-         ["en", blk.ol ? blk.ol.en : blk.ul.en]].forEach(function (pair) {
+        [["zh", blk.ol ? blk.ol.zh : blk.ul.zh], ["en", blk.ol ? blk.ol.en : blk.ul.en]].forEach(function (pair) {
           var list = document.createElement(tag);
           list.className = pair[0];
           pair[1].forEach(function (item) {
@@ -545,8 +327,7 @@
       }
       if (blk.img) {
         var box2 = document.createElement("div");
-        [["zh", blk.img.zh, blk.img.capZh],
-         ["en", blk.img.en, blk.img.capEn]].forEach(function (pair) {
+        [["zh", blk.img.zh, blk.img.capZh], ["en", blk.img.en, blk.img.capEn]].forEach(function (pair) {
           var img = document.createElement("img");
           img.className = "step-img";
           img.alt = "";
@@ -628,14 +409,13 @@
         var wrap = document.createElement("div");
         wrap.className = "video-wrap";
         var v = document.createElement("video");
-        v.id = "tutorialVideo";
         v.controls = true;
         v.preload = "metadata";
         v.poster = "";
         var src = document.createElement("source");
-        src.id = "videoSrc";
         src.type = "video/mp4";
-        src.src = CONFIG_OK ? ghUrl(blk.video.video) : blk.video.video;
+        var path = blk.video.video || CURRENT_META.video;
+        src.src = CONFIG_OK ? ghUrl(path) : path;
         v.appendChild(src);
         wrap.appendChild(v);
         box5.appendChild(wrap);
@@ -652,7 +432,7 @@
       return document.createTextNode("");
     }
 
-    /* 用 content.json 渲染整页 / Render the whole page from content.json */
+    // HTML 转义 / HTML escaping
     function esc(s) {
       return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
     }
@@ -661,10 +441,9 @@
       var m = data.meta;
       document.title = langIs("en") ? m.titleEn : m.titleZh;
       document.getElementById("siteTitle").innerHTML =
-        '<span class="t-title" data-zh="' + esc(m.h1.zh) + '" data-en="' + esc(m.h1.en) + '"></span>' +
+        '<span data-zh="' + esc(m.h1.zh) + '" data-en="' + esc(m.h1.en) + '"></span>' +
         '<span data-zh="' + esc(m.h1sub.zh) + '" data-en="' + esc(m.h1sub.en) + '"></span>';
 
-      /* 导航 / TOC */
       var nav = document.getElementById("toc");
       nav.innerHTML = "";
       data.nav.forEach(function (item) {
@@ -675,7 +454,6 @@
         nav.appendChild(a);
       });
 
-      /* 正文 / Body */
       var main = document.getElementById("content");
       main.innerHTML = "";
       data.sections.forEach(function (sec) {
@@ -689,13 +467,10 @@
         small.setAttribute("data-en", sec.sub.en);
         h2.appendChild(small);
         s.appendChild(h2);
-        sec.body.forEach(function (blk) {
-          s.appendChild(renderBlock(blk));
-        });
+        sec.body.forEach(function (blk) { s.appendChild(renderBlock(blk)); });
         main.appendChild(s);
       });
 
-      /* 页脚 / Footer */
       var footer = document.getElementById("siteFooter");
       footer.innerHTML = "";
       m.footer.forEach(function (line) {
@@ -709,7 +484,7 @@
     }
 
     /* ======================================================================
-     * 语言切换 / Language Switch (中文 ↔ English)
+     * 语言切换 / Language switch
      * ====================================================================== */
     function langIs(en) {
       return document.documentElement.getAttribute("data-lang") === "en";
@@ -719,45 +494,32 @@
       document.documentElement.setAttribute("data-lang", lang);
       document.getElementById("btnZh").classList.toggle("active", lang === "zh");
       document.getElementById("btnEn").classList.toggle("active", lang === "en");
-      applyDataText(lang);
-      /* 切换视频封面语言 / Switch the video poster language */
+      document.querySelectorAll("[data-zh][data-en]").forEach(function (el) {
+        el.textContent = lang === "en" ? el.getAttribute("data-en") : el.getAttribute("data-zh");
+      });
       var vid = document.getElementById("tutorialVideo");
       if (vid) {
-        var meta = CURRENT_META;
-        var poster = (lang === "en" ? meta.posterEn : meta.posterZh);
+        var poster = lang === "en" ? CURRENT_META.posterEn : CURRENT_META.posterZh;
         vid.poster = CONFIG_OK ? ghUrl(poster) : poster;
       }
       try { localStorage.setItem("lang", lang); } catch (e) {}
     }
 
-    /* 将带 data-zh / data-en 属性的元素文本替换为当前语言
-       Replace text of [data-zh][data-en] elements */
-    function applyDataText(lang) {
-      document.querySelectorAll("[data-zh][data-en]").forEach(function (el) {
-        el.textContent = lang === "en" ? el.getAttribute("data-en") : el.getAttribute("data-zh");
-      });
-    }
-
-    /* 记住上次选择 / Remember last choice */
     function initLang() {
       var saved = null;
       try { saved = localStorage.getItem("lang"); } catch (e) {}
       setLang(saved === "en" ? "en" : "zh");
     }
 
-    /* 当前 meta（供 setLang 切换海报用）/ Current meta for poster switching */
-    var CURRENT_META = { posterZh: "", posterEn: "" };
+    var CURRENT_META = { posterZh: "", posterEn: "", video: "" };
 
     /* ======================================================================
-     * 启动：拉取内容并渲染 / Boot: fetch content and render
+     * 启动：拉取内容并渲染 / Boot: fetch and render
      * ====================================================================== */
     if (!CONFIG_OK) {
       showLoadError();
     } else {
-      /* 时间戳绕过浏览器缓存；raw 返回最新内容
-         Timestamp busts the browser cache; raw serves the latest content */
-      var url = rawUrl(CONFIG.content) + "?t=" + Date.now();
-      fetch(url)
+      fetch(rawUrl(CONFIG.content) + "?t=" + Date.now())
         .then(function (res) {
           if (!res.ok) throw new Error("HTTP " + res.status);
           return res.json();
@@ -772,16 +534,13 @@
         });
     }
 
-    /* 回到顶部按钮 / Back-to-top button */
     var backTop = document.getElementById("backTop");
-    if (backTop) {
-      window.addEventListener("scroll", function () {
-        backTop.classList.toggle("show", window.scrollY > 600);
-      });
-      backTop.addEventListener("click", function () {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-    }
+    window.addEventListener("scroll", function () {
+      backTop.classList.toggle("show", window.scrollY > 600);
+    });
+    backTop.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
   </script>
 </body>
 </html>
