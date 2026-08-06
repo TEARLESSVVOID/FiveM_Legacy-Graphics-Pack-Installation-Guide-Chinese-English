@@ -1,0 +1,327 @@
+{
+  "meta": {
+    "titleZh": "FiveM 画质包安装教程",
+    "titleEn": "FiveM Graphics Pack Installation Tutorial",
+    "h1": { "zh": "FiveM 画质包教程", "en": "FiveM Graphics Pack Tutorial" },
+    "h1sub": { "zh": "中英双语 · 视频 + 图文", "en": "Bilingual · Video + Guide" },
+    "notice": {
+      "zh": "无法从 GitHub 加载教程内容。请检查网络连接，或确认仓库文件 assets/content.json 存在。",
+      "en": "Could not load the tutorial content from GitHub. Check your network, or make sure assets/content.json exists in the repo."
+    },
+    "video": "assets/video/fivem-gfx-tutorial.mp4",
+    "posterZh": "assets/img/video-poster-v2.svg",
+    "posterEn": "assets/img/video-poster-en-v2.svg",
+    "footer": [
+      { "zh": "FiveM 画质包安装教程 · 中英双语 · 内容与媒体经 GitHub (jsdelivr CDN) 动态加载", "en": "FiveM Graphics Pack Tutorial · Bilingual · Content & media loaded dynamically from GitHub (jsdelivr CDN)" },
+      { "zh": "© 2026 · 祝游戏愉快！", "en": "© 2026 · Have fun in-game!" }
+    ]
+  },
+  "nav": [
+    { "id": "intro", "zh": "简介", "en": "Intro" },
+    { "id": "step1", "zh": "步骤 1 · 安装 FiveM", "en": "Step 1 · Install FiveM" },
+    { "id": "step2", "zh": "步骤 2 · 下载画质包", "en": "Step 2 · Download Pack" },
+    { "id": "step3", "zh": "步骤 3 · 复制文件", "en": "Step 3 · Copy Files" },
+    { "id": "step4", "zh": "步骤 4 · ReShade + 视频", "en": "Step 4 · ReShade + Video" },
+    { "id": "step5", "zh": "步骤 5 · 游戏内设置", "en": "Step 5 · In-Game" },
+    { "id": "summary", "zh": "文件放置总结", "en": "File Placement" },
+    { "id": "faq", "zh": "常见问题", "en": "FAQ" }
+  ],
+  "sections": [
+    {
+      "id": "intro",
+      "h2": { "zh": "简介", "en": "Introduction" },
+      "sub": { "zh": "Introduction · 开胃菜", "en": "简介 · Intro" },
+      "body": [
+        {
+          "p": {
+            "zh": "FiveM 是 GTA V 的大型多人联机模组平台。配合<strong>画质包</strong>（如 <strong>NVE</strong>、<strong>QuantV</strong>、<strong>ReShade 预设</strong>），可以让游戏画面焕然一新，甚至接近真实照片效果。本教程将带你从零开始完成安装。",
+            "en": "FiveM is a large multiplayer mod platform for GTA V. With a <strong>graphics pack</strong> (such as <strong>NVE</strong>, <strong>QuantV</strong> or <strong>ReShade presets</strong>), the game can look brand new — even close to real photos. This tutorial walks you through everything from scratch."
+          }
+        },
+        {
+          "note": {
+            "kind": "default",
+            "zh": "<strong>准备工作：</strong>1. 正版 GTA V（Steam / Epic / Rockstar 均可） 2. 建议显卡 GTX 1060 及以上 3. 至少 30GB 空闲磁盘空间 4. 稳定的网络。",
+            "en": "<strong>Requirements:</strong> 1. A genuine copy of GTA V (Steam / Epic / Rockstar) 2. Recommended GPU: GTX 1060 or better 3. At least 30GB of free disk space 4. A stable internet connection."
+          }
+        }
+      ]
+    },
+    {
+      "id": "step1",
+      "h2": { "zh": "步骤 1 · 安装 FiveM", "en": "Step 1 · Install FiveM" },
+      "sub": { "zh": "Step 1 · Install FiveM", "en": "安装 FiveM" },
+      "body": [
+        {
+          "img": {
+            "zh": "assets/img/step1-install-fivem-v2.svg",
+            "en": "assets/img/step1-install-fivem-en-v2.svg",
+            "capZh": "图 1：安装 FiveM 的四个步骤",
+            "capEn": "Fig 1: Four steps to install FiveM"
+          }
+        },
+        {
+          "ol": {
+            "zh": [
+              "打开官网 <code>https://fivem.net</code>，点击 <strong>Download</strong> 下载安装器。",
+              "运行 <code>FiveM.exe</code>，安装器会自动检测 GTA V 的安装路径；如果找不到，请手动选择 GTA 5 文件夹。",
+              "等待 FiveM 完成基础安装（首次会下载一些必需文件）。",
+              "启动 FiveM，登录 Rockstar 账号，随便进入一个服务器测试能否正常游玩。"
+            ],
+            "en": [
+              "Open <code>https://fivem.net</code> and click <strong>Download</strong> to get the installer.",
+              "Run <code>FiveM.exe</code>; the installer will auto-detect your GTA V path. If not found, select the GTA 5 folder manually.",
+              "Wait for FiveM to finish its base installation (it downloads required files on first run).",
+              "Launch FiveM, log in with your Rockstar account, and join any server to test."
+            ]
+          }
+        },
+        {
+          "note": {
+            "kind": "green",
+            "zh": "安装完成后，桌面会出现 FiveM 图标。此时可以退出游戏，进入下一步。",
+            "en": "A FiveM icon appears on your desktop afterwards. You may quit the game and continue to the next step."
+          }
+        }
+      ]
+    },
+    {
+      "id": "step2",
+      "h2": { "zh": "步骤 2 · 下载画质包", "en": "Step 2 · Download a Graphics Pack" },
+      "sub": { "zh": "Step 2 · Download a Pack", "en": "下载画质包" },
+      "body": [
+        {
+          "img": {
+            "zh": "assets/img/step2-download-pack-v2.svg",
+            "en": "assets/img/step2-download-pack-en-v2.svg",
+            "capZh": "图 2：常见画质包与下载方式",
+            "capEn": "Fig 2: Popular packs and where to get them"
+          }
+        },
+        {
+          "h3": { "zh": "常见画质包推荐 / 使用对比", "en": "Recommended packs / Comparison" }
+        },
+        {
+          "ul": {
+            "zh": [
+              "<strong>NaturalVision Evolved (NVE)</strong>：业界公认最真实，需要 Patreon 付费支持作者；提供 FiveM 专用版。",
+              "<strong>QuantV</strong>：电影感色调，画面极具风格化。",
+              "<strong>ENB (ENBSeries)</strong>：可在 <a href=\"https://enbdev.com/news.html\" target=\"_blank\" rel=\"noopener\">enbdev.com</a> 免费下载，适合单机模式画面增强。",
+              "<strong>免费 ReShade 预设</strong>：GitHub 上有大量免费预设，适合新手尝试。"
+            ],
+            "en": [
+              "<strong>NaturalVision Evolved (NVE)</strong>: widely regarded as the most realistic; supports the author via Patreon; has a FiveM-specific version.",
+              "<strong>QuantV</strong>: cinematic color grading with a highly stylized look.",
+              "<strong>ENB (ENBSeries)</strong>: free download at <a href=\"https://enbdev.com/news.html\" target=\"_blank\" rel=\"noopener\">enbdev.com</a> — great for single-player visuals.",
+              "<strong>Free ReShade presets</strong>: plenty of free presets on GitHub — great for beginners."
+            ]
+          }
+        },
+        {
+          "note": {
+            "kind": "default",
+            "zh": "下载后一般得到一个 <strong>zip 压缩包</strong>。请完整解压，不要直接双击 zip 内的文件。",
+            "en": "You usually get a <strong>zip archive</strong>. Extract it fully — don't run files from inside the zip."
+          }
+        }
+      ]
+    },
+    {
+      "id": "step3",
+      "h2": { "zh": "步骤 3 · 把文件复制到 FiveM", "en": "Step 3 · Copy Files into FiveM" },
+      "sub": { "zh": "Step 3 · Copy Files", "en": "复制文件" },
+      "body": [
+        {
+          "img": {
+            "zh": "assets/img/step3-copy-files-v2.svg",
+            "en": "assets/img/step3-copy-files-en-v2.svg",
+            "capZh": "图 3：FiveM 目录结构（重点：data 文件夹）",
+            "capEn": "Fig 3: FiveM folder structure (focus: the data folder)"
+          }
+        },
+        {
+          "ol": {
+            "zh": [
+              "按 <code>Win + R</code>，输入 <code>%localappdata%</code> 并回车。",
+              "进入 <code>FiveM → FiveM.app</code> 文件夹。",
+              "把解压后的<strong>画质包文件</strong>复制到 <code>FiveM.app\\data</code> 文件夹（提示合并/覆盖时选择“是”）。",
+              "（可选）删除 <code>caches</code> 缓存文件夹，让游戏重新生成缓存，可避免画质包冲突。",
+              "有些画质包（如 NVE）要求把文件放在 <code>FiveM.app</code> 根目录，请以画质包自带说明为准。"
+            ],
+            "en": [
+              "Press <code>Win + R</code>, type <code>%localappdata%</code> and press Enter.",
+              "Open <code>FiveM → FiveM.app</code>.",
+              "Copy the <strong>extracted pack files</strong> into <code>FiveM.app\\data</code> (choose \"Yes\" when asked to merge/overwrite).",
+              "(Optional) Delete the <code>caches</code> folder so the game regenerates it — this avoids conflicts.",
+              "Some packs (e.g. NVE) require files in the <code>FiveM.app</code> root — always follow the pack's own instructions."
+            ]
+          }
+        },
+        {
+          "note": {
+            "kind": "red",
+            "zh": "不要误删 <code>FiveM.app</code> 里的 <code>GTA5.exe</code>，它是游戏主程序；Reshade 的 <code>dxgi.dll</code> 也放在这个根目录。",
+            "en": "Do NOT delete <code>GTA5.exe</code> inside <code>FiveM.app</code> — it's the game binary; ReShade's <code>dxgi.dll</code> also lives in this root folder."
+          }
+        }
+      ]
+    },
+    {
+      "id": "step4",
+      "h2": { "zh": "步骤 4 · 安装 ReShade + 视频教程", "en": "Step 4 · Install ReShade + Video" },
+      "sub": { "zh": "Step 4 · ReShade + Video", "en": "ReShade 安装 + 视频" },
+      "body": [
+        {
+          "video": {
+            "badgeZh": "视频来自 GitHub 托管（CDN 加载）",
+            "badgeEn": "Video hosted on GitHub (served via CDN)",
+            "capZh": "视频：请将你的安装演示视频上传到 GitHub 的 assets/video/ 文件夹",
+            "capEn": "Video: upload your demo video to assets/video/ in your GitHub repo"
+          }
+        },
+        {
+          "img": {
+            "zh": "assets/img/step4-reshade-v2.svg",
+            "en": "assets/img/step4-reshade-en-v2.svg",
+            "capZh": "图 4：ReShade 安装要点",
+            "capEn": "Fig 4: ReShade installation essentials"
+          }
+        },
+        {
+          "ol": {
+            "zh": [
+              "从 <code>https://reshade.me</code> 下载并运行 ReShade 安装器。",
+              "点击 <strong>Select game</strong>，选择 <code>FiveM.app</code> 文件夹里的 <code>GTA5.exe</code>（注意不是 Steam 里的）。",
+              "图形接口选择 <strong>DirectX 10/11/12</strong>。",
+              "勾选下载着色器（Standard effects 等），等待完成。",
+              "把画质包附带的 ReShade 预设（<code>.ini</code> 文件）复制到 <code>FiveM.app</code> 根目录。"
+            ],
+            "en": [
+              "Download and run the ReShade installer from <code>https://reshade.me</code>.",
+              "Click <strong>Select game</strong> and choose <code>GTA5.exe</code> inside the <code>FiveM.app</code> folder (not the Steam one).",
+              "Select <strong>DirectX 10/11/12</strong> as the graphics API.",
+              "Tick the shaders to download (Standard effects, etc.) and wait for it to finish.",
+              "Copy the pack's ReShade preset (<code>.ini</code>) into the <code>FiveM.app</code> root."
+            ]
+          }
+        },
+        {
+          "note": {
+            "kind": "default",
+            "zh": "安装完成后 <code>FiveM.app</code> 根目录会出现 <code>dxgi.dll</code> 和 <code>ReShade.ini</code>，这是正常现象。",
+            "en": "After installation you will see <code>dxgi.dll</code> and <code>ReShade.ini</code> in the <code>FiveM.app</code> root — this is normal."
+          }
+        }
+      ]
+    },
+    {
+      "id": "step5",
+      "h2": { "zh": "步骤 5 · 启动游戏并启用画质", "en": "Step 5 · Launch and Enable" },
+      "sub": { "zh": "Step 5 · In-Game", "en": "游戏内启用" },
+      "body": [
+        {
+          "img": {
+            "zh": "assets/img/step5-ingame-v2.svg",
+            "en": "assets/img/step5-ingame-en-v2.svg",
+            "capZh": "图 5：游戏内启用流程",
+            "capEn": "Fig 5: Enabling the pack in-game"
+          }
+        },
+        {
+          "ol": {
+            "zh": [
+              "通过 FiveM 启动器进入任意服务器。",
+              "游戏中按 <strong>Home 键</strong> 打开 ReShade 面板。",
+              "在面板顶部的下拉框中选择画质包预设，勾选需要的特效。",
+              "在游戏设置中开启 <strong>高级图形设置 → 超高</strong>，效果更佳。"
+            ],
+            "en": [
+              "Join any server through the FiveM launcher.",
+              "Press <strong>Home</strong> in-game to open the ReShade panel.",
+              "Pick your pack preset in the dropdown at the top and enable the effects you want.",
+              "In game settings, enable <strong>Advanced Graphics → Very High</strong> for the best look."
+            ]
+          }
+        },
+        {
+          "note": {
+            "kind": "green",
+            "zh": "如果按 Home 没反应，说明 <code>dxgi.dll</code> 没放对位置，请回到步骤 3/4 检查。",
+            "en": "If Home does nothing, <code>dxgi.dll</code> is not in the right place — check Steps 3/4 again."
+          }
+        }
+      ]
+    },
+    {
+      "id": "summary",
+      "h2": { "zh": "文件放置总结", "en": "File Placement Summary" },
+      "sub": { "zh": "Which files go where · 一张表搞定", "en": "什么文件放哪 · At a glance" },
+      "body": [
+        {
+          "p": {
+            "zh": "安装完成后，<code>FiveM.app</code> 文件夹应该是这样的结构：",
+            "en": "After installation, your <code>FiveM.app</code> folder should look like this:"
+          }
+        },
+        {
+          "table": {
+            "zh": {
+              "head": ["文件 / 文件夹", "放到哪里", "说明"],
+              "rows": [
+                ["画质包文件（贴图、数据等）", "<code>FiveM.app\\data</code>", "大多数画质包（合并/覆盖）"],
+                ["NVE 等特殊画质包", "<code>FiveM.app</code> 根目录", "请按画质包自带说明放置"],
+                ["<code>dxgi.dll</code>（ReShade 核心）", "<code>FiveM.app</code> 根目录", "ReShade 安装器自动生成"],
+                ["ReShade 预设（<code>.ini</code>）", "<code>FiveM.app</code> 根目录", "游戏中按 Home 切换预设"],
+                ["ENB（单机模式）", "GTA V 游戏根目录", "从 enbdev.com 下载，单机使用"],
+                ["<code>caches</code> 缓存文件夹", "删除（可选）", "让游戏重新生成缓存，避免冲突"]
+              ]
+            },
+            "en": {
+              "head": ["File / Folder", "Destination", "Notes"],
+              "rows": [
+                ["Pack files (textures, data)", "<code>FiveM.app\\data</code>", "Most graphics packs (merge/overwrite)"],
+                ["Special packs (e.g. NVE)", "<code>FiveM.app</code> root", "Follow the pack's own instructions"],
+                ["<code>dxgi.dll</code> (ReShade core)", "<code>FiveM.app</code> root", "Created by the ReShade installer"],
+                ["ReShade preset (<code>.ini</code>)", "<code>FiveM.app</code> root", "Switch presets in-game with Home"],
+                ["ENB (single-player)", "GTA V game root", "Download from enbdev.com"],
+                ["<code>caches</code> folder", "Delete (optional)", "Regenerates cache to avoid conflicts"]
+              ]
+            }
+          }
+        },
+        {
+          "note": {
+            "kind": "green",
+            "zh": "<strong>口诀：</strong>画质数据进 <code>data</code>，ReShade 三件套（<code>dxgi.dll</code>、<code>ReShade.ini</code>、预设 <code>.ini</code>）放根目录。",
+            "en": "<strong>Rule of thumb:</strong> pack data goes into <code>data</code>; the ReShade trio (<code>dxgi.dll</code>, <code>ReShade.ini</code>, preset <code>.ini</code>) goes in the root."
+          }
+        }
+      ]
+    },
+    {
+      "id": "faq",
+      "h2": { "zh": "常见问题 FAQ", "en": "FAQ" },
+      "sub": { "zh": "Frequently Asked Questions", "en": "常见问题" },
+      "body": [
+        {
+          "faqs": {
+            "zh": [
+              { "q": "游戏打不开 / 闪退怎么办？", "a": "删除 <code>FiveM.app</code> 内的 <code>caches</code> 文件夹后重新启动；若仍不行，删除刚复制的画质包文件，逐个排除。" },
+              { "q": "帧数太低怎么办？", "a": "在 ReShade 面板中减少开启的特效数量（尤其是模糊、光线类特效），或把预设强度调低。" },
+              { "q": "按 Home 键没有反应？", "a": "确认 <code>dxgi.dll</code> 位于 <code>FiveM.app</code> 根目录，且画质包里的 <code>.ini</code> 预设也在该目录。" },
+              { "q": "进服务器被踢出怎么办？", "a": "部分服务器禁止 ReShade / 画质包。进入此类服务器前请先在 ReShade 中点击 <em>Disable</em> 或删除 <code>dxgi.dll</code>。" },
+              { "q": "为什么这个页面内容会实时更新？", "a": "本页正文与媒体都通过 jsdelivr CDN 从 GitHub 仓库动态加载（<code>assets/content.json</code>）。仓库内容更新后，刷新页面即可看到新内容，无需重新下载 HTML 文件。" }
+            ],
+            "en": [
+              { "q": "Game crashes / won't start?", "a": "Delete the <code>caches</code> folder inside <code>FiveM.app</code> and relaunch. If it persists, remove the pack files you copied and test them one by one." },
+              { "q": "Frame rate too low?", "a": "Disable some effects in the ReShade panel (especially blur / light effects), or lower the preset intensity." },
+              { "q": "Pressing Home does nothing?", "a": "Make sure <code>dxgi.dll</code> is in the <code>FiveM.app</code> root and the pack's <code>.ini</code> preset is there too." },
+              { "q": "Kicked from a server?", "a": "Some servers ban ReShade / graphics packs. Click <em>Disable</em> in ReShade or remove <code>dxgi.dll</code> before joining such servers." },
+              { "q": "Why does this page update automatically?", "a": "All text and media on this page are loaded dynamically from a GitHub repo via the jsdelivr CDN (<code>assets/content.json</code>). Update the repo and refresh the page — no need to re-download the HTML file." }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
