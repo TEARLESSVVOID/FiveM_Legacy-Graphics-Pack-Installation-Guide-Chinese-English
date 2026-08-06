@@ -92,7 +92,7 @@
       var loaded = false, switched = false;
       function addScript(url) {
         var s = document.createElement("script");
-        s.src = url + "?t=" + Date.now();
+        s.src = url;
         s.onload = function () { loaded = true; };
         s.onerror = function () {
           if (!switched) { switched = true; addScript(cdnUrl(CONFIG.js)); }
@@ -100,7 +100,7 @@
         document.head.appendChild(s);
         return s;
       }
-      addScript(rawUrl(CONFIG.js));
+      addScript(rawUrl(CONFIG.js) + "?t=" + Date.now());
       setTimeout(function () {
         if (!loaded && !switched) { switched = true; addScript(cdnUrl(CONFIG.js)); }
       }, LOAD_TIMEOUT);

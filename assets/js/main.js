@@ -6,6 +6,14 @@
  *   window.CONFIG / window.RAW_URL / window.CDN_URL / window.FETCH_ANY
  * ====================================================================== */
 
+/* 单实例守卫：GitHub 与 CDN 脚本可能都被加载（raw 慢时），
+   只让第一个引擎执行渲染，避免双引擎互相覆盖。
+   Singleton guard: both GitHub and CDN scripts may load (when raw is
+   slow); let only the first engine run to avoid double rendering. */
+if (window.__FIVEM_ENGINE__) { /* 已有一个引擎 / an engine already exists */ }
+else {
+window.__FIVEM_ENGINE__ = true;
+
 var CONFIG = window.CONFIG;
 var RAW_URL = window.RAW_URL;          // GitHub 直连 / direct GitHub
 var CDN_URL = window.CDN_URL;          // jsdelivr CDN 备用 / CDN fallback
@@ -318,3 +326,5 @@ window.addEventListener("scroll", function () {
 backTop.addEventListener("click", function () {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
+} /* end singleton guard */
