@@ -214,14 +214,14 @@
           "ol": {
             "zh": [
               "从 <code>https://reshade.me</code> 下载并运行 ReShade 安装器。",
-              "点击 <strong>Select game</strong>，选择 <code>FiveM.app</code> 文件夹里的 <code>GTA5.exe</code>（注意不是 Steam 里的）。",
+              "点击 <strong>Select game</strong>，选择 FiveM 文件夹里的 <code>FiveM.exe</code>（注意不是 Steam 里的 GTA5.exe）。",
               "图形接口选择 <strong>DirectX 10/11/12</strong>。",
               "勾选下载着色器（Standard effects 等），等待完成。",
               "把画质包附带的 ReShade 预设（<code>.ini</code> 文件）复制到 <code>FiveM.app</code> 根目录。"
             ],
             "en": [
               "Download and run the ReShade installer from <code>https://reshade.me</code>.",
-              "Click <strong>Select game</strong> and choose <code>GTA5.exe</code> inside the <code>FiveM.app</code> folder (not the Steam one).",
+              "Click <strong>Select game</strong> and choose <code>FiveM.exe</code> in the FiveM folder (not the Steam <code>GTA5.exe</code>).",
               "Select <strong>DirectX 10/11/12</strong> as the graphics API.",
               "Tick the shaders to download (Standard effects, etc.) and wait for it to finish.",
               "Copy the pack's ReShade preset (<code>.ini</code>) into the <code>FiveM.app</code> root."
