@@ -19,15 +19,16 @@ function showLoadError() {
  * 媒体资源：GitHub 优先，onerror 或超时（LOAD_TIMEOUT）自动切 CDN
  * Media assets: GitHub first; on error or timeout, switch to CDN.
  * ====================================================================== */
-function attachFallback(el, path) {
+function attachFallback(el, path, prop) {
+  prop = prop || "src"; // 媒体源用 src；封面用 poster / "src" for media, "poster" for cover
   var switched = false;
   var done = false;
   el.addEventListener("load", function () { done = true; });
   el.addEventListener("error", function () {
-    if (!done && !switched) { switched = true; el.src = CDN_URL(path); }
+    if (!done && !switched) { switched = true; el[prop] = CDN_URL(path); }
   });
   setTimeout(function () {
-    if (!done && !switched) { switched = true; el.src = CDN_URL(path); }
+    if (!done && !switched) { switched = true; el[prop] = CDN_URL(path); }
   }, LOAD_TIMEOUT);
 }
 
@@ -36,18 +37,18 @@ function makeImg(path, className, alt) {
   img.className = className;
   img.alt = alt || "";
   img.src = RAW_URL(path) + "?t=" + Date.now();
-  attachFallback(img, path);
+  attachFallback(img, path, "src");
   return img;
 }
 
 function setVideo(v, path) {
   v.src = RAW_URL(path) + "?t=" + Date.now();
-  attachFallback(v, path);
+  attachFallback(v, path, "src");
 }
 
 function setPoster(v, path) {
   v.poster = RAW_URL(path) + "?t=" + Date.now();
-  attachFallback(v, path);
+  attachFallback(v, path, "poster");
 }
 
 /* ======================================================================
