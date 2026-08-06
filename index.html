@@ -88,22 +88,19 @@
        script 元素插入文档后修改 src 不会重新加载，切换时要新建元素。
        Load main script (GitHub first, CDN on error/timeout). Once appended,
        changing a script's src does not reload it — create a fresh element. */
+    /* 动态加载主脚本：用 fetchAny 取文本后内联执行（GitHub 优先、
+       CDN 兜底、超时切换已由 fetchAny 处理）。
+       内联执行保证只有一个引擎在跑 —— 避免 GitHub 与 CDN 两个脚本
+       同时执行、互相覆盖（旧版引擎会用旧数据结构渲染新内容而崩溃）。
+       Load main script as inline text via fetchAny (GitHub first, CDN
+       fallback, timeout — all inside fetchAny). Inline execution
+       guarantees a single engine, avoiding two scripts racing. */
     function loadMain() {
-      var loaded = false, switched = false;
-      function addScript(url) {
+      fetchAny(CONFIG.js, false).then(function (code) {
         var s = document.createElement("script");
-        s.src = url;
-        s.onload = function () { loaded = true; };
-        s.onerror = function () {
-          if (!switched) { switched = true; addScript(cdnUrl(CONFIG.js)); }
-        };
+        s.textContent = code;
         document.head.appendChild(s);
-        return s;
-      }
-      addScript(rawUrl(CONFIG.js) + "?t=" + Date.now());
-      setTimeout(function () {
-        if (!loaded && !switched) { switched = true; addScript(cdnUrl(CONFIG.js)); }
-      }, LOAD_TIMEOUT);
+      });
     }
 
     /* 页面就绪：注入 layout → 注入 css → 加载 main.js。
