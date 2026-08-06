@@ -46,10 +46,11 @@
   <text x="700" y="196" text-anchor="middle" font-size="12" fill="#a79f8e">Extract ZIP</text>
   <text x="700" y="222" text-anchor="middle" font-size="13" fill="#4ade80">✓ 右键 → 解压</text>
 
-  <!-- 底部提示条 / Bottom note（已下移避免与 ReShade 卡片重叠 / moved down to avoid overlap） -->
-  <rect x="20" y="388" width="760" height="58" rx="12" fill="#211d2b" stroke="#2b2537"/>
-  <text x="38" y="413" font-size="14" fill="#ff4d6d" font-weight="bold">提示 Tip:</text>
-  <text x="38" y="432" font-size="12" fill="#d8d2c4">NVE / QuantV 一般在作者官网、Patreon 或 Discord 获取；免费 ReShade 预设可在 GitHub 搜索。</text>
+  <!-- 底部提示条 / Bottom note（含 ENB 下载来源 / includes ENB source） -->
+  <rect x="20" y="380" width="760" height="66" rx="12" fill="#211d2b" stroke="#2b2537"/>
+  <text x="38" y="405" font-size="14" fill="#ff4d6d" font-weight="bold">提示 Tip:</text>
+  <text x="38" y="428" font-size="12" fill="#d8d2c4">NVE / QuantV 在作者官网、Patreon 或 Discord 获取；ENB 在 enbdev.com 下载。</text>
+  <text x="38" y="444" font-size="12" fill="#a79f8e">免费 ReShade 预设可在 GitHub 搜索。</text>
 
   <defs>
     <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">

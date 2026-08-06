@@ -2,31 +2,33 @@
   <!-- English version of Step 3 / 步骤 3 英文版 -->
   <rect width="800" height="450" fill="#0f0d12"/>
 
-  <text x="400" y="42" text-anchor="middle" font-size="26" font-weight="bold" fill="#ece7db">STEP 3 · Copy Files into FiveM.app\data</text>
-  <text x="400" y="70" text-anchor="middle" font-size="15" fill="#a79f8e">Move pack files into the data folder</text>
+  <text x="400" y="40" text-anchor="middle" font-size="26" font-weight="bold" fill="#ece7db">STEP 3 · Copy Files into FiveM.app\data</text>
+  <text x="400" y="66" text-anchor="middle" font-size="15" fill="#a79f8e">Move pack files into the data folder</text>
 
-  <!-- Folder tree -->
-  <path d="M 40 160 h 22 l 8 10 h 150 v 18 h -180 z" fill="#2b2537"/>
-  <rect x="40" y="178" width="180" height="30" rx="4" fill="#2b2537"/>
-  <text x="50" y="188" font-size="11" fill="#ff4d6d">%localappdata%\FiveM\</text>
+  <!-- Folder tree (clean hierarchy) -->
+  <!-- L1 %localappdata% -->
+  <path d="M 30 100 h 20 l 8 10 h 150 v 18 h -178 z" fill="#2b2537"/>
+  <rect x="30" y="116" width="180" height="28" rx="4" fill="#2b2537"/>
+  <text x="40" y="136" font-size="12" fill="#ff4d6d">%localappdata%\FiveM\</text>
 
-  <path d="M 70 200 h 20 l 8 10 h 120 v 18 h -148 z" fill="#332c42"/>
-  <rect x="70" y="218" width="148" height="30" rx="4" fill="#332c42"/>
-  <text x="80" y="228" font-size="11" fill="#ece7db">FiveM.app\</text>
+  <!-- L2 FiveM.app -->
+  <path d="M 60 160 h 20 l 8 10 h 120 v 18 h -148 z" fill="#332c42"/>
+  <rect x="60" y="176" width="148" height="28" rx="4" fill="#332c42"/>
+  <text x="70" y="196" font-size="12" fill="#ece7db">FiveM.app\</text>
 
-  <!-- data (highlight) -->
-  <path d="M 100 240 h 20 l 8 10 h 88 v 18 h -116 z" fill="#ff4d6d"/>
-  <rect x="100" y="258" width="116" height="30" rx="4" fill="#ff4d6d"/>
-  <text x="110" y="268" font-size="11" font-weight="bold" fill="#0f0d12">data/ (here)</text>
+  <!-- L3 data (highlighted) -->
+  <path d="M 90 220 h 20 l 8 10 h 88 v 18 h -116 z" fill="#ff4d6d"/>
+  <rect x="90" y="236" width="116" height="28" rx="4" fill="#ff4d6d"/>
+  <text x="100" y="256" font-size="12" font-weight="bold" fill="#0f0d12">data/ (here)</text>
 
-  <!-- caches (deleted) -->
-  <path d="M 100 290 h 20 l 8 10 h 88 v 18 h -116 z" fill="#3a2430"/>
-  <rect x="100" y="308" width="116" height="30" rx="4" fill="#3a2430"/>
-  <text x="110" y="318" font-size="11" fill="#f87171">caches/ (delete)</text>
+  <!-- L4 caches (delete) -->
+  <path d="M 90 280 h 20 l 8 10 h 88 v 18 h -116 z" fill="#3a2430"/>
+  <rect x="90" y="296" width="116" height="28" rx="4" fill="#3a2430"/>
+  <text x="100" y="316" font-size="12" fill="#f87171">caches/ (delete)</text>
 
-  <!-- GTA5.exe -->
-  <rect x="100" y="342" width="116" height="26" rx="4" fill="#191620" stroke="#a79f8e"/>
-  <text x="110" y="360" font-size="11" fill="#d8d2c4">GTA5.exe</text>
+  <!-- L5 GTA5.exe -->
+  <rect x="90" y="340" width="116" height="26" rx="4" fill="#191620" stroke="#a79f8e"/>
+  <text x="100" y="358" font-size="12" fill="#d8d2c4">GTA5.exe</text>
 
   <!-- Right: pack files -->
   <rect x="330" y="150" width="210" height="90" rx="12" fill="#191620" stroke="#4ade80" stroke-width="2"/>
@@ -38,10 +40,10 @@
   <path d="M 550 205 C 610 205 620 200 660 180" stroke="#4ade80" stroke-width="4" fill="none" marker-end="url(#arBig)"/>
 
   <!-- Bottom note -->
-  <rect x="20" y="330" width="760" height="90" rx="12" fill="#211d2b" stroke="#2b2537"/>
-  <text x="38" y="365" font-size="14" fill="#ff4d6d" font-weight="bold">Note:</text>
-  <text x="38" y="390" font-size="13" fill="#d8d2c4">Some packs (e.g. NVE) need files in the FiveM.app root</text>
-  <text x="38" y="410" font-size="12" fill="#a79f8e">— always follow the pack's own instructions.</text>
+  <rect x="20" y="388" width="760" height="60" rx="12" fill="#211d2b" stroke="#2b2537"/>
+  <text x="38" y="412" font-size="14" fill="#ff4d6d" font-weight="bold">Note:</text>
+  <text x="38" y="432" font-size="12" fill="#d8d2c4">Some packs (e.g. NVE) need files in the FiveM.app root</text>
+  <text x="38" y="446" font-size="11" fill="#a79f8e">— always follow the pack's own instructions.</text>
 
   <defs>
     <marker id="arBig" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
