@@ -12,7 +12,7 @@
   <!-- NVE card -->
   <rect x="20" y="126" width="230" height="74" rx="10" fill="#191620" stroke="#6ba6ff" stroke-width="2"/>
   <text x="38" y="156" font-size="15" font-weight="bold" fill="#ece7db">NaturalVision (NVE)</text>
-  <text x="38" y="180" font-size="12" fill="#a79f8e">最真实画面 · 付费 / Paid, most realistic</text>
+  <text x="38" y="180" font-size="12" fill="#a79f8e">最真实·付费 / Paid, most realistic</text>
 
   <!-- QuantV card -->
   <rect x="20" y="212" width="230" height="74" rx="10" fill="#191620" stroke="#9b6dff" stroke-width="2"/>
@@ -31,11 +31,11 @@
 
   <!-- 中间：zip 压缩包 / Zip file -->
   <rect x="326" y="120" width="220" height="120" rx="12" fill="#191620" stroke="#ff4d6d" stroke-width="2"/>
-  <text x="436" y="165" text-anchor="middle" font-size="22" font-weight="bold" fill="#ece7db">画质包.zip</text>
-  <text x="436" y="192" text-anchor="middle" font-size="12" fill="#a79f8e">Graphics-Pack.zip</text>
-  <rect x="346" y="205" width="180" height="14" rx="7" fill="#2b2537"/>
-  <path d="M 396 208 L 416 208 L 406 217 z" fill="#d8d2c4"/>
-  <text x="436" y="222" text-anchor="middle" font-size="14" fill="#d8d2c4">下载 Download</text>
+  <text x="436" y="160" text-anchor="middle" font-size="22" font-weight="bold" fill="#ece7db">画质包.zip</text>
+  <text x="436" y="186" text-anchor="middle" font-size="12" fill="#a79f8e">Graphics-Pack.zip</text>
+  <rect x="346" y="198" width="180" height="14" rx="7" fill="#2b2537"/>
+  <path d="M 396 201 L 416 201 L 406 210 z" fill="#d8d2c4"/>
+  <text x="436" y="230" text-anchor="middle" font-size="14" fill="#d8d2c4">下载 Download</text>
 
   <!-- 箭头 2 -->
   <path d="M 552 180 L 614 180" stroke="#ff4d6d" stroke-width="3" marker-end="url(#ar)"/>
@@ -46,11 +46,10 @@
   <text x="700" y="196" text-anchor="middle" font-size="12" fill="#a79f8e">Extract ZIP</text>
   <text x="700" y="222" text-anchor="middle" font-size="13" fill="#4ade80">✓ 右键 → 解压</text>
 
-  <!-- 底部提示条 / Bottom note（含 ENB 下载来源 / includes ENB source） -->
+  <!-- 底部提示条 / Bottom note（单行文本，不重叠 / single-line text, no overlap） -->
   <rect x="20" y="380" width="760" height="66" rx="12" fill="#211d2b" stroke="#2b2537"/>
-  <text x="38" y="405" font-size="14" fill="#ff4d6d" font-weight="bold">提示 Tip:</text>
-  <text x="38" y="428" font-size="12" fill="#d8d2c4">NVE / QuantV 在作者官网、Patreon 或 Discord 获取；ENB 在 enbdev.com 下载。</text>
-  <text x="38" y="444" font-size="12" fill="#a79f8e">免费 ReShade 预设可在 GitHub 搜索。</text>
+  <text x="38" y="406" font-size="14" fill="#ff4d6d" font-weight="bold">提示 Tip:</text>
+  <text x="38" y="432" font-size="12" fill="#d8d2c4">NVE / QuantV 在作者官网、Patreon 或 Discord 获取；ENB 在 enbdev.com 下载；免费 ReShade 预设可在 GitHub 搜索。</text>
 
   <defs>
     <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
