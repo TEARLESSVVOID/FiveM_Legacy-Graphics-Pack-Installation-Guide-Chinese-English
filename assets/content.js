@@ -1,4 +1,4 @@
-{
+window.TUTORIAL_CONTENT = {
   "meta": {
     "titleZh": "FiveM 画质包安装教程",
     "titleEn": "FiveM Graphics Pack Installation Tutorial",
@@ -468,3 +468,4 @@
     }
   ]
 }
+;

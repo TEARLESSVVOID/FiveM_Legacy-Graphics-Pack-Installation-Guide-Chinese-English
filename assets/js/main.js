@@ -1,9 +1,15 @@
 /* ======================================================================
  * FiveM 教程 · 主脚本 / Main script (rendering engine)
- * 由 index.html 的引导脚本加载（GitHub 优先，慢/失败切 CDN）。
- * Loaded by the bootstrap in index.html (GitHub first, CDN fallback).
+ * 由 index.html 的 <script> 标签加载（本地文件，离线可预览）。
+ * Loaded via <script> tag in index.html (local file, works offline).
  * 依赖 bootstrap 提供的全局变量 / Depends on globals set by bootstrap:
  *   window.CONFIG / window.RAW_URL / window.CDN_URL / window.FETCH_ANY
+ * 内容来源 / Content sources:
+ *   1. 本地 assets/content.js（window.TUTORIAL_CONTENT，离线优先渲染）
+ *      local assets/content.js (window.TUTORIAL_CONTENT, rendered first)
+ *   2. 在线时自动从 GitHub 拉最新内容覆盖（失败则静默使用本地版）
+ *      when online, the latest content is fetched from GitHub (on
+ *      failure the local copy silently stays)
  * ====================================================================== */
 
 var CONFIG = window.CONFIG;
@@ -12,42 +18,50 @@ var CDN_URL = window.CDN_URL;          // jsdelivr CDN 备用 / CDN fallback
 var LOAD_TIMEOUT = window.LOAD_TIMEOUT;
 
 function showLoadError() {
-  document.getElementById("notice").style.display = "block";
+  var notice = document.getElementById("notice");
+  if (notice) notice.style.display = "block";
 }
 
 /* ======================================================================
- * 媒体资源：GitHub 优先，onerror 或超时（LOAD_TIMEOUT）自动切 CDN
- * Media assets: GitHub first; on error or timeout, switch to CDN.
+ * 媒体资源：本地文件优先（离线可用）；仅在本地加载失败（error）时
+ * 依次切 GitHub raw、再切 CDN。本地文件存在且可加载时不会切走。
+ * Media assets: local files first (offline works); only on load error
+ * fall back to GitHub raw, then the CDN. Never switches away while the
+ * local file loads fine.
  * ====================================================================== */
 function attachFallback(el, path, prop) {
   prop = prop || "src"; // 媒体源用 src；封面用 poster / "src" for media, "poster" for cover
-  var switched = false;
+  var level = 0; // 0=本地 local, 1=raw, 2=cdn
   var done = false;
-  el.addEventListener("load", function () { done = true; });
-  el.addEventListener("error", function () {
-    if (!done && !switched) { switched = true; el[prop] = CDN_URL(path); }
-  });
-  setTimeout(function () {
-    if (!done && !switched) { switched = true; el[prop] = CDN_URL(path); }
-  }, LOAD_TIMEOUT);
+  // 视频用 loadedmetadata（有头信息即算成功），图片用 load
+  // video counts as done at loadedmetadata; images at load
+  var okEvent = el.tagName === "VIDEO" ? "loadedmetadata" : "load";
+  el.addEventListener(okEvent, function () { done = true; });
+  function next() {
+    if (done) return;
+    level++;
+    if (level === 1) { el[prop] = RAW_URL(path) + "?t=" + Date.now(); }
+    else if (level === 2) { el[prop] = CDN_URL(path); }
+  }
+  el.addEventListener("error", next);
 }
 
 function makeImg(path, className, alt) {
   var img = document.createElement("img");
   img.className = className;
   img.alt = alt || "";
-  img.src = RAW_URL(path) + "?t=" + Date.now();
+  img.src = path; // 内容里的路径已含 assets/img/ 前缀（本地优先）/ path already includes assets/img/ (local first)
   attachFallback(img, path, "src");
   return img;
 }
 
 function setVideo(v, path) {
-  v.src = RAW_URL(path) + "?t=" + Date.now();
+  v.src = path; // 路径已含 assets/video/ 前缀（本地优先）/ path already includes assets/video/ (local first)
   attachFallback(v, path, "src");
 }
 
 function setPoster(v, path) {
-  v.poster = RAW_URL(path) + "?t=" + Date.now();
+  v.poster = path; // 路径已含 assets/img/ 前缀（本地优先）/ path already includes assets/img/ (local first)
   attachFallback(v, path, "poster");
 }
 
@@ -253,8 +267,10 @@ function langIs(en) {
 
 function setLang(lang) {
   document.documentElement.setAttribute("data-lang", lang);
-  document.getElementById("btnZh").classList.toggle("active", lang === "zh");
-  document.getElementById("btnEn").classList.toggle("active", lang === "en");
+  var bz = document.getElementById("btnZh");
+  var be = document.getElementById("btnEn");
+  if (bz) bz.classList.toggle("active", lang === "zh");
+  if (be) be.classList.toggle("active", lang === "en");
   document.querySelectorAll("[data-zh][data-en]").forEach(function (el) {
     el.textContent = lang === "en" ? el.getAttribute("data-en") : el.getAttribute("data-zh");
   });
@@ -274,27 +290,59 @@ function initLang() {
 var CURRENT_META = { posterZh: "", posterEn: "", video: "" };
 
 /* ======================================================================
- * 启动：拉取内容并渲染 / Boot: fetch and render
- * 内容从 GitHub 拉取，慢/失败自动切 CDN（见 bootstrap 的 FETCH_ANY）。
+ * 启动：本地内容优先渲染（离线可预览）；在线时拉取 GitHub 最新内容覆盖。
+ * Boot: render local content first (offline preview); when online,
+ * fetch the latest content from GitHub and re-render over it.
  * ====================================================================== */
+function applyContent() {
+  var d = window.TUTORIAL_CONTENT;
+  if (!d || !d.meta) return false;
+  CURRENT_META = d.meta;
+  renderPage(d);
+  return true;
+}
+
+function applyRemoteContent(code) {
+  try {
+    window.TUTORIAL_CONTENT = null; // 覆盖本地副本 / replace local copy
+    (new Function(code))();
+    return applyContent();
+  } catch (e) {
+    console.error("remote content failed:", e);
+    return false;
+  }
+}
+
 if (!CONFIG.OK) {
   showLoadError();
 } else {
-  FETCH_ANY(CONFIG.content, true)
-    .then(function (data) {
-      CURRENT_META = data.meta;
-      renderPage(data);
-    })
-    .catch(function (err) {
-      console.error("load content failed:", err);
-      showLoadError();
-    });
+  // 1) 本地 content.js 已由 <script> 加载 → 立即渲染，离线可用
+  //    local content.js is loaded via <script> → render now, works offline
+  var localOk = applyContent();
+  if (!localOk) {
+    // 2) 本地内容缺失（如被删除）→ 尝试远程拉取
+    //    local content missing → try remote
+    FETCH_ANY(CONFIG.content, false)
+      .then(applyRemoteContent)
+      .catch(function (err) {
+        console.error("load content failed:", err);
+        showLoadError();
+      });
+  }
+  // 3) 在线更新：拉 GitHub 最新内容覆盖本地（失败静默，本地版继续显示）
+  //    online refresh: fetch the newest GitHub content (silently keep
+  //    the local copy if this fails)
+  FETCH_ANY(CONFIG.content, false)
+    .then(applyRemoteContent)
+    .catch(function () { /* 离线，使用本地内容 / offline: local content */ });
 }
 
 var backTop = document.getElementById("backTop");
-window.addEventListener("scroll", function () {
-  backTop.classList.toggle("show", window.scrollY > 600);
-});
-backTop.addEventListener("click", function () {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
+if (backTop) {
+  window.addEventListener("scroll", function () {
+    backTop.classList.toggle("show", window.scrollY > 600);
+  });
+  backTop.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
