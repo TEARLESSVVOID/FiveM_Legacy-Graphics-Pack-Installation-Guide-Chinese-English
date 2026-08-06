@@ -101,28 +101,22 @@
     window.CDN_URL = cdnUrl;
     window.FETCH_ANY = fetchAny;
 
-    /* 动态加载主脚本：<script> 标签加载（GitHub 优先，onerror/超时切 CDN）。
-       跨域 script 不受 CORS/file: 限制，本地打开也可靠。
-       引擎内部有单实例守卫（__FIVEM_ENGINE__），GitHub 与 CDN 两个脚本
-       同时被加载时只有第一个会执行渲染，不会互相覆盖。
-       Load engine via <script> tag (GitHub first, CDN on error/timeout).
-       Cross-origin scripts ignore CORS/file: limits, so local file://
-       opening works too. The engine has a singleton guard so if both
-       scripts load, only the first one renders. */
+    /* 动态加载主脚本：fetchAny 取文本后内联执行（GitHub 优先、CDN 兜底、
+       超时与重试都在 fetchAny 内，见上）。内联执行保证只有一个引擎在跑，
+       避免 GitHub 与 CDN 两个 <script> 同时执行、互相覆盖（陈旧 CDN
+       脚本会用旧引擎渲染新内容而崩溃）。引擎内部另有单实例守卫双保险。
+       Load engine as inline text via fetchAny (see above: GitHub first,
+       CDN fallback, timeout). Inline execution guarantees a single
+       engine — two <script> tags would race and a stale CDN copy could
+       crash rendering. A singleton guard in the engine backs this up. */
     function loadMain() {
-      var cdnTried = false;
-      function tryCdn() {
-        if (cdnTried || window.__FIVEM_ENGINE__) return; // 引擎已在跑就不必再加载 / skip if engine already ran
-        cdnTried = true;
-        var c = document.createElement("script");
-        c.src = cdnUrl(CONFIG.js);
-        document.head.appendChild(c);
-      }
-      var s = document.createElement("script");
-      s.src = rawUrl(CONFIG.js) + "?t=" + Date.now();
-      s.onerror = tryCdn;
-      document.head.appendChild(s);
-      setTimeout(tryCdn, LOAD_TIMEOUT);
+      fetchAny(CONFIG.js, false).then(function (code) {
+        var s = document.createElement("script");
+        s.textContent = code;
+        document.head.appendChild(s);
+      }).catch(function (e) {
+        console.error("engine failed:", e);
+      });
     }
 
     /* layout/css 拉取失败时的兜底骨架与最小样式：页面不空白，
