@@ -295,9 +295,9 @@
                 ["NVE 等特殊画质包", "<code>FiveM.app</code> 根目录", "请按画质包自带说明放置"],
                 ["<code>.asi</code> 插件", "<code>FiveM.app\\plugins</code>（没有就新建）", "官方支持；服务器可能禁用"],
                 ["<code>.rpf</code>（单机 RPF）", "GTA V 根目录\\mods（需新建）", "FiveM 联机不加载"],
-                ["<code>dxgi.dll</code>（ReShade 核心）", "<code>FiveM.app</code> 根目录", "ReShade 安装器自动生成"],
-                ["ReShade 预设（<code>.ini</code>）", "<code>FiveM.app</code> 根目录", "游戏中按 Home 切换预设"],
-                ["ReShade <code>.addon</code>", "<code>FiveM.app</code> 根目录", "需 addon 版 ReShade"],
+                ["<code>dxgi.dll</code>（ReShade 核心）", "<code>FiveM.app\\plugins</code>", "ReShade 安装器自动生成"],
+                ["ReShade 预设（<code>.ini</code>）", "<code>FiveM.app\\plugins</code>", "游戏中按 Home 切换预设"],
+                ["ReShade <code>.addon</code>", "<code>FiveM.app\\plugins</code>", "需 addon 版 ReShade"],
                 ["ENB（单机模式）", "GTA V 游戏根目录", "从 enbdev.com 下载，单机使用"],
                 ["<code>caches</code> 缓存文件夹", "删除（可选）", "让游戏重新生成缓存，避免冲突"]
               ]
@@ -309,9 +309,9 @@
                 ["Special packs (e.g. NVE)", "<code>FiveM.app</code> root", "Follow the pack's own instructions"],
                 ["<code>.asi</code> plugins", "<code>FiveM.app\\plugins</code> (create if missing)", "Officially supported; servers may disallow"],
                 ["<code>.rpf</code> (single-player)", "<code>GTA V</code> root\\mods (create it)", "Not loaded in FiveM multiplayer"],
-                ["<code>dxgi.dll</code> (ReShade core)", "<code>FiveM.app</code> root", "Created by the ReShade installer"],
-                ["ReShade preset (<code>.ini</code>)", "<code>FiveM.app</code> root", "Switch presets in-game with Home"],
-                ["ReShade <code>.addon</code>", "<code>FiveM.app</code> root", "Requires the ReShade add-on build"],
+                ["<code>dxgi.dll</code> (ReShade core)", "<code>FiveM.app\\plugins</code>", "Created by the ReShade installer"],
+                ["ReShade preset (<code>.ini</code>)", "<code>FiveM.app\\plugins</code>", "Switch presets in-game with Home"],
+                ["ReShade <code>.addon</code>", "<code>FiveM.app\\plugins</code>", "Requires the ReShade add-on build"],
                 ["ENB (single-player)", "GTA V game root", "Download from enbdev.com"],
                 ["<code>caches</code> folder", "Delete (optional)", "Regenerates cache to avoid conflicts"]
               ]
@@ -414,8 +414,8 @@
                 ["NVE 等特殊画质包", "<code>FiveM.app</code> 根目录", "按画质包自带说明"],
                 ["<code>.asi</code> 插件", "<code>FiveM.app\\plugins</code>（没有就新建）", "官方支持，服务器可能禁用"],
                 ["<code>.rpf</code>（单机）", "GTA V 根目录\\mods（需新建）", "FiveM 联机不加载"],
-                ["<code>.addon</code>（ReShade）", "<code>FiveM.app</code> 根目录", "需 addon 版 ReShade"],
-                ["<code>dxgi.dll</code> / 预设 <code>.ini</code>", "<code>FiveM.app</code> 根目录", "ReShade 安装器 / 预设"]
+                ["<code>.addon</code>（ReShade）", "<code>FiveM.app\\plugins</code>", "需 addon 版 ReShade"],
+                ["<code>dxgi.dll</code> / 预设 <code>.ini</code>", "<code>FiveM.app\\plugins</code>", "ReShade 安装器 / 预设"]
               ]
             },
             "en": {
@@ -425,8 +425,8 @@
                 ["Special packs (e.g. NVE)", "<code>FiveM.app</code> root", "Follow the pack's instructions"],
                 ["<code>.asi</code> plugins", "<code>FiveM.app\\plugins</code> (create if missing)", "Officially supported; servers may disallow"],
                 ["<code>.rpf</code> (single-player)", "<code>GTA V</code> root\\mods (create it)", "Not loaded in FiveM multiplayer"],
-                ["<code>.addon</code> (ReShade)", "<code>FiveM.app</code> root", "Requires the ReShade add-on build"],
-                ["<code>dxgi.dll</code> / preset <code>.ini</code>", "<code>FiveM.app</code> root", "ReShade installer / presets"]
+                ["<code>.addon</code> (ReShade)", "<code>FiveM.app\\plugins</code>", "Requires the ReShade add-on build"],
+                ["<code>dxgi.dll</code> / preset <code>.ini</code>", "<code>FiveM.app\\plugins</code>", "ReShade installer / presets"]
               ]
             }
           }
@@ -461,6 +461,43 @@
             "zh": "addon 版为<strong>未签名</strong>构建，反作弊或部分服务器可能将其视为作弊并封号；在联机服务器使用前请确认服务器规则，单机使用相对安全。",
             "en": "The add-on build is <strong>unsigned</strong> — anti-cheat and some servers may treat it as cheating and ban you. Check server rules before joining; it is relatively safe in single-player."
           }
+        },
+        {
+          "h3": { "zh": "ReShade 装好却没反应？（F8 控制台 + CitizenFX.ini 放行）", "en": "ReShade installed but nothing works? (F8 console + CitizenFX.ini approval)" }
+        },
+        {
+          "p": {
+            "zh": "有一种情况：ReShade 全部安装正确，但游戏里<strong>没有任何编译进度条</strong>、按 Home 也没反应。这是因为 FiveM 检测到 ReShade 的 DLL 后需要玩家在配置里<strong>手动放行</strong>。",
+            "en": "Sometimes ReShade is fully installed but there is <strong>no shader compilation progress bar</strong> and Home does nothing. That is because FiveM detected the ReShade DLL and needs your <strong>manual approval</strong> in the config."
+          }
+        },
+        {
+          "ol": {
+            "zh": [
+              "游戏内按 <strong>F8</strong> 打开 FiveM 控制台。",
+              "查看是否有类似 <code>[Addons] ReShade5=ID:xxxxxxx acknowledged that ReShade 5.x has a bug that will lead to game crashes</code> 的提示（跟着一串 ID）。",
+              "打开 FiveM 配置文件：<code>%localappdata%\\FiveM\\FiveM.app\\CitizenFX.ini</code>（自定义安装位置则在对应 FiveM.app 里，如 <code>D:\\FiveM_Legacy\\FiveM.app\\CitizenFX.ini</code>）。",
+              "把控制台里显示的那一整行（<strong>包括你自己的 ID</strong>）复制到文件<strong>最下面</strong>，格式如下。注意：ID 每台电脑不同，<strong>不要照抄示例</strong>。",
+              "保存文件并重启 FiveM，ReShade 即可正常加载（出现编译条、按 Home 有反应）。"
+            ],
+            "en": [
+              "Press <strong>F8</strong> in-game to open the FiveM console.",
+              "Look for a line like <code>[Addons] ReShade5=ID:xxxxxxx acknowledged that ReShade 5.x has a bug that will lead to game crashes</code> (followed by an ID).",
+              "Open the FiveM config file: <code>%localappdata%\\FiveM\\FiveM.app\\CitizenFX.ini</code> (for custom installs it is in the matching FiveM.app, e.g. <code>D:\\FiveM_Legacy\\FiveM.app\\CitizenFX.ini</code>).",
+              "Copy the whole line shown in the console (<strong>with your own ID</strong>) to the <strong>very bottom</strong> of the file, as formatted below. The ID is unique per PC — <strong>do not copy the example</strong>.",
+              "Save and restart FiveM. ReShade should now load normally (compilation bar appears, Home works)."
+            ]
+          }
+        },
+        {
+          "code": "[Addons]\nReShade5=ID:xxxxxxxxxxxx acknowledged that ReShade 5.x has a bug that will lead to game crashes"
+        },
+        {
+          "note": {
+            "kind": "green",
+            "zh": "这两行<strong>必须放在 CitizenFX.ini 的最下面</strong>（<code>[Addons]</code> 段）。示例中的 <code>ID:xxxxxxxxxxxx</code> 只是格式示范，请替换成 F8 控制台里显示的你自己的 ID。",
+            "en": "These two lines <strong>must go at the very bottom</strong> of CitizenFX.ini (the <code>[Addons]</code> section). The <code>ID:xxxxxxxxxxxx</code> in the example is only a format sample — replace it with the ID shown in your F8 console."
+          }
         }
       ]
     },
@@ -476,14 +513,16 @@
               { "q": "帧数太低怎么办？", "a": "在 ReShade 面板中减少开启的特效数量（尤其是模糊、光线类特效），或把预设强度调低。" },
               { "q": "按 Home 键没有反应？", "a": "确认 <code>dxgi.dll</code> 位于 <code>FiveM.app</code> 根目录，且画质包里的 <code>.ini</code> 预设也在该目录。" },
               { "q": "进服务器被踢出怎么办？", "a": "部分服务器禁止 ReShade / 画质包。进入此类服务器前请先在 ReShade 中点击 <em>Disable</em> 或删除 <code>dxgi.dll</code>。" },
-              { "q": "为什么这个页面内容会实时更新？", "a": "本页正文与媒体都通过 jsdelivr CDN 从 GitHub 仓库动态加载（<code>assets/content.json</code>）。仓库内容更新后，刷新页面即可看到新内容，无需重新下载 HTML 文件。" }
+              { "q": "为什么这个页面内容会实时更新？", "a": "本页正文与媒体都通过 GitHub 动态加载（<code>assets/content.json</code>）。仓库内容更新后，刷新页面即可看到新内容，无需重新下载 HTML 文件。" },
+              { "q": "ReShade 装好却没编译条、按 Home 没反应？", "a": "游戏内按 <strong>F8</strong> 打开控制台，查看是否有 <code>[Addons] ReShade5=ID:xxxx acknowledged that ReShade 5.x has a bug that will lead to game crashes</code> 提示；把该行（含你自己的 ID）复制到 <code>%localappdata%\\FiveM\\FiveM.app\\CitizenFX.ini</code> 最下面的 <code>[Addons]</code> 段，保存后重启游戏即可放行 ReShade。" }
             ],
             "en": [
               { "q": "Game crashes / won't start?", "a": "Delete the <code>caches</code> folder inside <code>FiveM.app</code> and relaunch. If it persists, remove the pack files you copied and test them one by one." },
               { "q": "Frame rate too low?", "a": "Disable some effects in the ReShade panel (especially blur / light effects), or lower the preset intensity." },
               { "q": "Pressing Home does nothing?", "a": "Make sure <code>dxgi.dll</code> is in the <code>FiveM.app</code> root and the pack's <code>.ini</code> preset is there too." },
               { "q": "Kicked from a server?", "a": "Some servers ban ReShade / graphics packs. Click <em>Disable</em> in ReShade or remove <code>dxgi.dll</code> before joining such servers." },
-              { "q": "Why does this page update automatically?", "a": "All text and media on this page are loaded dynamically from a GitHub repo via the jsdelivr CDN (<code>assets/content.json</code>). Update the repo and refresh the page — no need to re-download the HTML file." }
+              { "q": "Why does this page update automatically?", "a": "All text and media on this page are loaded dynamically from a GitHub repo (<code>assets/content.json</code>). Update the repo and refresh the page — no need to re-download the HTML file." },
+              { "q": "ReShade installed but no compilation bar / Home does nothing?", "a": "Press <strong>F8</strong> in-game to open the console and look for <code>[Addons] ReShade5=ID:xxxx acknowledged that ReShade 5.x has a bug that will lead to game crashes</code>. Copy that line (with your own ID) into the <code>[Addons]</code> section at the very bottom of <code>%localappdata%\\FiveM\\FiveM.app\\CitizenFX.ini</code>, save and restart the game." }
             ]
           }
         }
