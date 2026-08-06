@@ -1,0 +1,38 @@
+# GitHub Pages 自动部署工作流 / Auto-deploy workflow for GitHub Pages
+# 推送 main 分支后自动构建并发布到 GitHub Pages
+# Deploys the site to GitHub Pages on every push to main
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # 上传整个仓库根目录（index.html + assets）作为站点内容
+      # Upload the repo root (index.html + assets) as the site content
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
