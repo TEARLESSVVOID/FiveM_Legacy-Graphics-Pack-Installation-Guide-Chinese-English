@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" font-family="'Segoe UI','Microsoft YaHei',Arial,sans-serif">
+  <!-- English version of video poster / 视频封面英文版 -->
+  <rect width="800" height="450" fill="#0f0d12"/>
+  <circle cx="640" cy="90" r="150" fill="#ff4d6d" opacity="0.08"/>
+  <circle cx="140" cy="380" r="180" fill="#6ba6ff" opacity="0.07"/>
+
+  <!-- Play button -->
+  <circle cx="400" cy="200" r="70" fill="#ff4d6d"/>
+  <path d="M 378 165 L 378 235 L 440 200 z" fill="#0f0d12"/>
+
+  <text x="400" y="320" text-anchor="middle" font-size="28" font-weight="bold" fill="#ece7db">Video Tutorial</text>
+  <text x="400" y="352" text-anchor="middle" font-size="15" fill="#a79f8e">FiveM Graphics Pack Installation Demo</text>
+  <text x="400" y="392" text-anchor="middle" font-size="13" fill="#ff4d6d">Served from GitHub after upload</text>
+</svg>

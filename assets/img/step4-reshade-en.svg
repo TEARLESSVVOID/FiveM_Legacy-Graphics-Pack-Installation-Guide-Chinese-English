@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" font-family="'Segoe UI','Microsoft YaHei',Arial,sans-serif">
+  <!-- English version of Step 4 / 步骤 4 英文版 -->
+  <rect width="800" height="450" fill="#0f0d12"/>
+
+  <text x="400" y="42" text-anchor="middle" font-size="26" font-weight="bold" fill="#ece7db">STEP 4 · Install ReShade (optional)</text>
+  <text x="400" y="70" text-anchor="middle" font-size="15" fill="#a79f8e">Needed by some graphics packs</text>
+
+  <!-- ReShade setup window -->
+  <rect x="30" y="100" width="480" height="290" rx="12" fill="#191620" stroke="#2b2537" stroke-width="2"/>
+  <rect x="30" y="100" width="480" height="36" rx="12" fill="#211d2b"/>
+  <rect x="30" y="122" width="480" height="14" fill="#211d2b"/>
+  <circle cx="52" cy="118" r="6" fill="#f87171"/>
+  <circle cx="74" cy="118" r="6" fill="#f1c40f"/>
+  <circle cx="96" cy="118" r="6" fill="#4ade80"/>
+  <text x="270" y="124" text-anchor="middle" font-size="14" fill="#d8d2c4">ReShade Setup</text>
+
+  <!-- Row 1 -->
+  <rect x="52" y="158" width="436" height="44" rx="8" fill="#17141d" stroke="#2b2537"/>
+  <text x="70" y="187" font-size="13" fill="#ece7db">Select game:</text>
+  <text x="230" y="187" font-size="12" fill="#ff4d6d">…\FiveM.app\GTA5.exe</text>
+
+  <!-- Row 2 -->
+  <rect x="52" y="214" width="436" height="44" rx="8" fill="#17141d" stroke="#2b2537"/>
+  <text x="70" y="243" font-size="13" fill="#ece7db">API:</text>
+  <text x="230" y="243" font-size="12" fill="#4ade80">DirectX 10/11/12 ✓</text>
+
+  <!-- Row 3 -->
+  <rect x="52" y="270" width="436" height="44" rx="8" fill="#17141d" stroke="#2b2537"/>
+  <text x="70" y="299" font-size="13" fill="#ece7db">Shaders:</text>
+  <text x="230" y="299" font-size="12" fill="#4ade80">Standard effects ✓</text>
+
+  <!-- Row 4 -->
+  <rect x="52" y="326" width="436" height="44" rx="8" fill="#17141d" stroke="#ff4d6d"/>
+  <text x="70" y="355" font-size="13" fill="#ece7db">Preset:</text>
+  <text x="230" y="355" font-size="12" fill="#ff4d6d">pack.ini → FiveM.app</text>
+
+  <!-- Right steps list -->
+  <rect x="540" y="100" width="230" height="290" rx="12" fill="#211d2b" stroke="#2b2537"/>
+  <text x="655" y="130" text-anchor="middle" font-size="14" font-weight="bold" fill="#ece7db">Quick Steps</text>
+  <text x="560" y="170" font-size="13" fill="#d8d2c4">1. Download from reshade.me</text>
+  <text x="560" y="200" font-size="13" fill="#d8d2c4">2. Select GTA5.exe (FiveM.app)</text>
+  <text x="560" y="230" font-size="13" fill="#d8d2c4">3. API: DirectX 10/11/12</text>
+  <text x="560" y="260" font-size="13" fill="#d8d2c4">4. Tick shaders to download</text>
+  <text x="560" y="290" font-size="13" fill="#d8d2c4">5. Put preset .ini in FiveM.app</text>
+</svg>
