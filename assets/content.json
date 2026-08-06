@@ -24,6 +24,7 @@
     { "id": "step4", "zh": "步骤 4 · ReShade + 视频", "en": "Step 4 · ReShade + Video" },
     { "id": "step5", "zh": "步骤 5 · 游戏内设置", "en": "Step 5 · In-Game" },
     { "id": "summary", "zh": "文件放置总结", "en": "File Placement" },
+    { "id": "rpf-plugins", "zh": "RPF 与插件（进阶）", "en": "RPF & Plugins (Advanced)" },
     { "id": "faq", "zh": "常见问题", "en": "FAQ" }
   ],
   "sections": [
@@ -294,6 +295,87 @@
             "kind": "green",
             "zh": "<strong>口诀：</strong>画质数据进 <code>data</code>，ReShade 三件套（<code>dxgi.dll</code>、<code>ReShade.ini</code>、预设 <code>.ini</code>）放根目录。",
             "en": "<strong>Rule of thumb:</strong> pack data goes into <code>data</code>; the ReShade trio (<code>dxgi.dll</code>, <code>ReShade.ini</code>, preset <code>.ini</code>) goes in the root."
+          }
+        }
+      ]
+    },
+    {
+      "id": "rpf-plugins",
+      "h2": { "zh": "进阶 · RPF 文件与插件", "en": "Advanced · RPF Files & Plugins" },
+      "sub": { "zh": "RPF / ASI / ReShade Addon · 参考官方文档", "en": "RPF / ASI / ReShade Addon · per official docs" },
+      "body": [
+        {
+          "p": {
+            "zh": "如果你下载的画质包或模组附带 <strong>.rpf</strong> 文件、<strong>.asi</strong> 插件，或想给 ReShade 装 <strong>addon</strong>，本节告诉你正确的位置（内容参考 FiveM 官方 Client Manual 与 ReShade 官方文档）。",
+            "en": "If your pack or mod ships with <strong>.rpf</strong> files, <strong>.asi</strong> plugins, or you want to install ReShade <strong>add-ons</strong>, this section shows where things go (based on the official FiveM Client Manual and ReShade docs)."
+          }
+        },
+        {
+          "h3": { "zh": "RPF 文件：联机由服务器管理，客户端不加载", "en": "RPF files: managed by servers — the client does not load them" }
+        },
+        {
+          "ul": {
+            "zh": [
+              "FiveM <strong>联机</strong>时，游戏模型 / 地图等 RPF 内容由<strong>服务器端</strong>资源（stream 文件夹）统一下发，玩家把 <code>.rpf</code> 放进本地 FiveM 目录<strong>不会被加载</strong>。",
+              "官方 Client Manual 只说明客户端支持 <code>plugins</code> 文件夹放置 <code>.asi</code> 脚本，没有客户端安装 RPF 的入口。",
+              "<strong>单机 GTA V</strong> 使用 RPF 模组：用 OpenIV 导入到 GTA V 游戏目录（如 <code>update\\x64\\dlcpacks</code> 并在 <code>dlclist.xml</code> 注册，或用 <code>mods</code> 文件夹方案）；OpenIV 属于社区工具，操作前建议备份原文件。"
+            ],
+            "en": [
+              "In FiveM <strong>multiplayer</strong>, RPF content (models, maps) is streamed by the <strong>server</strong> — putting <code>.rpf</code> files into your local FiveM folder will <strong>not</strong> load them.",
+              "The official Client Manual only documents a <code>plugins</code> folder for <code>.asi</code> scripts on the client; there is no client-side RPF install path.",
+              "For <strong>single-player GTA V</strong> RPF mods: import them with OpenIV (e.g. into <code>update\\x64\\dlcpacks</code> + register in <code>dlclist.xml</code>, or use the <code>mods</code> folder). OpenIV is a community tool — back up your files first."
+            ]
+          }
+        },
+        {
+          "h3": { "zh": "ASI 插件：放在 FiveM 的 plugins 文件夹（官方支持）", "en": "ASI plugins: the FiveM plugins folder (officially supported)" }
+        },
+        {
+          "ol": {
+            "zh": [
+              "打开 <code>%localappdata%</code>，进入 <code>FiveM → FiveM.app</code>。",
+              "找到（没有则新建）<code>plugins</code> 文件夹。",
+              "把 <code>.asi</code> 插件文件放进去，重启 FiveM 生效。"
+            ],
+            "en": [
+              "Open <code>%localappdata%</code> and go to <code>FiveM → FiveM.app</code>.",
+              "Find (or create) the <code>plugins</code> folder.",
+              "Drop your <code>.asi</code> plugin in there and restart FiveM."
+            ]
+          }
+        },
+        {
+          "note": {
+            "kind": "red",
+            "zh": "官方提醒：服务器可以<strong>禁用插件</strong>；部分插件过时或与 FiveM 不兼容可能导致闪退，且官方不提供插件支持，使用风险自担。",
+            "en": "Official note: servers may <strong>disallow plugins</strong>; outdated or incompatible plugins can crash the game, and the client provides no support — use at your own risk."
+          }
+        },
+        {
+          "h3": { "zh": "ReShade Addon：需要 addon 版 + 允许代码", "en": "ReShade Add-ons: need the add-on build + allow block" }
+        },
+        {
+          "ol": {
+            "zh": [
+              "在 <code>reshade.me</code> 主页下载 <strong>ReShade with full add-on support</strong>（未签名版本，安装器界面颜色与标准版不同）；签名版默认禁用 addon。",
+              "把下载到的 <code>.addon</code>（或 <code>.addon32</code> / <code>.addon64</code>）文件放入 addon 搜索目录（默认与 ReShade 同目录，即 <code>FiveM.app</code> 根目录）。",
+              "编辑 <code>FiveM.app</code> 根目录的 <code>ReShade.ini</code>，在 <code>[ADDON]</code> 段写入允许配置（见下方代码块），保存后重启游戏。"
+            ],
+            "en": [
+              "Download <strong>ReShade with full add-on support</strong> from reshade.me (the unsigned build — its installer UI is color-coded differently); the signed build has add-ons disabled.",
+              "Put the <code>.addon</code> file (or <code>.addon32</code> / <code>.addon64</code>) into the add-on search directory (defaults to ReShade's own folder, i.e. the <code>FiveM.app</code> root).",
+              "Edit <code>ReShade.ini</code> in the <code>FiveM.app</code> root, add the <code>[ADDON]</code> block below, save and restart the game."
+            ]
+          }
+        },
+        {
+          "code": "[ADDON]\nAddonPath=.\nDisabledAddons=\nLoadFromDllMain=0"
+        },
+        {
+          "note": {
+            "kind": "red",
+            "zh": "addon 版为<strong>未签名</strong>构建，反作弊或部分服务器可能将其视为作弊并封号；在联机服务器使用前请确认服务器规则，单机使用相对安全。",
+            "en": "The add-on build is <strong>unsigned</strong> — anti-cheat and some servers may treat it as cheating and ban you. Check server rules before joining; it is relatively safe in single-player."
           }
         }
       ]

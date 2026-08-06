@@ -603,6 +603,11 @@
         });
         return box4;
       }
+      if (blk.code) {
+        var pre = document.createElement("pre");
+        pre.textContent = blk.code;
+        return pre;
+      }
       if (blk.video) {
         var box5 = document.createElement("div");
         var badgeZ = document.createElement("span");
