@@ -27,9 +27,9 @@
   <rect x="90" y="296" width="116" height="28" rx="4" fill="#3a2430"/>
   <text x="104" y="316" font-size="12" fill="#f87171">caches/ (删除)</text>
 
-  <!-- L5 GTA5.exe -->
+  <!-- L5 plugins (ReShade / ASI 插件 / addon) -->
   <rect x="90" y="340" width="116" height="26" rx="4" fill="#191620" stroke="#a79f8e"/>
-  <text x="104" y="358" font-size="12" fill="#d8d2c4">GTA5.exe</text>
+  <text x="104" y="358" font-size="12" fill="#d8d2c4">plugins/</text>
 
   <!-- 右侧：拖入文件 / Drag files in -->
   <rect x="330" y="150" width="210" height="90" rx="12" fill="#191620" stroke="#4ade80" stroke-width="2"/>

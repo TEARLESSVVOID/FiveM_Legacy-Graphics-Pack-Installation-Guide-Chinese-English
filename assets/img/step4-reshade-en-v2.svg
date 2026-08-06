@@ -17,7 +17,7 @@
   <!-- Row 1 -->
   <rect x="52" y="158" width="436" height="44" rx="8" fill="#17141d" stroke="#2b2537"/>
   <text x="70" y="187" font-size="13" fill="#ece7db">Select game:</text>
-  <text x="230" y="187" font-size="12" fill="#ff4d6d">…\FiveM.app\GTA5.exe</text>
+  <text x="230" y="187" font-size="12" fill="#ff4d6d">Steam…GTA V\GTA5.exe</text>
 
   <!-- Row 2 -->
   <rect x="52" y="214" width="436" height="44" rx="8" fill="#17141d" stroke="#2b2537"/>
@@ -32,14 +32,14 @@
   <!-- Row 4 -->
   <rect x="52" y="326" width="436" height="44" rx="8" fill="#17141d" stroke="#ff4d6d"/>
   <text x="70" y="355" font-size="13" fill="#ece7db">Preset:</text>
-  <text x="230" y="355" font-size="12" fill="#ff4d6d">pack.ini → FiveM.app</text>
+  <text x="230" y="355" font-size="12" fill="#ff4d6d">pack.ini → FiveM.app\plugins</text>
 
   <!-- Right steps list -->
   <rect x="540" y="100" width="230" height="290" rx="12" fill="#211d2b" stroke="#2b2537"/>
   <text x="655" y="130" text-anchor="middle" font-size="14" font-weight="bold" fill="#ece7db">Quick Steps</text>
   <text x="560" y="170" font-size="13" fill="#d8d2c4">1. Download from reshade.me</text>
-  <text x="560" y="200" font-size="13" fill="#d8d2c4">2. Select GTA5.exe (FiveM.app)</text>
+  <text x="560" y="200" font-size="13" fill="#d8d2c4">2. Select GTA5.exe (GTA V)</text>
   <text x="560" y="230" font-size="13" fill="#d8d2c4">3. API: DirectX 10/11/12</text>
   <text x="560" y="260" font-size="13" fill="#d8d2c4">4. Tick shaders to download</text>
-  <text x="560" y="290" font-size="13" fill="#d8d2c4">5. Put preset .ini in FiveM.app</text>
+  <text x="560" y="290" font-size="13" fill="#d8d2c4">5. Move files into plugins</text>
 </svg>
