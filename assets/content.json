@@ -211,25 +211,25 @@
           "ol": {
             "zh": [
               "从 <code>https://reshade.me</code> 下载并运行 ReShade 安装器。",
-              "点 <strong>Select game</strong>，选 GTA V <strong>传承版</strong>目录里的 <code>GTA5.exe</code>（例如 <code>steamapps\\common\\Grand Theft Auto V\\GTA5.exe</code>）。<strong>别选 FiveM.exe</strong>，FiveM 会忽略它。",
+              "点 <strong>Select game</strong>，选 FiveM 文件夹里的 <code>FiveM.exe</code>（选 GTA V <strong>传承版</strong>目录里的 <code>GTA5.exe</code> 也可以，结果一样）。",
               "接口选 <strong>DirectX 10/11/12</strong>，勾选下载着色器（Standard effects 等）。",
-              "装完后打开 GTA V 目录，把生成的 <code>dxgi.dll</code>、<code>ReShade.ini</code>、<code>ReShadePreset.ini</code>、<code>ReShade.log</code> 和 <code>reshade-shaders</code> 文件夹<strong>剪切</strong>到 <code>FiveM.app\\plugins</code>。",
-              "画质包自带的 ReShade 预设（<code>.ini</code>）也放进 <code>FiveM.app\\plugins</code>。"
+              "装完后打开 <code>FiveM.exe</code> 所在目录（或你选的 GTA V 目录），把生成的 <code>dxgi.dll</code>、<code>ReShade.ini</code>、<code>ReShadePreset.ini</code>、<code>ReShade.log</code> 和 <code>reshade-shaders</code> 文件夹<strong>剪切</strong>到 <code>FiveM.app\\plugins</code>。",
+              "画质包自带的 ReShade 预设（<code>.ini</code>）放进 <code>FiveM.app\\plugins</code>（放其他位置也可以，但要在 ReShade 面板里选择预设，或在 <code>ReShade.ini</code> 的 <code>PresetPath=</code> 里指定路径，确保 ReShade 能找到它）。"
             ],
             "en": [
               "Download and run the ReShade installer from <code>https://reshade.me</code>.",
-              "Click <strong>Select game</strong> and pick <code>GTA5.exe</code> in your GTA V <strong>Legacy</strong> folder (e.g. <code>steamapps\\common\\Grand Theft Auto V\\GTA5.exe</code>). <strong>Do not pick FiveM.exe</strong> — FiveM ignores it.",
+              "Click <strong>Select game</strong> and pick <code>FiveM.exe</code> in the FiveM folder (choosing <code>GTA5.exe</code> in the GTA V <strong>Legacy</strong> folder works too — same result).",
               "Select <strong>DirectX 10/11/12</strong> and tick the shaders to download (Standard effects, etc.).",
-              "After installing, open the GTA V folder and <strong>cut</strong> the generated <code>dxgi.dll</code>, <code>ReShade.ini</code>, <code>ReShadePreset.ini</code>, <code>ReShade.log</code> and the <code>reshade-shaders</code> folder into <code>FiveM.app\\plugins</code>.",
-              "Also put the pack's ReShade preset (<code>.ini</code>) into <code>FiveM.app\\plugins</code>."
+              "After installing, open the folder of <code>FiveM.exe</code> (or the GTA V folder you picked) and <strong>cut</strong> the generated <code>dxgi.dll</code>, <code>ReShade.ini</code>, <code>ReShadePreset.ini</code>, <code>ReShade.log</code> and the <code>reshade-shaders</code> folder into <code>FiveM.app\\plugins</code>.",
+              "Put the pack's ReShade preset (<code>.ini</code>) into <code>FiveM.app\\plugins</code> (any location works, but then pick it in the ReShade panel or set <code>PresetPath=</code> in <code>ReShade.ini</code> so ReShade can find it)."
             ]
           }
         },
         {
           "note": {
             "kind": "default",
-            "zh": "ReShade 装完只出现在 GTA V 目录里，FiveM 不会理它；搬进 <code>FiveM.app\\plugins</code> 后才会生效。",
-            "en": "ReShade files land in the GTA V folder and FiveM ignores them there — they only work after you move them into <code>FiveM.app\\plugins</code>."
+            "zh": "装完的 ReShade 文件出现在你选择的那个目录里，但 FiveM 只认 <code>FiveM.app\\plugins</code> —— 所以必须把它们搬进去才会生效。",
+            "en": "The ReShade files land in the folder you picked, but FiveM only loads them from <code>FiveM.app\\plugins</code> — move them there or they won't work."
           }
         }
       ]
