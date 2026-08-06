@@ -87,8 +87,8 @@
         {
           "note": {
             "kind": "green",
-            "zh": "安装完成后，桌面会出现 FiveM 图标。此时可以退出游戏，进入下一步。",
-            "en": "A FiveM icon appears on your desktop afterwards. You may quit the game and continue to the next step."
+            "zh": "安装完成后，桌面会出现 FiveM 图标。此时可以退出游戏，进入下一步。(如果不需要安装画质包，可跳过关闭所有步骤，直接进入游戏。)",
+            "en": "A FiveM icon appears on your desktop afterwards. You may quit the game and continue to the next step. (If you don't need a graphics pack, you can skip all steps and go straight to the game.)"
           }
         }
       ]
@@ -148,19 +148,19 @@
           }
         },
         {
-          "h3": { "zh": "第 1 步：找到 FiveM.app 文件夹", "en": "Step 1: find your FiveM.app folder" }
+          "h3": { "zh": "第 1 步：确认画质包的完整安装路径", "en": "Step 1: the full install path" }
         },
         {
           "ul": {
             "zh": [
-              "<strong>默认位置</strong>：按 <code>Win + R</code>，输入 <code>%localappdata%</code> 回车，进入 <code>FiveM → FiveM.app</code>。",
-              "<strong>自定义位置</strong>：例如安装在 <code>D:\\FiveM_Legacy\\FiveM.app</code>。不确定时，右键桌面 FiveM 快捷方式 → <strong>打开文件所在位置</strong>，即可看到 FiveM.app。",
-              "也可以直接用文件资源管理器搜索 <code>FiveM.app</code> 文件夹。"
+              "画质包安装的<strong>完整路径</strong>就是 <code>FiveM.app</code> 文件夹：<strong>默认位置</strong>为 <code>C:\\Users\\用户名\\AppData\\Local\\FiveM\\FiveM.app</code>（即 <code>%localappdata%\\FiveM\\FiveM.app</code>）。",
+              "<strong>自定义位置</strong>则在例如 <code>D:\\FiveM_Legacy\\FiveM.app</code>。",
+              "画质包解压后的文件就安装进这个 <code>FiveM.app</code> 文件夹下对应的目录（具体放在哪见第 2 步）。"
             ],
             "en": [
-              "<strong>Default location</strong>: press <code>Win + R</code>, type <code>%localappdata%</code>, press Enter, then open <code>FiveM → FiveM.app</code>.",
-              "<strong>Custom location</strong>: e.g. installed at <code>D:\\FiveM_Legacy\\FiveM.app</code>. Not sure? Right-click the FiveM desktop shortcut → <strong>Open file location</strong> to reveal FiveM.app.",
-              "You can also search for the <code>FiveM.app</code> folder in File Explorer."
+              "The <strong>full install path</strong> for a graphics pack is the <code>FiveM.app</code> folder: <strong>default</strong> is <code>C:\\Users\\[YourName]\\AppData\\Local\\FiveM\\FiveM.app</code> (same as <code>%localappdata%\\FiveM\\FiveM.app</code>).",
+              "For a <strong>custom install</strong>, e.g. <code>D:\\FiveM_Legacy\\FiveM.app</code>.",
+              "Extracted pack files are installed into the matching subfolders inside this <code>FiveM.app</code> (exact destinations in Step 2)."
             ]
           }
         },
