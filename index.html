@@ -83,18 +83,26 @@
     window.CDN_URL = cdnUrl;
     window.FETCH_ANY = fetchAny;
 
-    /* 动态加载主脚本（GitHub 优先，onerror/超时切 CDN）
-       Load main script (GitHub first, CDN on error/timeout). */
+    /* 动态加载主脚本（GitHub 优先，onerror/超时切 CDN）。
+       注意：script 元素插入文档后修改 src 不会重新加载，所以切换时要
+       新建元素再插入 / Once appended, changing a script's src does not
+       reload it — create a fresh element when switching to the CDN. */
     function loadMain() {
-      var s = document.createElement("script");
-      s.src = rawUrl(CONFIG.js) + "?t=" + Date.now();
-      var switched = false;
-      function fb() {
-        if (!switched) { switched = true; s.src = cdnUrl(CONFIG.js); }
+      var loaded = false, switched = false;
+      function addScript(url) {
+        var s = document.createElement("script");
+        s.src = url + "?t=" + Date.now();
+        s.onload = function () { loaded = true; };
+        s.onerror = function () {
+          if (!switched) { switched = true; addScript(cdnUrl(CONFIG.js)); }
+        };
+        document.head.appendChild(s);
+        return s;
       }
-      s.onerror = fb;
-      setTimeout(fb, LOAD_TIMEOUT);
-      document.head.appendChild(s);
+      addScript(rawUrl(CONFIG.js));
+      setTimeout(function () {
+        if (!loaded && !switched) { switched = true; addScript(cdnUrl(CONFIG.js)); }
+      }, LOAD_TIMEOUT);
     }
 
     /* 页面就绪：先隐藏 body 防止无样式闪烁，拉取 CSS 后再显示
