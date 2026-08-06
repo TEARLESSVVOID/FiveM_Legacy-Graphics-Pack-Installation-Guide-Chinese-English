@@ -141,20 +141,42 @@
           }
         },
         {
-          "ol": {
+          "h3": { "zh": "第 1 步：找到 FiveM.app 文件夹", "en": "Step 1: find your FiveM.app folder" }
+        },
+        {
+          "ul": {
             "zh": [
-              "按 <code>Win + R</code>，输入 <code>%localappdata%</code> 并回车。",
-              "进入 <code>FiveM → FiveM.app</code> 文件夹。",
-              "把解压后的<strong>画质包文件</strong>复制到 <code>FiveM.app\\data</code> 文件夹（提示合并/覆盖时选择“是”）。",
-              "（可选）删除 <code>caches</code> 缓存文件夹，让游戏重新生成缓存，可避免画质包冲突。",
-              "有些画质包（如 NVE）要求把文件放在 <code>FiveM.app</code> 根目录，请以画质包自带说明为准。"
+              "<strong>默认位置</strong>：按 <code>Win + R</code>，输入 <code>%localappdata%</code> 回车，进入 <code>FiveM → FiveM.app</code>。",
+              "<strong>自定义位置</strong>：例如安装在 <code>D:\\FiveM_Legacy\\FiveM.app</code>。不确定时，右键桌面 FiveM 快捷方式 → <strong>打开文件所在位置</strong>，即可看到 FiveM.app。",
+              "也可以直接用文件资源管理器搜索 <code>FiveM.app</code> 文件夹。"
             ],
             "en": [
-              "Press <code>Win + R</code>, type <code>%localappdata%</code> and press Enter.",
-              "Open <code>FiveM → FiveM.app</code>.",
-              "Copy the <strong>extracted pack files</strong> into <code>FiveM.app\\data</code> (choose \"Yes\" when asked to merge/overwrite).",
+              "<strong>Default location</strong>: press <code>Win + R</code>, type <code>%localappdata%</code>, press Enter, then open <code>FiveM → FiveM.app</code>.",
+              "<strong>Custom location</strong>: e.g. installed at <code>D:\\FiveM_Legacy\\FiveM.app</code>. Not sure? Right-click the FiveM desktop shortcut → <strong>Open file location</strong> to reveal FiveM.app.",
+              "You can also search for the <code>FiveM.app</code> folder in File Explorer."
+            ]
+          }
+        },
+        {
+          "h3": { "zh": "第 2 步：把画质包文件复制进去", "en": "Step 2: copy the pack files in" }
+        },
+        {
+          "ol": {
+            "zh": [
+              "先把画质包 <strong>zip 完整解压</strong>，得到解压后的文件夹。",
+              "打开解压后的文件夹，按 <code>Ctrl + A</code> <strong>全选</strong>里面的所有文件。",
+              "按 <code>Ctrl + C</code> 复制，然后进入 <code>FiveM.app\\data</code> 文件夹。",
+              "在 data 文件夹内按 <code>Ctrl + V</code> 粘贴；如果提示<strong>“合并 / 替换”</strong>，选择“是”或“替换目标中的文件”。",
+              "（可选）删除 <code>caches</code> 缓存文件夹，让游戏重新生成缓存，可避免画质包冲突。",
+              "有些画质包（如 NVE）要求把文件放在 <code>FiveM.app</code> 根目录而不是 data，请以画质包自带说明为准。"
+            ],
+            "en": [
+              "First <strong>fully extract</strong> the pack's zip into a folder.",
+              "Open the extracted folder and press <code>Ctrl + A</code> to <strong>select everything</strong>.",
+              "Press <code>Ctrl + C</code> to copy, then go into the <code>FiveM.app\\data</code> folder.",
+              "Press <code>Ctrl + V</code> inside <code>data</code> to paste; if asked about <strong>\"Merge / Replace\"</strong>, choose \"Yes\" / \"Replace files in the destination\".",
               "(Optional) Delete the <code>caches</code> folder so the game regenerates it — this avoids conflicts.",
-              "Some packs (e.g. NVE) require files in the <code>FiveM.app</code> root — always follow the pack's own instructions."
+              "Some packs (e.g. NVE) require files in the <code>FiveM.app</code> root instead of data — always follow the pack's own instructions."
             ]
           }
         },
@@ -271,8 +293,11 @@
               "rows": [
                 ["画质包文件（贴图、数据等）", "<code>FiveM.app\\data</code>", "大多数画质包（合并/覆盖）"],
                 ["NVE 等特殊画质包", "<code>FiveM.app</code> 根目录", "请按画质包自带说明放置"],
+                ["<code>.asi</code> 插件", "<code>FiveM.app\\plugins</code>（没有就新建）", "官方支持；服务器可能禁用"],
+                ["<code>.rpf</code>（单机 RPF）", "GTA V 根目录\\mods（需新建）", "FiveM 联机不加载"],
                 ["<code>dxgi.dll</code>（ReShade 核心）", "<code>FiveM.app</code> 根目录", "ReShade 安装器自动生成"],
                 ["ReShade 预设（<code>.ini</code>）", "<code>FiveM.app</code> 根目录", "游戏中按 Home 切换预设"],
+                ["ReShade <code>.addon</code>", "<code>FiveM.app</code> 根目录", "需 addon 版 ReShade"],
                 ["ENB（单机模式）", "GTA V 游戏根目录", "从 enbdev.com 下载，单机使用"],
                 ["<code>caches</code> 缓存文件夹", "删除（可选）", "让游戏重新生成缓存，避免冲突"]
               ]
@@ -282,8 +307,11 @@
               "rows": [
                 ["Pack files (textures, data)", "<code>FiveM.app\\data</code>", "Most graphics packs (merge/overwrite)"],
                 ["Special packs (e.g. NVE)", "<code>FiveM.app</code> root", "Follow the pack's own instructions"],
+                ["<code>.asi</code> plugins", "<code>FiveM.app\\plugins</code> (create if missing)", "Officially supported; servers may disallow"],
+                ["<code>.rpf</code> (single-player)", "<code>GTA V</code> root\\mods (create it)", "Not loaded in FiveM multiplayer"],
                 ["<code>dxgi.dll</code> (ReShade core)", "<code>FiveM.app</code> root", "Created by the ReShade installer"],
                 ["ReShade preset (<code>.ini</code>)", "<code>FiveM.app</code> root", "Switch presets in-game with Home"],
+                ["ReShade <code>.addon</code>", "<code>FiveM.app</code> root", "Requires the ReShade add-on build"],
                 ["ENB (single-player)", "GTA V game root", "Download from enbdev.com"],
                 ["<code>caches</code> folder", "Delete (optional)", "Regenerates cache to avoid conflicts"]
               ]
@@ -333,13 +361,13 @@
         {
           "ol": {
             "zh": [
-              "打开 <code>%localappdata%</code>，进入 <code>FiveM → FiveM.app</code>。",
-              "找到（没有则新建）<code>plugins</code> 文件夹。",
+              "打开 <code>%localappdata%</code>，进入 <code>FiveM → FiveM.app</code>（或你的自定义位置，如 <code>D:\\FiveM_Legacy\\FiveM.app</code>）。",
+              "查看里面是否有 <code>plugins</code> 文件夹；<strong>没有就手动创建</strong>：右键 → 新建 → 文件夹，命名为 <code>plugins</code>（注意拼写）。",
               "把 <code>.asi</code> 插件文件放进去，重启 FiveM 生效。"
             ],
             "en": [
-              "Open <code>%localappdata%</code> and go to <code>FiveM → FiveM.app</code>.",
-              "Find (or create) the <code>plugins</code> folder.",
+              "Open <code>%localappdata%</code> and go to <code>FiveM → FiveM.app</code> (or your custom path like <code>D:\\FiveM_Legacy\\FiveM.app</code>).",
+              "Check for a <code>plugins</code> folder — <strong>if missing, create it manually</strong>: right-click → New → Folder, named <code>plugins</code>.",
               "Drop your <code>.asi</code> plugin in there and restart FiveM."
             ]
           }
@@ -349,6 +377,58 @@
             "kind": "red",
             "zh": "官方提醒：服务器可以<strong>禁用插件</strong>；部分插件过时或与 FiveM 不兼容可能导致闪退，且官方不提供插件支持，使用风险自担。",
             "en": "Official note: servers may <strong>disallow plugins</strong>; outdated or incompatible plugins can crash the game, and the client provides no support — use at your own risk."
+          }
+        },
+        {
+          "h3": { "zh": "mods 文件夹：单机 RPF 文件的去处（需手动创建）", "en": "mods folder: where single-player RPF files go (create it yourself)" }
+        },
+        {
+          "p": {
+            "zh": "GTA V 单机（非 FiveM）默认<strong>没有 mods 文件夹</strong>，需要手动创建；<strong>.rpf</strong> 文件放这里，不会破坏游戏原文件。FiveM 联机时 mods 文件夹不起作用。",
+            "en": "Single-player GTA V has <strong>no mods folder by default</strong> — create it manually; <strong>.rpf</strong> files go here without touching original game files. The mods folder has no effect in FiveM multiplayer."
+          }
+        },
+        {
+          "ol": {
+            "zh": [
+              "在 GTA V 游戏根目录（例如 <code>D:\\SteamLibrary\\steamapps\\common\\GTA V</code>）右键 → 新建文件夹，命名为 <code>mods</code>。",
+              "（推荐）打开 OpenIV → Tools → <strong>Package Installer / Mods 模式</strong>，生成与游戏一致的 mods 目录结构。",
+              "把画质包或模组解压得到的 <strong>.rpf 文件</strong>（以及需要的 <code>dlclist.xml</code> 配置）放进 mods 对应位置。"
+            ],
+            "en": [
+              "In the GTA V game root (e.g. <code>D:\\SteamLibrary\\steamapps\\common\\GTA V</code>) right-click → New → Folder, named <code>mods</code>.",
+              "(Recommended) Open OpenIV → Tools → enable <strong>Mods mode / Package Installer</strong> so it builds the correct mods structure for you.",
+              "Put the <strong>.rpf files</strong> (and any <code>dlclist.xml</code> changes) from your extracted mod into the matching mods location."
+            ]
+          }
+        },
+        {
+          "h3": { "zh": "一张表：复制哪些文件到哪个文件夹", "en": "At a glance: which files go where" }
+        },
+        {
+          "table": {
+            "zh": {
+              "head": ["文件类型", "放到哪里", "说明"],
+              "rows": [
+                ["画质贴图 / 数据文件", "<code>FiveM.app\\data</code>", "大多数画质包（合并/覆盖）"],
+                ["NVE 等特殊画质包", "<code>FiveM.app</code> 根目录", "按画质包自带说明"],
+                ["<code>.asi</code> 插件", "<code>FiveM.app\\plugins</code>（没有就新建）", "官方支持，服务器可能禁用"],
+                ["<code>.rpf</code>（单机）", "GTA V 根目录\\mods（需新建）", "FiveM 联机不加载"],
+                ["<code>.addon</code>（ReShade）", "<code>FiveM.app</code> 根目录", "需 addon 版 ReShade"],
+                ["<code>dxgi.dll</code> / 预设 <code>.ini</code>", "<code>FiveM.app</code> 根目录", "ReShade 安装器 / 预设"]
+              ]
+            },
+            "en": {
+              "head": ["File type", "Destination", "Notes"],
+              "rows": [
+                ["Texture / data files", "<code>FiveM.app\\data</code>", "Most graphics packs (merge/overwrite)"],
+                ["Special packs (e.g. NVE)", "<code>FiveM.app</code> root", "Follow the pack's instructions"],
+                ["<code>.asi</code> plugins", "<code>FiveM.app\\plugins</code> (create if missing)", "Officially supported; servers may disallow"],
+                ["<code>.rpf</code> (single-player)", "<code>GTA V</code> root\\mods (create it)", "Not loaded in FiveM multiplayer"],
+                ["<code>.addon</code> (ReShade)", "<code>FiveM.app</code> root", "Requires the ReShade add-on build"],
+                ["<code>dxgi.dll</code> / preset <code>.ini</code>", "<code>FiveM.app</code> root", "ReShade installer / presets"]
+              ]
+            }
           }
         },
         {

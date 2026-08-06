@@ -4,13 +4,14 @@
 
 **Upgrade your GTA V to "photo-realistic" visuals · Bilingual · Beginner Friendly**
 
-[![中文版本](https://img.shields.io/badge/语言-中文版-ff4d6d)](README_zh-CN.md)
+[![中文版本](https://img.shields.io/badge/%E8%AF%AD%E8%A8%80--%E4%B8%AD%E6%96%87%E7%89%88-ff4d6d)](README_zh-CN.md)
 
 ![Language](https://img.shields.io/badge/Language-Bilingual-ff4d6d)
 ![Platform](https://img.shields.io/badge/Platform-Windows-9b6dff)
-![Level](https://img.shields.io/badge/Level-Beginner-Friendly-4ade80)
-![Steps](https://img.shields.io/badge/Steps-5-Easy-ff4d6d)
-![Method](https://img.shields.io/badge/Method-Text+Video-f59e0b)
+![Level](https://img.shields.io/badge/Level-Beginner--Friendly-4ade80)
+![Steps](https://img.shields.io/badge/Steps-5--Easy-ff4d6d)
+![Method](https://img.shields.io/badge/Method-Text%2BVideo-f59e0b)
+[![License](https://img.shields.io/badge/License-MIT-9b6dff)](LICENSE)
 
 > 🚀 Step-by-step guide to install graphics packs — **no PC skills required!**
 
@@ -58,7 +59,7 @@ A **graphics pack** is like giving your game a pair of "high-end glasses":
 | 🌐 **Internet** | Stable connection (for downloading packs & game files) |
 
 <div align="center">
-<img src="https://img.shields.io/badge/✔️-All-Ready-4ade80" alt="Ready"/>
+<img src="https://img.shields.io/badge/%E2%9C%94%EF%B8%8F-All--Ready-4ade80" alt="Ready"/>
 </div>
 
 ---

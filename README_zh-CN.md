@@ -6,11 +6,12 @@
 
 [![English Version](https://img.shields.io/badge/Language-English-ff4d6d)](README.md)
 
-![语言](https://img.shields.io/badge/语言-中英双语-ff4d6d)
-![平台](https://img.shields.io/badge/平台-Windows-9b6dff)
-![难度](https://img.shields.io/badge/难度-新手友好-4ade80)
-![步骤](https://img.shields.io/badge/步骤-5步搞定-ff4d6d)
-![方式](https://img.shields.io/badge/教程-图文+视频-f59e0b)
+![语言](https://img.shields.io/badge/%E8%AF%AD%E8%A8%80--%E4%B8%AD%E8%8B%B1%E5%8F%8C%E8%AF%AD-ff4d6d)
+![平台](https://img.shields.io/badge/%E5%B9%B3%E5%8F%B0-Windows-9b6dff)
+![难度](https://img.shields.io/badge/%E9%9A%BE%E5%BA%A6--%E6%96%B0%E6%89%8B%E5%8F%8B%E5%A5%BD-4ade80)
+![步骤](https://img.shields.io/badge/%E6%AD%A5%E9%AA%A4-5%E6%AD%A5%E6%90%9E%E5%AE%9A-ff4d6d)
+![方式](https://img.shields.io/badge/%E6%95%99%E7%A8%8B--%E5%9B%BE%E6%96%87%2B%E8%A7%86%E9%A2%91-f59e0b)
+[![License](https://img.shields.io/badge/License-MIT-9b6dff)](LICENSE)
 
 > 🚀 从零开始,手把手带你装好画质包 —— **不懂电脑也能成功!**
 
@@ -58,7 +59,7 @@
 | 🌐 **网络** | 稳定网络(下载画质包和游戏文件用) |
 
 <div align="center">
-<img src="https://img.shields.io/badge/✔️-全部就绪-4ade80" alt="Ready"/>
+<img src="https://img.shields.io/badge/%E2%9C%94%EF%B8%8F--%E5%85%A8%E9%83%A8%E5%B0%B1%E7%BB%AA-4ade80" alt="Ready"/>
 </div>
 
 ---
