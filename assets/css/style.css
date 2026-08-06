@@ -7,6 +7,9 @@
  * ====================================================================== */
 
 :root {
+  /* 主题变量：改字体/颜色只需改这里 / Theme variables: change fonts & colors here only */
+  --font-main: "Segoe UI", "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+  --font-code: Consolas, "Courier New", monospace;
   --bg: #101014;
   --card: #191922;
   --card-2: #20202c;
@@ -24,7 +27,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 70px; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+  font-family: var(--font-main);
   line-height: 1.75;
   font-size: 16px;
 }
@@ -177,7 +180,7 @@ pre {
   overflow-x: auto;
   color: var(--green);
   margin: 10px 0;
-  font-family: Consolas, "Courier New", monospace;
+  font-family: var(--font-code);
 }
 code {
   background: var(--card-2);
