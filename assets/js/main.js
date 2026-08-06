@@ -61,7 +61,7 @@ function biBlock(zhHtml, enHtml, tag) {
   ["zh", "en"].forEach(function (lang) {
     var el = document.createElement(tag);
     el.className = lang;
-    el.innerHTML = lang === "zh" ? zhHtml : enHtml;
+    el.innerHTML = lang === "zh" ? (zhHtml || enHtml) : enHtml;
     box.appendChild(el);
   });
   return box;
@@ -79,7 +79,12 @@ function renderBlock(blk) {
   if (blk.ol || blk.ul) {
     var tag = blk.ol ? "ol" : "ul";
     var box = document.createElement("div");
-    [["zh", blk.ol ? blk.ol.zh : blk.ul.zh], ["en", blk.ol ? blk.ol.en : blk.ul.en]].forEach(function (pair) {
+    var pairs = [];
+    var enArr = blk.ol ? blk.ol.en : blk.ul.en;
+    var zhArr = blk.ol ? blk.ol.zh : blk.ul.zh;
+    pairs.push(["en", enArr]);
+    if (zhArr) pairs.unshift(["zh", zhArr]); // 中文可选 / zh is optional
+    pairs.forEach(function (pair) {
       var list = document.createElement(tag);
       list.className = pair[0];
       pair[1].forEach(function (item) {
@@ -93,7 +98,10 @@ function renderBlock(blk) {
   }
   if (blk.img) {
     var box2 = document.createElement("div");
-    [["zh", blk.img.zh, blk.img.capZh], ["en", blk.img.en, blk.img.capEn]].forEach(function (pair) {
+    var imgs = [];
+    imgs.push(["en", blk.img.en, blk.img.capEn]);
+    if (blk.img.zh) imgs.unshift(["zh", blk.img.zh, blk.img.capZh]); // 中文可选 / zh is optional
+    imgs.forEach(function (pair) {
       var img = makeImg(pair[1], "step-img");
       var cap = document.createElement("div");
       cap.className = "img-cap";
@@ -108,7 +116,10 @@ function renderBlock(blk) {
   }
   if (blk.table) {
     var box3 = document.createElement("div");
-    [["zh", blk.table.zh], ["en", blk.table.en]].forEach(function (pair) {
+    var tables = [];
+    tables.push(["en", blk.table.en]);
+    if (blk.table.zh) tables.unshift(["zh", blk.table.zh]); // 中文可选 / zh is optional
+    tables.forEach(function (pair) {
       var t = document.createElement("table");
       t.className = pair[0];
       var thead = document.createElement("thead");
@@ -137,7 +148,10 @@ function renderBlock(blk) {
   }
   if (blk.faqs) {
     var box4 = document.createElement("div");
-    [["zh", blk.faqs.zh], ["en", blk.faqs.en]].forEach(function (pair) {
+    var cols = [];
+    cols.push(["en", blk.faqs.en]);
+    if (blk.faqs.zh) cols.unshift(["zh", blk.faqs.zh]); // 中文可选 / zh is optional
+    cols.forEach(function (pair) {
       var col = document.createElement("div");
       col.className = pair[0];
       pair[1].forEach(function (item) {
@@ -161,13 +175,15 @@ function renderBlock(blk) {
   }
   if (blk.video) {
     var box5 = document.createElement("div");
-    var badgeZ = document.createElement("span");
-    badgeZ.className = "badge zh";
-    badgeZ.textContent = blk.video.badgeZh;
+    if (blk.video.badgeZh) {
+      var badgeZ = document.createElement("span");
+      badgeZ.className = "badge zh";
+      badgeZ.textContent = blk.video.badgeZh;
+      box5.appendChild(badgeZ);
+    }
     var badgeE = document.createElement("span");
     badgeE.className = "badge en";
     badgeE.textContent = blk.video.badgeEn;
-    box5.appendChild(badgeZ);
     box5.appendChild(badgeE);
     var wrap = document.createElement("div");
     wrap.className = "video-wrap";
@@ -180,13 +196,15 @@ function renderBlock(blk) {
     setPoster(v, langIs("en") ? CURRENT_META.posterEn : CURRENT_META.posterZh);
     wrap.appendChild(v);
     box5.appendChild(wrap);
-    var capZ = document.createElement("div");
-    capZ.className = "img-cap zh";
-    capZ.textContent = blk.video.capZh;
+    if (blk.video.capZh) {
+      var capZ = document.createElement("div");
+      capZ.className = "img-cap zh";
+      capZ.textContent = blk.video.capZh;
+      box5.appendChild(capZ);
+    }
     var capE = document.createElement("div");
     capE.className = "img-cap en";
     capE.textContent = blk.video.capEn;
-    box5.appendChild(capZ);
     box5.appendChild(capE);
     return box5;
   }
@@ -200,17 +218,17 @@ function esc(s) {
 
 function renderPage(data) {
   var m = data.meta;
-  document.title = langIs("en") ? m.titleEn : m.titleZh;
+  document.title = langIs("en") ? m.titleEn : (m.titleZh || m.titleEn);
   document.getElementById("siteTitle").innerHTML =
-    '<span data-zh="' + esc(m.h1.zh) + '" data-en="' + esc(m.h1.en) + '"></span>' +
-    '<span data-zh="' + esc(m.h1sub.zh) + '" data-en="' + esc(m.h1sub.en) + '"></span>';
+    '<span data-zh="' + esc(m.h1.zh || m.h1.en) + '" data-en="' + esc(m.h1.en) + '"></span>' +
+    '<span data-zh="' + esc(m.h1sub.zh || m.h1sub.en) + '" data-en="' + esc(m.h1sub.en) + '"></span>';
 
   var nav = document.getElementById("toc");
   nav.innerHTML = "";
   data.nav.forEach(function (item) {
     var a = document.createElement("a");
     a.href = "#" + item.id;
-    a.setAttribute("data-zh", item.zh);
+    a.setAttribute("data-zh", item.zh || item.en);
     a.setAttribute("data-en", item.en);
     nav.appendChild(a);
   });
@@ -221,10 +239,10 @@ function renderPage(data) {
     var s = document.createElement("section");
     s.id = sec.id;
     var h2 = document.createElement("h2");
-    h2.setAttribute("data-zh", sec.h2.zh);
+    h2.setAttribute("data-zh", sec.h2.zh || sec.h2.en);
     h2.setAttribute("data-en", sec.h2.en);
     var small = document.createElement("small");
-    small.setAttribute("data-zh", sec.sub.zh);
+    small.setAttribute("data-zh", sec.sub.zh || sec.sub.en);
     small.setAttribute("data-en", sec.sub.en);
     h2.appendChild(small);
     s.appendChild(h2);
@@ -236,7 +254,7 @@ function renderPage(data) {
   footer.innerHTML = "";
   m.footer.forEach(function (line) {
     var p = document.createElement("p");
-    p.setAttribute("data-zh", line.zh);
+    p.setAttribute("data-zh", line.zh || line.en);
     p.setAttribute("data-en", line.en);
     footer.appendChild(p);
   });
@@ -253,8 +271,10 @@ function langIs(en) {
 
 function setLang(lang) {
   document.documentElement.setAttribute("data-lang", lang);
-  document.getElementById("btnZh").classList.toggle("active", lang === "zh");
-  document.getElementById("btnEn").classList.toggle("active", lang === "en");
+  var bz = document.getElementById("btnZh");
+  var be = document.getElementById("btnEn");
+  if (bz) bz.classList.toggle("active", lang === "zh");
+  if (be) be.classList.toggle("active", lang === "en");
   document.querySelectorAll("[data-zh][data-en]").forEach(function (el) {
     el.textContent = lang === "en" ? el.getAttribute("data-en") : el.getAttribute("data-zh");
   });
@@ -268,7 +288,7 @@ function setLang(lang) {
 function initLang() {
   var saved = null;
   try { saved = localStorage.getItem("lang"); } catch (e) {}
-  setLang(saved === "en" ? "en" : "zh");
+  setLang(saved === "en" || saved === "zh" ? saved : "en");
 }
 
 var CURRENT_META = { posterZh: "", posterEn: "", video: "" };
