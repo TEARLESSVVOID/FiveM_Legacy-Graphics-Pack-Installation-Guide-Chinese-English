@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" font-family="'Microsoft YaHei','Segoe UI',Arial,sans-serif">
+  <!-- 深色背景 / Dark background -->
+  <rect width="800" height="450" fill="#141821"/>
+
+  <!-- 标题 / Title -->
+  <text x="400" y="42" text-anchor="middle" font-size="26" font-weight="bold" fill="#f5f7fa">STEP 2 · 下载画质包</text>
+  <text x="400" y="70" text-anchor="middle" font-size="15" fill="#8d98ad">Download a Graphics Pack</text>
+
+  <!-- 左侧：画质包来源 / Sources -->
+  <text x="30" y="115" font-size="13" fill="#8d98ad">来源 Sources:</text>
+
+  <!-- NVE card -->
+  <rect x="20" y="130" width="230" height="74" rx="10" fill="#1f2433" stroke="#3498db" stroke-width="2"/>
+  <text x="38" y="160" font-size="15" font-weight="bold" fill="#f5f7fa">NaturalVision (NVE)</text>
+  <text x="38" y="184" font-size="12" fill="#8d98ad">最真实画面 · 付费 / Paid, most realistic</text>
+
+  <!-- QuantV card -->
+  <rect x="20" y="216" width="230" height="74" rx="10" fill="#1f2433" stroke="#9b59b6" stroke-width="2"/>
+  <text x="38" y="246" font-size="15" font-weight="bold" fill="#f5f7fa">QuantV</text>
+  <text x="38" y="270" font-size="12" fill="#8d98ad">电影感色调 / Cinematic color grade</text>
+
+  <!-- ReShade card -->
+  <rect x="20" y="302" width="230" height="74" rx="10" fill="#1f2433" stroke="#2ecc71" stroke-width="2"/>
+  <text x="38" y="332" font-size="15" font-weight="bold" fill="#f5f7fa">ReShade 预设</text>
+  <text x="38" y="356" font-size="12" fill="#8d98ad">免费预设 / Free presets (GitHub)</text>
+
+  <!-- 箭头 1 -->
+  <path d="M 256 167 L 318 167" stroke="#f39c12" stroke-width="3" marker-end="url(#ar)"/>
+  <path d="M 256 253 L 318 253" stroke="#f39c12" stroke-width="3" marker-end="url(#ar)"/>
+  <path d="M 256 339 L 318 339" stroke="#f39c12" stroke-width="3" marker-end="url(#ar)"/>
+
+  <!-- 中间：zip 压缩包 / Zip file -->
+  <rect x="326" y="120" width="220" height="120" rx="12" fill="#1f2433" stroke="#f39c12" stroke-width="2"/>
+  <text x="436" y="165" text-anchor="middle" font-size="22" font-weight="bold" fill="#f5f7fa">画质包.zip</text>
+  <text x="436" y="192" text-anchor="middle" font-size="12" fill="#8d98ad">Graphics-Pack.zip</text>
+  <rect x="346" y="205" width="180" height="14" rx="7" fill="#3a4256"/>
+  <text x="436" y="222" text-anchor="middle" font-size="14" fill="#c7d0e0">⬇ 下载 Download</text>
+
+  <!-- 箭头 2 -->
+  <path d="M 552 180 L 614 180" stroke="#f39c12" stroke-width="3" marker-end="url(#ar)"/>
+
+  <!-- 右侧：解压 / Extract -->
+  <rect x="620" y="130" width="160" height="110" rx="12" fill="#1f2433" stroke="#2ecc71" stroke-width="2"/>
+  <text x="700" y="170" text-anchor="middle" font-size="16" font-weight="bold" fill="#f5f7fa">解压文件</text>
+  <text x="700" y="196" text-anchor="middle" font-size="12" fill="#8d98ad">Extract ZIP</text>
+  <text x="700" y="222" text-anchor="middle" font-size="13" fill="#2ecc71">✓ 右键 → 解压</text>
+
+  <!-- 底部提示条 / Bottom note -->
+  <rect x="20" y="330" width="760" height="90" rx="12" fill="#1c2130" stroke="#3a4256"/>
+  <text x="38" y="365" font-size="14" fill="#f39c12" font-weight="bold">提示 Tip:</text>
+  <text x="38" y="390" font-size="13" fill="#c7d0e0">NVE / QuantV 一般在作者官网、Patreon 或 Discord 获取；免费 ReShade 预设可在 GitHub 搜索。</text>
+  <text x="38" y="410" font-size="12" fill="#8d98ad">Get NVE/QuantV from the official site, Patreon or Discord; search GitHub for free ReShade presets.</text>
+
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#f39c12"/>
+    </marker>
+  </defs>
+</svg>

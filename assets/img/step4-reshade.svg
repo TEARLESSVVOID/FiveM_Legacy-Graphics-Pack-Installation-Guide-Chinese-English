@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" font-family="'Microsoft YaHei','Segoe UI',Arial,sans-serif">
+  <!-- 深色背景 / Dark background -->
+  <rect width="800" height="450" fill="#141821"/>
+
+  <!-- 标题 / Title -->
+  <text x="400" y="42" text-anchor="middle" font-size="26" font-weight="bold" fill="#f5f7fa">STEP 4 · 安装 ReShade（可选，部分画质包需要）</text>
+  <text x="400" y="70" text-anchor="middle" font-size="15" fill="#8d98ad">Install ReShade (optional, needed by some packs)</text>
+
+  <!-- ReShade 安装窗口 mockup / Installer window -->
+  <rect x="30" y="100" width="480" height="290" rx="12" fill="#1f2433" stroke="#3a4256" stroke-width="2"/>
+  <rect x="30" y="100" width="480" height="36" rx="12" fill="#242a3b"/>
+  <rect x="30" y="122" width="480" height="14" fill="#242a3b"/>
+  <circle cx="52" cy="118" r="6" fill="#e74c3c"/>
+  <circle cx="74" cy="118" r="6" fill="#f1c40f"/>
+  <circle cx="96" cy="118" r="6" fill="#2ecc71"/>
+  <text x="270" y="124" text-anchor="middle" font-size="14" fill="#c7d0e0">ReShade Setup 安装程序</text>
+
+  <!-- 窗口内容 -->
+  <!-- Row 1 -->
+  <rect x="52" y="158" width="436" height="44" rx="8" fill="#1a1f2d" stroke="#3a4256"/>
+  <text x="70" y="187" font-size="13" fill="#f5f7fa">游戏 Select game:</text>
+  <text x="230" y="187" font-size="12" fill="#f39c12">…\FiveM.app\GTA5.exe</text>
+
+  <!-- Row 2 -->
+  <rect x="52" y="214" width="436" height="44" rx="8" fill="#1a1f2d" stroke="#3a4256"/>
+  <text x="70" y="243" font-size="13" fill="#f5f7fa">API 图形接口:</text>
+  <text x="230" y="243" font-size="12" fill="#2ecc71">DirectX 10/11/12 ✓</text>
+
+  <!-- Row 3 -->
+  <rect x="52" y="270" width="436" height="44" rx="8" fill="#1a1f2d" stroke="#3a4256"/>
+  <text x="70" y="299" font-size="13" fill="#f5f7fa">着色器 Shaders:</text>
+  <text x="230" y="299" font-size="12" fill="#2ecc71">Standard effects ✓</text>
+
+  <!-- Row 4 -->
+  <rect x="52" y="326" width="436" height="44" rx="8" fill="#1a1f2d" stroke="#f39c12"/>
+  <text x="70" y="355" font-size="13" fill="#f5f7fa">预设 Preset:</text>
+  <text x="230" y="355" font-size="12" fill="#f39c12">画质包.ini → 放入 FiveM.app</text>
+
+  <!-- 右侧步骤列表 / Steps -->
+  <rect x="540" y="100" width="230" height="290" rx="12" fill="#1c2130" stroke="#3a4256"/>
+  <text x="655" y="130" text-anchor="middle" font-size="14" font-weight="bold" fill="#f5f7fa">快速步骤</text>
+  <text x="655" y="130" text-anchor="middle" font-size="12" fill="#8d98ad">Steps</text>
+  <text x="560" y="170" font-size="13" fill="#c7d0e0">1. reshade.me 下载 ReShade</text>
+  <text x="560" y="200" font-size="13" fill="#c7d0e0">2. 选择 FiveM.app 里的 GTA5.exe</text>
+  <text x="560" y="230" font-size="13" fill="#c7d0e0">3. 接口选 DirectX 10/11/12</text>
+  <text x="560" y="260" font-size="13" fill="#c7d0e0">4. 勾选下载着色器</text>
+  <text x="560" y="290" font-size="13" fill="#c7d0e0">5. 预设 .ini 放入 FiveM.app</text>
+  <text x="560" y="330" font-size="12" fill="#8d98ad">1. Download from reshade.me</text>
+  <text x="560" y="355" font-size="12" fill="#8d98ad">2. Select GTA5.exe in FiveM.app</text>
+  <text x="560" y="380" font-size="12" fill="#8d98ad">5. Put preset .ini in FiveM.app</text>
+
+  <defs/>
+</svg>

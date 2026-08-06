@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" font-family="'Microsoft YaHei','Segoe UI','Courier New',monospace">
+  <!-- 深色背景 / Dark background -->
+  <rect width="800" height="450" fill="#141821"/>
+
+  <!-- 标题 / Title -->
+  <text x="400" y="42" text-anchor="middle" font-size="26" font-weight="bold" fill="#f5f7fa">STEP 3 · 复制文件到 FiveM.app\data</text>
+  <text x="400" y="70" text-anchor="middle" font-size="15" fill="#8d98ad">Copy Files into FiveM.app\data</text>
+
+  <!-- 文件夹图标绘制函数：tab + 主体 / Folder icon: tab + body -->
+  <!-- %localappdata% -->
+  <path d="M 40 160 h 22 l 8 10 h 150 v 18 h -180 z" fill="#3a4256"/>
+  <rect x="40" y="178" width="180" height="30" rx="4" fill="#3a4256"/>
+  <text x="50" y="188" font-size="12" fill="#f39c12">%localappdata%\FiveM\</text>
+
+  <!-- FiveM.app -->
+  <path d="M 70 200 h 20 l 8 10 h 120 v 18 h -148 z" fill="#455068"/>
+  <rect x="70" y="218" width="148" height="30" rx="4" fill="#455068"/>
+  <text x="80" y="228" font-size="12" fill="#f5f7fa">FiveM.app\</text>
+
+  <!-- data (highlight) -->
+  <path d="M 100 240 h 20 l 8 10 h 88 v 18 h -116 z" fill="#f39c12"/>
+  <rect x="100" y="258" width="116" height="30" rx="4" fill="#f39c12"/>
+  <text x="110" y="268" font-size="12" font-weight="bold" fill="#141821">data/ ← 放这里!</text>
+
+  <!-- caches (deleted) -->
+  <path d="M 100 290 h 20 l 8 10 h 88 v 18 h -116 z" fill="#5b3a45"/>
+  <rect x="100" y="308" width="116" height="30" rx="4" fill="#5b3a45"/>
+  <text x="110" y="318" font-size="12" fill="#e74c3c">caches/ (删除)</text>
+
+  <!-- GTA5.exe -->
+  <rect x="100" y="342" width="116" height="26" rx="4" fill="#1f2433" stroke="#8d98ad"/>
+  <text x="110" y="360" font-size="12" fill="#c7d0e0">GTA5.exe</text>
+
+  <!-- 右侧：拖入文件箭头 / Drag files in -->
+  <rect x="330" y="150" width="210" height="90" rx="12" fill="#1f2433" stroke="#2ecc71" stroke-width="2"/>
+  <text x="435" y="185" text-anchor="middle" font-size="15" font-weight="bold" fill="#f5f7fa">画质包文件</text>
+  <text x="435" y="208" text-anchor="middle" font-size="12" fill="#8d98ad">Pack files</text>
+  <text x="435" y="228" text-anchor="middle" font-size="13" fill="#2ecc71">复制 → 粘贴合并</text>
+
+  <!-- 大箭头指向 data 文件夹 -->
+  <path d="M 550 205 C 610 205 620 200 660 180" stroke="#2ecc71" stroke-width="4" fill="none" marker-end="url(#arBig)"/>
+
+  <!-- 底部提示条 / Bottom note -->
+  <rect x="20" y="330" width="760" height="90" rx="12" fill="#1c2130" stroke="#3a4256"/>
+  <text x="38" y="365" font-size="14" fill="#f39c12" font-weight="bold">注意 Note:</text>
+  <text x="38" y="390" font-size="13" fill="#c7d0e0">某些画质包（如 NVE）需要把文件放到 FiveM.app 根目录，请按画质包自带的说明操作。</text>
+  <text x="38" y="410" font-size="12" fill="#8d98ad">Some packs (e.g. NVE) need files in the FiveM.app root — follow the pack's own instructions.</text>
+
+  <defs>
+    <marker id="arBig" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2ecc71"/>
+    </marker>
+  </defs>
+</svg>

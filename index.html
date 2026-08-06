@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  FiveM 画质包安装教程 / FiveM Graphics Pack Installation Tutorial
+  中英双语 · Bilingual (中文 / English)
+  ----------------------------------------------------------------------------
+  媒体托管方案 / Media hosting:
+    所有图片与视频均通过 GitHub (jsdelivr CDN) 加载，
+    无论本文件在本地(file://)、GitHub Pages 还是任意网页服务器打开，
+    媒体都从 GitHub 拉取，不需要与网页同目录。
+    All images & videos load from GitHub via the jsdelivr CDN,
+    so the page works no matter where index.html is opened
+    (local file://, GitHub Pages, or any web server).
+
+    使用方法 / How to use:
+    1. 将本 index.html 和 assets/ 文件夹一起上传到你的 GitHub 仓库
+       Upload this index.html and the assets/ folder to your GitHub repo.
+    2. 把视频(推荐 mp4)放到 assets/video/ 文件夹，例如 fivem-gfx-tutorial.mp4
+       Put your video (mp4 recommended) into assets/video/, e.g. fivem-gfx-tutorial.mp4
+    3. 在下方 <script> 标签的 CONFIG 里填写你的 GitHub 用户名与仓库名
+       Fill in your GitHub username and repo name in the CONFIG below.
+    4. 打开页面即可看到来自 GitHub 的图片与视频
+       Open the page and media will be served from GitHub.
+  ============================================================================
+-->
+<html lang="zh-CN" data-lang="zh">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!-- 中文/English 双语标题 -->
+<title>FiveM 画质包安装教程 · FiveM Graphics Pack Tutorial</title>
+<style>
+  /* 全局样式 / Global styles —— 深色游戏风格 / Dark gaming theme */
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    background:#0e1119;
+    color:#e6eaf2;
+    font-family:"Segoe UI","Microsoft YaHei","PingFang SC",Arial,sans-serif;
+    line-height:1.7;
+  }
+  a { color:#f39c12; text-decoration:none; }
+  a:hover { text-decoration:underline; }
+
+  /* 顶栏 / Top bar */
+  header {
+    position:sticky; top:0; z-index:50;
+    background:rgba(14,17,25,.92); backdrop-filter:blur(8px);
+    border-bottom:1px solid #242a3b;
+    padding:12px 20px;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:12px; flex-wrap:wrap;
+  }
+  header h1 { font-size:18px; color:#f39c12; }
+  header h1 span { color:#8d98ad; font-size:13px; font-weight:normal; margin-left:8px; }
+  .lang-btn {
+    background:#242a3b; color:#e6eaf2; border:1px solid #3a4256;
+    padding:6px 14px; border-radius:20px; cursor:pointer; font-size:13px;
+    transition:.2s;
+  }
+  .lang-btn.active { background:#f39c12; color:#141821; border-color:#f39c12; font-weight:bold; }
+  .lang-btn:hover { border-color:#f39c12; }
+
+  /* 提示横幅 / Notice banner (未填写 GitHub 配置时显示) */
+  #notice {
+    display:none;
+    background:#3a2f14; border-bottom:1px solid #f39c12;
+    color:#ffd591; padding:10px 20px; font-size:13px;
+  }
+
+  /* 导航 / Nav */
+  nav {
+    display:flex; flex-wrap:wrap; gap:8px;
+    padding:14px 20px; border-bottom:1px solid #1c2130;
+  }
+  nav a {
+    background:#1c2130; color:#c7d0e0; padding:5px 12px;
+    border-radius:16px; font-size:12.5px; border:1px solid #242a3b;
+  }
+  nav a:hover { border-color:#f39c12; color:#f39c12; text-decoration:none; }
+
+  main { max-width:980px; margin:0 auto; padding:24px 20px 60px; }
+
+  /* 区块卡片 / Section cards */
+  section {
+    background:#141821; border:1px solid #242a3b; border-radius:16px;
+    padding:26px 28px; margin-bottom:28px;
+  }
+  h2 { color:#f39c12; font-size:21px; margin-bottom:6px; }
+  h2 small { color:#8d98ad; font-size:12.5px; font-weight:normal; margin-left:10px; }
+  h3 { color:#e6eaf2; font-size:16px; margin:16px 0 6px; }
+  p, li { font-size:14.5px; color:#c7d0e0; }
+  ul, ol { padding-left:22px; margin:8px 0; }
+  li { margin:5px 0; }
+
+  .zh, .en { display:block; }
+  /* 语言切换逻辑：只显示当前语言 / Only show the active language */
+  html[data-lang="zh"] .en { display:none !important; }
+  html[data-lang="en"] .zh { display:none !important; }
+
+  /* 图片 / Step images */
+  .step-img {
+    display:block; width:100%; max-width:800px; height:auto;
+    margin:16px auto; border-radius:12px;
+    border:1px solid #242a3b; background:#141821;
+  }
+  .img-cap { text-align:center; font-size:12px; color:#8d98ad; margin-top:-8px; }
+
+  /* 视频 / Video */
+  .video-wrap {
+    position:relative; width:100%; max-width:800px;
+    margin:16px auto; border-radius:12px; overflow:hidden;
+    border:1px solid #242a3b; background:#000;
+  }
+  video { display:block; width:100%; height:auto; }
+  .badge {
+    display:inline-block; background:#3a2f14; color:#ffd591;
+    border:1px solid #f39c12; border-radius:6px;
+    padding:2px 8px; font-size:12px; margin-bottom:8px;
+  }
+
+  /* 提示框 / Note boxes */
+  .note {
+    background:#1c2130; border-left:4px solid #f39c12;
+    border-radius:8px; padding:12px 16px; margin:14px 0; font-size:13.5px;
+  }
+  .note.green { border-left-color:#2ecc71; }
+  .note.red { border-left-color:#e74c3c; }
+
+  /* FAQ 折叠 / FAQ accordion */
+  details {
+    background:#1c2130; border:1px solid #242a3b;
+    border-radius:10px; padding:12px 16px; margin:10px 0;
+  }
+  summary { cursor:pointer; color:#f5f7fa; font-weight:bold; font-size:14.5px; }
+  summary:hover { color:#f39c12; }
+  details p { margin-top:10px; }
+
+  /* 代码块 / Code blocks */
+  pre {
+    background:#0e1119; border:1px solid #242a3b; border-radius:8px;
+    padding:12px 14px; font-size:12.5px; overflow-x:auto;
+    color:#7ec699; margin:10px 0; font-family:Consolas,"Courier New",monospace;
+  }
+  code { background:#242a3b; color:#f39c12; padding:1px 6px; border-radius:4px; font-size:13px; }
+  pre code { background:none; color:#7ec699; padding:0; }
+
+  footer {
+    text-align:center; color:#8d98ad; font-size:12.5px;
+    padding:24px 20px 40px; border-top:1px solid #1c2130;
+  }
+
+  /* 响应式 / Responsive */
+  @media (max-width:640px) {
+    section { padding:20px 16px; }
+    header h1 { font-size:15px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= 顶栏 / Header ================= -->
+<header>
+  <h1>🎮 FiveM 画质包教程<span data-zh="中英双语 · 视频 + 图文" data-en="Bilingual · Video + Guide"></span></h1>
+  <div>
+    <button class="lang-btn active" id="btnZh" onclick="setLang('zh')">中文</button>
+    <button class="lang-btn" id="btnEn" onclick="setLang('en')">English</button>
+  </div>
+</header>
+
+<!-- 配置提醒横幅 / Config notice banner -->
+<div id="notice">
+  <strong data-zh="⚠️ 提示：" data-en="⚠️ Notice: "></strong>
+  <span data-zh="你还没有填写 GitHub 配置。请上传文件到 GitHub 后，修改本 HTML 顶部 &lt;script&gt; 中的 CONFIG.owner / CONFIG.repo，媒体才会从 GitHub 加载（详见文末「上传到 GitHub」）。" data-en="You have not set the GitHub config yet. After uploading files to GitHub, edit CONFIG.owner / CONFIG.repo in the &lt;script&gt; of this HTML so media loads from GitHub (see 'Upload to GitHub' at the end)."></span>
+</div>
+
+<!-- ================= 目录 / Table of Contents ================= -->
+<nav>
+  <a href="#intro" data-zh="简介" data-en="Intro"></a>
+  <a href="#step1" data-zh="步骤 1 · 安装 FiveM" data-en="Step 1 · Install FiveM"></a>
+  <a href="#step2" data-zh="步骤 2 · 下载画质包" data-en="Step 2 · Download Pack"></a>
+  <a href="#step3" data-zh="步骤 3 · 复制文件" data-en="Step 3 · Copy Files"></a>
+  <a href="#step4" data-zh="步骤 4 · ReShade + 视频" data-en="Step 4 · ReShade + Video"></a>
+  <a href="#step5" data-zh="步骤 5 · 游戏内设置" data-en="Step 5 · In-Game"></a>
+  <a href="#faq" data-zh="常见问题" data-en="FAQ"></a>
+  <a href="#upload" data-zh="上传到 GitHub" data-en="Upload to GitHub"></a>
+</nav>
+
+<main>
+
+<!-- ================= 简介 / Intro ================= -->
+<section id="intro">
+  <h2 data-zh="简介" data-en="Introduction"><small data-zh="Introduction · 开胃菜" data-en="简介 · Intro"></small></h2>
+  <div class="zh">
+    <p>FiveM 是 GTA V 的大型多人联机模组平台。配合<strong>画质包</strong>（如 <strong>NVE</strong>、<strong>QuantV</strong>、<strong>ReShade 预设</strong>），可以让游戏画面焕然一新，甚至接近真实照片效果。本教程将带你从零开始完成安装。</p>
+    <div class="note"><strong>准备工作：</strong>① 正版 GTA V（Steam / Epic / Rockstar 均可）② 建议显卡 GTX 1060 及以上 ③ 至少 30GB 空闲磁盘空间 ④ 稳定的网络。</div>
+  </div>
+  <div class="en">
+    <p>FiveM is a large multiplayer mod platform for GTA V. With a <strong>graphics pack</strong> (such as <strong>NVE</strong>, <strong>QuantV</strong> or <strong>ReShade presets</strong>), the game can look brand new — even close to real photos. This tutorial walks you through everything from scratch.</p>
+    <div class="note"><strong>Requirements:</strong> ① A genuine copy of GTA V (Steam / Epic / Rockstar) ② Recommended GPU: GTX 1060 or better ③ At least 30GB of free disk space ④ A stable internet connection.</div>
+  </div>
+</section>
+
+<!-- ================= 步骤 1 / Step 1 ================= -->
+<section id="step1">
+  <h2 data-zh="步骤 1 · 安装 FiveM" data-en="Step 1 · Install FiveM"><small data-zh="Step 1 · Install FiveM" data-en="安装 FiveM"></small></h2>
+  <img class="step-img" data-gh="assets/img/step1-install-fivem.svg" alt="FiveM 安装步骤 / FiveM install steps"/>
+  <div class="img-cap" data-zh="图 1：安装 FiveM 的四个步骤" data-en="Fig 1: Four steps to install FiveM"></div>
+
+  <div class="zh">
+    <ol>
+      <li>打开官网 <code>https://fivem.net</code>，点击 <strong>Download</strong> 下载安装器。</li>
+      <li>运行 <code>FiveM.exe</code>，安装器会自动检测 GTA V 的安装路径；如果找不到，请手动选择 GTA 5 文件夹。</li>
+      <li>等待 FiveM 完成基础安装（首次会下载一些必需文件）。</li>
+      <li>启动 FiveM，登录 Rockstar 账号，随便进入一个服务器测试能否正常游玩。</li>
+    </ol>
+    <div class="note green">✅ 安装完成后，桌面会出现 FiveM 图标。此时可以退出游戏，进入下一步。</div>
+  </div>
+  <div class="en">
+    <ol>
+      <li>Open <code>https://fivem.net</code> and click <strong>Download</strong> to get the installer.</li>
+      <li>Run <code>FiveM.exe</code>; the installer will auto-detect your GTA V path. If not found, select the GTA 5 folder manually.</li>
+      <li>Wait for FiveM to finish its base installation (it downloads required files on first run).</li>
+      <li>Launch FiveM, log in with your Rockstar account, and join any server to test.</li>
+    </ol>
+    <div class="note green">✅ A FiveM icon appears on your desktop afterwards. You may quit the game and continue to the next step.</div>
+  </div>
+</section>
+
+<!-- ================= 步骤 2 / Step 2 ================= -->
+<section id="step2">
+  <h2 data-zh="步骤 2 · 下载画质包" data-en="Step 2 · Download a Graphics Pack"><small data-zh="Step 2 · Download a Pack" data-en="下载画质包"></small></h2>
+  <img class="step-img" data-gh="assets/img/step2-download-pack.svg" alt="画质包下载 / Download a graphics pack"/>
+  <div class="img-cap" data-zh="图 2：常见画质包与下载方式" data-en="Fig 2: Popular packs and where to get them"></div>
+
+  <div class="zh">
+    <h3>常见画质包推荐 / 使用对比</h3>
+    <ul>
+      <li><strong>NaturalVision Evolved (NVE)</strong>：业界公认最真实，需要 Patreon 付费支持作者；提供 FiveM 专用版。</li>
+      <li><strong>QuantV</strong>：电影感色调，画面极具风格化。</li>
+      <li><strong>免费 ReShade 预设</strong>：GitHub 上有大量免费预设，适合新手尝试。</li>
+    </ul>
+    <div class="note">下载后一般得到一个 <strong>zip 压缩包</strong>。请完整解压，不要直接双击 zip 内的文件。</div>
+  </div>
+  <div class="en">
+    <h3>Recommended packs / Comparison</h3>
+    <ul>
+      <li><strong>NaturalVision Evolved (NVE)</strong>: widely regarded as the most realistic; supports the author via Patreon; has a FiveM-specific version.</li>
+      <li><strong>QuantV</strong>: cinematic color grading with a highly stylized look.</li>
+      <li><strong>Free ReShade presets</strong>: plenty of free presets on GitHub — great for beginners.</li>
+    </ul>
+    <div class="note">You usually get a <strong>zip archive</strong>. Extract it fully — don't run files from inside the zip.</div>
+  </div>
+</section>
+
+<!-- ================= 步骤 3 / Step 3 ================= -->
+<section id="step3">
+  <h2 data-zh="步骤 3 · 把文件复制到 FiveM" data-en="Step 3 · Copy Files into FiveM"><small data-zh="Step 3 · Copy Files" data-en="复制文件"></small></h2>
+  <img class="step-img" data-gh="assets/img/step3-copy-files.svg" alt="复制文件到 FiveM.app/data"/>
+  <div class="img-cap" data-zh="图 3：FiveM 目录结构（重点：data 文件夹）" data-en="Fig 3: FiveM folder structure (focus: the data folder)"></div>
+
+  <div class="zh">
+    <ol>
+      <li>按 <code>Win + R</code>，输入 <code>%localappdata%</code> 并回车。</li>
+      <li>进入 <code>FiveM → FiveM.app</code> 文件夹。</li>
+      <li>把解压后的<strong>画质包文件</strong>复制到 <code>FiveM.app\data</code> 文件夹（提示合并/覆盖时选择“是”）。</li>
+      <li>（可选）删除 <code>caches</code> 缓存文件夹，让游戏重新生成缓存，可避免画质包冲突。</li>
+      <li>有些画质包（如 NVE）要求把文件放在 <code>FiveM.app</code> 根目录，请以画质包自带说明为准。</li>
+    </ol>
+    <div class="note red">⚠️ 不要误删 <code>FiveM.app</code> 里的 <code>GTA5.exe</code>，它是游戏主程序；Reshade 的 <code>dxgi.dll</code> 也放在这个根目录。</div>
+  </div>
+  <div class="en">
+    <ol>
+      <li>Press <code>Win + R</code>, type <code>%localappdata%</code> and press Enter.</li>
+      <li>Open <code>FiveM → FiveM.app</code>.</li>
+      <li>Copy the <strong>extracted pack files</strong> into <code>FiveM.app\data</code> (choose "Yes" when asked to merge/overwrite).</li>
+      <li>(Optional) Delete the <code>caches</code> folder so the game regenerates it — this avoids conflicts.</li>
+      <li>Some packs (e.g. NVE) require files in the <code>FiveM.app</code> root — always follow the pack's own instructions.</li>
+    </ol>
+    <div class="note red">⚠️ Do NOT delete <code>GTA5.exe</code> inside <code>FiveM.app</code> — it's the game binary; ReShade's <code>dxgi.dll</code> also lives in this root folder.</div>
+  </div>
+</section>
+
+<!-- ================= 步骤 4 / Step 4 (含视频) ================= -->
+<section id="step4">
+  <h2 data-zh="步骤 4 · 安装 ReShade + 视频教程" data-en="Step 4 · Install ReShade + Video"><small data-zh="Step 4 · ReShade + Video" data-en="ReShade 安装 + 视频"></small></h2>
+
+  <!-- 视频：通过 GitHub (jsdelivr) 加载 / Video loaded from GitHub via jsdelivr -->
+  <span class="badge" data-zh="视频来自 GitHub 托管（CDN 加载）" data-en="Video hosted on GitHub (served via CDN)"></span>
+  <div class="video-wrap">
+    <video id="tutorialVideo" controls preload="metadata" poster="">
+      <source id="videoSrc" src="" type="video/mp4"/>
+      <p data-zh="你的浏览器不支持 HTML5 视频。" data-en="Your browser does not support HTML5 video."></p>
+    </video>
+  </div>
+  <div class="img-cap" data-zh="视频：请将你的安装演示视频上传到 GitHub 的 assets/video/ 文件夹（详见文末）" data-en="Video: upload your demo video to assets/video/ in your GitHub repo (see the end of this page)"></div>
+
+  <img class="step-img" data-gh="assets/img/step4-reshade.svg" alt="ReShade 安装设置"/>
+  <div class="img-cap" data-zh="图 4：ReShade 安装要点" data-en="Fig 4: ReShade installation essentials"></div>
+
+  <div class="zh">
+    <ol>
+      <li>从 <code>https://reshade.me</code> 下载并运行 ReShade 安装器。</li>
+      <li>点击 <strong>Select game</strong>，选择 <code>FiveM.app</code> 文件夹里的 <code>GTA5.exe</code>（注意不是 Steam 里的）。</li>
+      <li>图形接口选择 <strong>DirectX 10/11/12</strong>。</li>
+      <li>勾选下载着色器（Standard effects 等），等待完成。</li>
+      <li>把画质包附带的 ReShade 预设（<code>.ini</code> 文件）复制到 <code>FiveM.app</code> 根目录。</li>
+    </ol>
+    <div class="note">💡 安装完成后 <code>FiveM.app</code> 根目录会出现 <code>dxgi.dll</code> 和 <code>ReShade.ini</code>，这是正常现象。</div>
+  </div>
+  <div class="en">
+    <ol>
+      <li>Download and run the ReShade installer from <code>https://reshade.me</code>.</li>
+      <li>Click <strong>Select game</strong> and choose <code>GTA5.exe</code> inside the <code>FiveM.app</code> folder (not the Steam one).</li>
+      <li>Select <strong>DirectX 10/11/12</strong> as the graphics API.</li>
+      <li>Tick the shaders to download (Standard effects, etc.) and wait for it to finish.</li>
+      <li>Copy the pack's ReShade preset (<code>.ini</code>) into the <code>FiveM.app</code> root.</li>
+    </ol>
+    <div class="note">💡 After installation you will see <code>dxgi.dll</code> and <code>ReShade.ini</code> in the <code>FiveM.app</code> root — this is normal.</div>
+  </div>
+</section>
+
+<!-- ================= 步骤 5 / Step 5 ================= -->
+<section id="step5">
+  <h2 data-zh="步骤 5 · 启动游戏并启用画质" data-en="Step 5 · Launch and Enable"><small data-zh="Step 5 · In-Game" data-en="游戏内启用"></small></h2>
+  <img class="step-img" data-gh="assets/img/step5-ingame.svg" alt="游戏内启用画质包"/>
+  <div class="img-cap" data-zh="图 5：游戏内启用流程" data-en="Fig 5: Enabling the pack in-game"></div>
+
+  <div class="zh">
+    <ol>
+      <li>通过 FiveM 启动器进入任意服务器。</li>
+      <li>游戏中按 <strong>Home 键</strong> 打开 ReShade 面板。</li>
+      <li>在面板顶部的下拉框中选择画质包预设，勾选需要的特效。</li>
+      <li>在游戏设置中开启 <strong>高级图形设置 → 超高</strong>，效果更佳。</li>
+    </ol>
+    <div class="note green">✅ 如果按 Home 没反应，说明 <code>dxgi.dll</code> 没放对位置，请回到步骤 3/4 检查。</div>
+  </div>
+  <div class="en">
+    <ol>
+      <li>Join any server through the FiveM launcher.</li>
+      <li>Press <strong>Home</strong> in-game to open the ReShade panel.</li>
+      <li>Pick your pack preset in the dropdown at the top and enable the effects you want.</li>
+      <li>In game settings, enable <strong>Advanced Graphics → Very High</strong> for the best look.</li>
+    </ol>
+    <div class="note green">✅ If Home does nothing, <code>dxgi.dll</code> is not in the right place — check Steps 3/4 again.</div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <h2 data-zh="常见问题 FAQ" data-en="FAQ"><small data-zh="Frequently Asked Questions" data-en="常见问题"></small></h2>
+  <div class="zh">
+    <details><summary>游戏打不开 / 闪退怎么办？</summary>
+      <p>删除 <code>FiveM.app</code> 内的 <code>caches</code> 文件夹后重新启动；若仍不行，删除刚复制的画质包文件，逐个排除。</p></details>
+    <details><summary>帧数太低怎么办？</summary>
+      <p>在 ReShade 面板中减少开启的特效数量（尤其是模糊、光线类特效），或把预设强度调低。</p></details>
+    <details><summary>按 Home 键没有反应？</summary>
+      <p>确认 <code>dxgi.dll</code> 位于 <code>FiveM.app</code> 根目录，且画质包里的 <code>.ini</code> 预设也在该目录。</p></details>
+    <details><summary>进服务器被踢出怎么办？</summary>
+      <p>部分服务器禁止 ReShade / 画质包。进入此类服务器前请先在 ReShade 中点击 <em>Disable</em> 或删除 <code>dxgi.dll</code>。</p></details>
+    <details><summary>为什么这个页面的图片和视频来自 GitHub？</summary>
+      <p>本页所有媒体都用 jsdelivr CDN 从 GitHub 仓库加载（形如 <code>https://cdn.jsdelivr.net/gh/用户名/仓库@main/路径</code>）。无论你在本地、GitHub Pages 还是任意网站打开本页，媒体都始终从 GitHub 拉取，确保显示一致。</p></details>
+  </div>
+  <div class="en">
+    <details><summary>Game crashes / won't start?</summary>
+      <p>Delete the <code>caches</code> folder inside <code>FiveM.app</code> and relaunch. If it persists, remove the pack files you copied and test them one by one.</p></details>
+    <details><summary>Frame rate too low?</summary>
+      <p>Disable some effects in the ReShade panel (especially blur / light effects), or lower the preset intensity.</p></details>
+    <details><summary>Pressing Home does nothing?</summary>
+      <p>Make sure <code>dxgi.dll</code> is in the <code>FiveM.app</code> root and the pack's <code>.ini</code> preset is there too.</p></details>
+    <details><summary>Kicked from a server?</summary>
+      <p>Some servers ban ReShade / graphics packs. Click <em>Disable</em> in ReShade or remove <code>dxgi.dll</code> before joining such servers.</p></details>
+    <details><summary>Why do media files load from GitHub?</summary>
+      <p>All media on this page is loaded from a GitHub repo via the jsdelivr CDN (like <code>https://cdn.jsdelivr.net/gh/user/repo@main/path</code>). No matter where the page is opened — locally, GitHub Pages, or any website — media always comes from GitHub for a consistent result.</p></details>
+  </div>
+</section>
+
+<!-- ================= 上传到 GitHub ================= -->
+<section id="upload">
+  <h2 data-zh="如何把本页面 + 图片 + 视频上传到 GitHub" data-en="Upload This Page + Images + Video to GitHub"><small data-zh="Upload to GitHub · 媒体托管" data-en="GitHub 托管媒体"></small></h2>
+
+  <div class="zh">
+    <h3>第 1 步：新建仓库并上传文件</h3>
+    <ol>
+      <li>在 <code>github.com</code> 登录后点右上角 <strong>+ → New repository</strong>，仓库名随意（如 <code>fivem-tutorial</code>）。</li>
+      <li>进入仓库后点 <strong>Add file → Upload files</strong>，把本 <code>index.html</code> 和整个 <code>assets</code> 文件夹拖进去，提交（Commit changes）。</li>
+      <li>视频：把 <code>fivem-gfx-tutorial.mp4</code> 上传到 <code>assets/video/</code> 文件夹（一次上传会自动创建该目录）。</li>
+    </ol>
+    <div class="note">📹 <strong>视频大小建议 ≤ 20MB</strong>（jsdelivr CDN 单文件限制）。更大的视频可用 <code>mp4 压缩</code> 工具压小，或改用 GitHub LFS / GitHub Release 托管，但链接方式会不同。</div>
+
+    <h3>第 2 步：修改本页面的 CONFIG（文件顶部 &lt;script&gt;）</h3>
+    <p>打开 <code>index.html</code>，在顶部脚本中找到 CONFIG，把 <code>YOUR_GITHUB_USERNAME</code> 和 <code>YOUR_REPO_NAME</code> 改成你的用户名和仓库名，保存并重新上传。</p>
+    <pre><code>const CONFIG = {
+  owner: "YOUR_GITHUB_USERNAME",   // 改成你的 GitHub 用户名
+  repo:  "YOUR_REPO_NAME",         // 改成你的仓库名
+  branch:"main",
+  video: "assets/video/fivem-gfx-tutorial.mp4"  // 视频路径
+};</code></pre>
+
+    <h3>第 3 步：了解媒体链接规则</h3>
+    <p>图片和视频通过以下 CDN 地址从 GitHub 加载，所以<strong>无论怎么打开本页面</strong>，媒体都来自 GitHub：</p>
+    <pre><code>https://cdn.jsdelivr.net/gh/用户名/仓库@main/图片路径.png
+https://cdn.jsdelivr.net/gh/用户名/仓库@main/assets/video/视频.mp4</code></pre>
+    <p>备用链接（GitHub 原生）：<code>https://raw.githubusercontent.com/用户名/仓库/main/文件路径</code>（大视频不支持拖动进度条，建议优先用 jsdelivr）。</p>
+
+    <h3>第 4 步（可选）：开启 GitHub Pages 得到一个正式网址</h3>
+    <ol>
+      <li>仓库 <strong>Settings → Pages</strong>，Source 选择 <strong>Deploy from a branch</strong>，分支选 <code>main</code>，保存。</li>
+      <li>稍等 1~2 分钟，即可通过 <code>https://用户名.github.io/仓库名/</code> 访问本教程，可分享给任何人。</li>
+    </ol>
+  </div>
+
+  <div class="en">
+    <h3>Step 1: Create a repo and upload files</h3>
+    <ol>
+      <li>Log in at <code>github.com</code>, click <strong>+ → New repository</strong> in the top-right. Any name works (e.g. <code>fivem-tutorial</code>).</li>
+      <li>In the repo, click <strong>Add file → Upload files</strong>, drag this <code>index.html</code> and the whole <code>assets</code> folder in, then commit.</li>
+      <li>Video: upload <code>fivem-gfx-tutorial.mp4</code> into <code>assets/video/</code> (the folder is created automatically on first upload).</li>
+    </ol>
+    <div class="note">📹 <strong>Keep the video ≤ 20MB</strong> (jsdelivr CDN single-file limit). For larger videos, compress the mp4, or use GitHub LFS / GitHub Releases instead (different link format).</div>
+
+    <h3>Step 2: Edit the CONFIG in this page (top &lt;script&gt;)</h3>
+    <p>Open <code>index.html</code>, find CONFIG in the top script, replace <code>YOUR_GITHUB_USERNAME</code> and <code>YOUR_REPO_NAME</code> with your username and repo name, save and re-upload.</p>
+    <pre><code>const CONFIG = {
+  owner: "YOUR_GITHUB_USERNAME",   // your GitHub username
+  repo:  "YOUR_REPO_NAME",         // your repo name
+  branch:"main",
+  video: "assets/video/fivem-gfx-tutorial.mp4"  // video path
+};</code></pre>
+
+    <h3>Step 3: How the media links work</h3>
+    <p>Images and video are loaded from GitHub through this CDN, so <strong>no matter how the page is opened</strong>, media always comes from GitHub:</p>
+    <pre><code>https://cdn.jsdelivr.net/gh/user/repo@main/image-path.png
+https://cdn.jsdelivr.net/gh/user/repo@main/assets/video/video.mp4</code></pre>
+    <p>Fallback link (native GitHub): <code>https://raw.githubusercontent.com/user/repo/main/file-path</code> (no seeking for large videos — prefer jsdelivr).</p>
+
+    <h3>Step 4 (optional): Enable GitHub Pages for a real URL</h3>
+    <ol>
+      <li>Repo <strong>Settings → Pages</strong>, Source: <strong>Deploy from a branch</strong>, branch <code>main</code>, save.</li>
+      <li>Wait 1–2 minutes, then visit <code>https://username.github.io/repo-name/</code> — share it with anyone.</li>
+    </ol>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p data-zh="FiveM 画质包安装教程 · 中英双语 · 所有媒体经 GitHub (jsdelivr CDN) 加载" data-en="FiveM Graphics Pack Tutorial · Bilingual · All media served via GitHub (jsdelivr CDN)"></p>
+  <p data-zh="© 2026 · 祝游戏愉快！" data-en="© 2026 · Have fun in-game!"></p>
+</footer>
+
+<script>
+/* ======================================================================
+ * 媒体配置 / Media Configuration
+ * ----------------------------------------------------------------------
+ * 所有图片与视频将通过 jsdelivr CDN 从 GitHub 加载：
+ * https://cdn.jsdelivr.net/gh/{owner}/{repo}@{branch}/{文件路径}
+ * All images and video load from GitHub via the jsdelivr CDN:
+ * https://cdn.jsdelivr.net/gh/{owner}/{repo}@{branch}/{file-path}
+ *
+ * 使用步骤 / How to use:
+ *   1. 上传 index.html + assets/ 到你的 GitHub 仓库 / Upload to your repo
+ *   2. 把视频放到 assets/video/ / Put your video into assets/video/
+ *   3. 修改下面两个值 / Edit the two values below
+ *   4. 重新上传保存 / Save & re-upload
+ * ====================================================================== */
+const CONFIG = {
+  owner: "YOUR_GITHUB_USERNAME",              // 你的 GitHub 用户名 / your GitHub username
+  repo:  "YOUR_REPO_NAME",                    // 你的仓库名 / your repo name
+  branch:"main",                              // 分支（默认 main）/ branch (default main)
+  video: "assets/video/fivem-gfx-tutorial.mp4" // 视频路径（assets/video/ 内）/ video path
+};
+
+/* 是否已填写配置 / Whether the config has been filled in */
+const CONFIG_OK = CONFIG.owner !== "YOUR_GITHUB_USERNAME" && CONFIG.repo !== "YOUR_REPO_NAME";
+
+/* 构造 GitHub CDN 地址 / Build the GitHub CDN URL */
+function ghUrl(path) {
+  return "https://cdn.jsdelivr.net/gh/" + CONFIG.owner + "/" + CONFIG.repo + "@" + CONFIG.branch + "/" + path;
+}
+
+/* 为所有带 data-gh 的 <img> 设置 src / Set src for every <img data-gh> */
+document.querySelectorAll("img[data-gh]").forEach(function (img) {
+  img.src = CONFIG_OK ? ghUrl(img.getAttribute("data-gh"))
+                      : img.getAttribute("data-gh"); // 未配置时先加载本地文件预览 / local preview before config
+});
+
+/* 设置视频地址 / Set the video source */
+const video   = document.getElementById("tutorialVideo");
+const videoEl = document.getElementById("videoSrc");
+videoEl.src = CONFIG_OK ? ghUrl(CONFIG.video) : CONFIG.video;
+video.poster = CONFIG_OK ? ghUrl("assets/img/video-poster.svg") : "assets/img/video-poster.svg";
+
+/* 未配置时显示提示横幅 / Show notice when config is missing */
+if (!CONFIG_OK) document.getElementById("notice").style.display = "block";
+
+/* ======================================================================
+ * 语言切换 / Language Switch (中文 ↔ English)
+ * ====================================================================== */
+function setLang(lang) {
+  document.documentElement.setAttribute("data-lang", lang);
+  document.getElementById("btnZh").classList.toggle("active", lang === "zh");
+  document.getElementById("btnEn").classList.toggle("active", lang === "en");
+  applyDataText(lang);
+  try { localStorage.setItem("lang", lang); } catch (e) {}
+}
+/* 将带 data-zh / data-en 属性的元素文本替换为当前语言 / Replace text of [data-zh][data-en] elements */
+function applyDataText(lang) {
+  document.querySelectorAll("[data-zh][data-en]").forEach(function (el) {
+    el.textContent = lang === "en" ? el.getAttribute("data-en") : el.getAttribute("data-zh");
+  });
+}
+/* 记住上次选择 / Remember last choice */
+(function initLang() {
+  var saved = null;
+  try { saved = localStorage.getItem("lang"); } catch (e) {}
+  setLang(saved === "en" ? "en" : "zh");
+})();
+</script>
+</body>
+</html>
